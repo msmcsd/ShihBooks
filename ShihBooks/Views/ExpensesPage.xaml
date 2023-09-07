@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:m="clr-namespace:ShihBooks.Core;assembly=ShihBooks.Core"
+             xmlns:viewmodel="clr-namespace:ShihBooks.ViewModels"
+             x:DataType="viewmodel:ExpenseViewModel"
+             x:Class="ShihBooks.Views.ExpensesPage"
+             Title="Expenses">
+    <VerticalStackLayout>
+        <Button Text="123" />
+        <CollectionView
+            ItemsSource="{Binding Expenses}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="m:Expense">
+                    <HorizontalStackLayout>
+                        <Image 
+                            Aspect="AspectFill"
+                            Source="https://www.costco.com/wcsstore/CostcoUSBCCatalogAssetStore/feature-pages/16w0126-media-request-logo.jpg" 
+                            WidthRequest="50" 
+                            HeightRequest="50"/>
+                        <Label Text="{Binding Description}" />
+                        <Label Text="{Binding Amount}" />
+                    </HorizontalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>
