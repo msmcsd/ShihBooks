@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:m="clr-namespace:ShihBooks.Core;assembly=ShihBooks.Core"
              xmlns:viewmodel="clr-namespace:ShihBooks.ViewModels"
-             x:DataType="viewmodel:ExpenseViewModel"
+             x:DataType="viewmodel:ExpensesViewModel"
              x:Class="ShihBooks.Views.ExpensesPage"
              Title="Expenses">
     <VerticalStackLayout>

@@ -11,13 +11,13 @@ using System.Threading.Tasks;
 
 namespace ShihBooks.ViewModels
 {
-    public class ExpenseViewModel : BaseViewModel
+    public class ExpensesViewModel : BaseViewModel
     {
         private readonly IViewExpensesByMonthUseCase _viewExpensesByMonthUseCase;
 
         public ObservableCollection<Expense> Expenses { get; set; } = new();
 
-        public ExpenseViewModel(IViewExpensesByMonthUseCase viewExpensesByMonthUseCase)
+        public ExpensesViewModel(IViewExpensesByMonthUseCase viewExpensesByMonthUseCase)
         {
             _viewExpensesByMonthUseCase = viewExpensesByMonthUseCase;
         }

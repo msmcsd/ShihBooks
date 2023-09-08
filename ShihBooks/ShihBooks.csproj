@@ -60,12 +60,18 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Views\ExpenseDetailsPage.xaml.cs">
+	    <DependentUpon>ExpenseDetailsPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\ExpensesPage.xaml.cs">
 	    <DependentUpon>ExpensesPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Views\ExpenseDetailsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\ExpensesPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

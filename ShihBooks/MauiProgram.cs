@@ -28,7 +28,7 @@ public static class MauiProgram
 		builder.Services.AddTransient<IViewExpensesByMonthUseCase, ViewExpensesByMonthUseCase>();
 
 		builder.Services.AddSingleton<IExpenseSource, ExpenseSourceInMemory>();
-        builder.Services.AddSingleton<ExpenseViewModel>();
+        builder.Services.AddSingleton<ExpensesViewModel>();
         builder.Services.AddSingleton<ExpensesPage>();
 
 		return builder.Build();

@@ -4,9 +4,9 @@ namespace ShihBooks.Views;
 
 public partial class ExpensesPage : ContentPage
 {
-    private readonly ExpenseViewModel _expenseViewModel;
+    private readonly ExpensesViewModel _expenseViewModel;
 
-    public ExpensesPage(ExpenseViewModel expenseViewModel)
+    public ExpensesPage(ExpensesViewModel expenseViewModel)
 	{
 		InitializeComponent();
         _expenseViewModel = expenseViewModel;
