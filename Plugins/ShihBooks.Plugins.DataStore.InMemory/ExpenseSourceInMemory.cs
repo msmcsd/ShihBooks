@@ -14,29 +14,32 @@ namespace ShihBooks.Plugins.DataStore.InMemory
                 new Expense()
                 {
                     Id = 1,
-                    Description = "Grocery",
+                    Description = "Meals",
                     Amount = 100.23,
                     ExpenseDate = new DateTime(2023, 3, 4),
                     MerchaneImageUrl="https://www.costco.com/wcsstore/CostcoUSBCCatalogAssetStore/feature-pages/16w0126-media-request-logo.jpg",
-                    Merchant = "Costco"
+                    Merchant = "Costco",
+                    ExpenseType = "Grocery"
                 },
                 new Expense()
                 {
                     Id = 1,
-                    Description = "Grocery",
-                    Amount = 51.34,
+                    Description = "Gaming laptop",
+                    Amount = 1251.34,
                     ExpenseDate = new DateTime(2023, 8, 4),
                     MerchaneImageUrl="https://www.costco.com/wcsstore/CostcoUSBCCatalogAssetStore/feature-pages/16w0126-media-request-logo.jpg",
-                    Merchant = "Costco"
+                    Merchant = "Amazon",
+                    ExpenseType = "Electronics"
                 },
                 new Expense()
                 {
                     Id = 1,
-                    Description = "Grocery",
+                    Description = "Daily shopping",
                     Amount = 12.99,
                     ExpenseDate = new DateTime(2023, 8, 1),
                     MerchaneImageUrl="https://www.costco.com/wcsstore/CostcoUSBCCatalogAssetStore/feature-pages/16w0126-media-request-logo.jpg",
-                    Merchant = "Costco"
+                    Merchant = "Costco",
+                    ExpenseType="Grocery"
                 },
             };
         }

@@ -7,6 +7,8 @@
 
         public DateTime ExpenseDate { get; set; }
 
+        public string ExpenseType { get; set; }
+
         public string Merchant { get; set; }
 
         public string Description { get; set; }

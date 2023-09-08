@@ -12,16 +12,33 @@
             ItemsSource="{Binding Expenses}">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="m:Expense">
-                    <HorizontalStackLayout>
+                    <Grid Padding="5" ColumnDefinitions="50,50,*,100">
                         <Image 
+                            Grid.Column="0"
                             Aspect="AspectFill"
-                            Source="https://www.costco.com/wcsstore/CostcoUSBCCatalogAssetStore/feature-pages/16w0126-media-request-logo.jpg" 
+                            Source="{Binding MerchaneImageUrl}"                           
                             WidthRequest="50" 
-                            HeightRequest="50"/>
-                        <Label Text="{Binding Description}" />
-                        <Label Text="{Binding Amount}" />
-                    </HorizontalStackLayout>
-                </DataTemplate>
+                            HeightRequest="50"
+                            />
+                        <Label 
+                            Grid.Column="1"
+                            Text="{Binding ExpenseDate, StringFormat='{0:MM/dd}'}" 
+                            HorizontalOptions="Start"
+                            VerticalOptions="Center"
+                            BackgroundColor="Yellow"/>
+                        <VerticalStackLayout Grid.Column="2" Padding="5" BackgroundColor="Pink">
+                            <Label Text="{Binding Description}" FontSize="18" />
+                            <Label Text="{Binding ExpenseType}" />
+                        </VerticalStackLayout>
+                        <Label 
+                            Grid.Column="3"
+                            Text="{Binding Amount, StringFormat='${0:N2}'}" 
+                            BackgroundColor="LightGreen"
+                            HorizontalOptions="FillAndExpand"
+                            HorizontalTextAlignment="End"
+                            VerticalOptions="Center"/>
+                    </Grid>
+                </DataTemplate> 
             </CollectionView.ItemTemplate>
         </CollectionView>
     </VerticalStackLayout>

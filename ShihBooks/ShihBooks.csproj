@@ -71,4 +71,6 @@
 	  </MauiXaml>
 	</ItemGroup>
 
+	<ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadGenericExceptionInfoBarShihBooksHideInfoBar="True" /></VisualStudio></ProjectExtensions>
+
 </Project>

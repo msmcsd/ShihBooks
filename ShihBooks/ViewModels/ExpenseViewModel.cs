@@ -4,13 +4,14 @@ using ShihBooks.UseCases.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ShihBooks.ViewModels
 {
-    public class ExpenseViewModel
+    public class ExpenseViewModel : BaseViewModel
     {
         private readonly IViewExpensesByMonthUseCase _viewExpensesByMonthUseCase;
 
@@ -23,15 +24,37 @@ namespace ShihBooks.ViewModels
 
         public async Task LoadExpensesByMonthAsync(int year, int month)
         {
-            Expenses.Clear();
-            var expenses = await _viewExpensesByMonthUseCase.ExecuteAsync(year, month);
+            if (IsBusy) return;
 
-            if (expenses?.Count > 0)
+            if (Expenses.Count > 0)
             {
-                foreach (var e in expenses)
+                Expenses.Clear();
+            }
+
+            try
+            {
+                IsBusy = true;
+
+
+                var expenses = await _viewExpensesByMonthUseCase.ExecuteAsync(year, month);
+
+                if (expenses?.Count > 0)
                 {
-                    Expenses.Add(e);
+                    foreach (var e in expenses)
+                    {
+                        // There is not AddRange currently. This will notify the
+                        // collection change every time an element is added.
+                        Expenses.Add(e);
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            finally
+            {
+                IsBusy = false;
             }
         }
     }
