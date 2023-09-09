@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using ShihBooks.Core;
 using ShihBooks.UseCases.Interfaces;
+using ShihBooks.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -64,6 +65,17 @@ namespace ShihBooks.ViewModels
             {
                 IsBusy = false;
             }
+        }
+
+        [RelayCommand]
+        public async Task GoToExpenseDetailsAsync(Expense expense)
+        {
+            if (expense is null) return;
+
+            await Shell.Current.GoToAsync($"{nameof(ExpenseDetailsPage)}", true,
+                new Dictionary<string, object>() {
+                    { "Expense", expense }
+                });
         }
     }
 }
