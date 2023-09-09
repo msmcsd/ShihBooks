@@ -26,7 +26,7 @@ namespace ShihBooks.Plugins.DataStore.InMemory
                     Id = 1,
                     Description = "Gaming laptop",
                     Amount = 1251.34,
-                    ExpenseDate = new DateTime(2023, 8, 4),
+                    ExpenseDate = new DateTime(2023, DateTime.Now.Month, 4),
                     MerchaneImageUrl="https://www.costco.com/wcsstore/CostcoUSBCCatalogAssetStore/feature-pages/16w0126-media-request-logo.jpg",
                     Merchant = "Amazon",
                     ExpenseType = "Electronics"
@@ -36,7 +36,7 @@ namespace ShihBooks.Plugins.DataStore.InMemory
                     Id = 1,
                     Description = "Daily shopping",
                     Amount = 12.99,
-                    ExpenseDate = new DateTime(2023, 8, 1),
+                    ExpenseDate = new DateTime(2023, DateTime.Now.Month, 1),
                     MerchaneImageUrl="https://www.costco.com/wcsstore/CostcoUSBCCatalogAssetStore/feature-pages/16w0126-media-request-logo.jpg",
                     Merchant = "Costco",
                     ExpenseType="Grocery"

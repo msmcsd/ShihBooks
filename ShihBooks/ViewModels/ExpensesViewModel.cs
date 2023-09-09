@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using ShihBooks.Core;
 using ShihBooks.UseCases.Interfaces;
 using System;
@@ -11,11 +12,19 @@ using System.Threading.Tasks;
 
 namespace ShihBooks.ViewModels
 {
-    public class ExpensesViewModel : BaseViewModel
+    [QueryProperty("Year", "year")]
+    [QueryProperty("Month", "month")]
+    public partial class ExpensesViewModel : BaseViewModel
     {
         private readonly IViewExpensesByMonthUseCase _viewExpensesByMonthUseCase;
 
         public ObservableCollection<Expense> Expenses { get; set; } = new();
+
+        [ObservableProperty]
+        private int _year;
+
+        [ObservableProperty]
+        private int _month;
 
         public ExpensesViewModel(IViewExpensesByMonthUseCase viewExpensesByMonthUseCase)
         {
@@ -34,7 +43,6 @@ namespace ShihBooks.ViewModels
             try
             {
                 IsBusy = true;
-
 
                 var expenses = await _viewExpensesByMonthUseCase.ExecuteAsync(year, month);
 

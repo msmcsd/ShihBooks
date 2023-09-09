@@ -4,8 +4,13 @@
              xmlns:m="clr-namespace:ShihBooks.Core;assembly=ShihBooks.Core"
              xmlns:viewmodel="clr-namespace:ShihBooks.ViewModels"
              x:DataType="viewmodel:ExpensesViewModel"
-             x:Class="ShihBooks.Views.ExpensesPage"
-             Title="Expenses">
+             x:Class="ShihBooks.Views.ExpensesPage">
+    <ContentPage.Title>
+        <MultiBinding StringFormat="{}{0}/{1}">
+            <Binding Path="Month" StringFormat="Expenses for {0:D1}"/>
+            <Binding Path="Year"/>
+        </MultiBinding>
+    </ContentPage.Title>
     <VerticalStackLayout>
         <Button Text="123" />
         <CollectionView
@@ -14,6 +19,8 @@
                 <DataTemplate x:DataType="m:Expense">
                     <Grid Padding="5" BackgroundColor="Aqua">
                         <Frame Padding="0">
+                            <Frame.GestureRecognizers>
+                            </Frame.GestureRecognizers>
                             <Grid Padding="3" ColumnDefinitions="50,50,*,100">
                                 <Image 
                                     Grid.Column="0"

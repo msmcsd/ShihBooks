@@ -4,18 +4,18 @@ namespace ShihBooks.Views;
 
 public partial class ExpensesPage : ContentPage
 {
-    private readonly ExpensesViewModel _expenseViewModel;
+    private readonly ExpensesViewModel _expensesViewModel;
 
-    public ExpensesPage(ExpensesViewModel expenseViewModel)
+    public ExpensesPage(ExpensesViewModel expensesViewModel)
 	{
 		InitializeComponent();
-        _expenseViewModel = expenseViewModel;
-        BindingContext = _expenseViewModel;
+        _expensesViewModel = expensesViewModel;
+        BindingContext = _expensesViewModel;
     }
 
     protected async override void OnAppearing()
     {
         base.OnAppearing();
-        await _expenseViewModel.LoadExpensesByMonthAsync(2023, 8);
+        await _expensesViewModel.LoadExpensesByMonthAsync(_expensesViewModel.Year, _expensesViewModel.Month);
     }
 }

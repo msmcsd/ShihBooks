@@ -5,12 +5,13 @@ namespace ShihBooks;
 
 public partial class MainPage : ContentPage
 {
-	//int count = 0;
+    //int count = 0;
 
-	public MainPage()
+    public MainPage(MainPageViewModel mainPageViewModel)
 	{
 		InitializeComponent();
-	}
+        BindingContext = mainPageViewModel;
+    }
 
 	private async void OnCounterClicked(object sender, EventArgs e)
 	{
