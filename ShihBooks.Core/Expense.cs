@@ -15,6 +15,6 @@
 
         public double Amount { get; set; }
 
-        public string MerchaneImageUrl { get; set; }
+        public string MerchantImageUrl { get; set; }
     }
 }

@@ -28,7 +28,7 @@
                                 <Image 
                                     Grid.Column="0"
                                     Aspect="AspectFill"
-                                    Source="{Binding MerchaneImageUrl}"                           
+                                    Source="{Binding MerchantImageUrl}"                           
                                     WidthRequest="50" 
                                     HeightRequest="50"
                                     />

@@ -17,7 +17,7 @@ namespace ShihBooks.Plugins.DataStore.InMemory
                     Description = "Meals",
                     Amount = 100.23,
                     ExpenseDate = new DateTime(2023, 3, 4),
-                    MerchaneImageUrl="https://www.costco.com/wcsstore/CostcoUSBCCatalogAssetStore/feature-pages/16w0126-media-request-logo.jpg",
+                    MerchantImageUrl="https://www.costco.com/wcsstore/CostcoUSBCCatalogAssetStore/feature-pages/16w0126-media-request-logo.jpg",
                     Merchant = "Costco",
                     ExpenseType = "Grocery"
                 },
@@ -27,7 +27,7 @@ namespace ShihBooks.Plugins.DataStore.InMemory
                     Description = "Gaming laptop",
                     Amount = 1251.34,
                     ExpenseDate = new DateTime(2023, DateTime.Now.Month, 4),
-                    MerchaneImageUrl="https://www.costco.com/wcsstore/CostcoUSBCCatalogAssetStore/feature-pages/16w0126-media-request-logo.jpg",
+                    MerchantImageUrl="https://www.costco.com/wcsstore/CostcoUSBCCatalogAssetStore/feature-pages/16w0126-media-request-logo.jpg",
                     Merchant = "Amazon",
                     ExpenseType = "Electronics"
                 },
@@ -37,7 +37,7 @@ namespace ShihBooks.Plugins.DataStore.InMemory
                     Description = "Daily shopping",
                     Amount = 12.99,
                     ExpenseDate = new DateTime(2023, DateTime.Now.Month, 1),
-                    MerchaneImageUrl="https://www.costco.com/wcsstore/CostcoUSBCCatalogAssetStore/feature-pages/16w0126-media-request-logo.jpg",
+                    MerchantImageUrl="https://www.costco.com/wcsstore/CostcoUSBCCatalogAssetStore/feature-pages/16w0126-media-request-logo.jpg",
                     Merchant = "Costco",
                     ExpenseType="Grocery"
                 },
