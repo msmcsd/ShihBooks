@@ -12,7 +12,6 @@
         </MultiBinding>
     </ContentPage.Title>
     <VerticalStackLayout>
-        <Button Text="123" />
         <CollectionView
             ItemsSource="{Binding Expenses}">
             <CollectionView.ItemTemplate>

@@ -1,10 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using ShihBooks.Core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ShihBooks.ViewModels
 {
@@ -13,5 +8,27 @@ namespace ShihBooks.ViewModels
     {
         [ObservableProperty]
         private Expense _expense;
+
+        public List<Merchant> Merchants { get; set; } = new();
+
+        [ObservableProperty]
+        private Merchant _selectedMerchant;
+
+        public ExpenseDetailsViewModel()
+        {
+            Merchants = new List<Merchant>()
+            {
+                new Merchant
+                {
+                    Id = 1,
+                    Name = "Costco"
+                },
+                new Merchant
+                {
+                    Id = 2,
+                    Name = "Amazon"
+                }
+            };
+        }
     }
 }

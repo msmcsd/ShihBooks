@@ -5,16 +5,91 @@
              x:DataType="vm:ExpenseDetailsViewModel"
              x:Class="ShihBooks.Views.ExpenseDetailsPage"
              Title="Expense Details">
-    <ScrollView>
-        <VerticalStackLayout>
-            <Label 
-                Text="{Binding Expense.Amount, StringFormat='${0:N2}'}"
-                VerticalOptions="Center" 
-                HorizontalOptions="Center" />        
-            <Label 
-                Text="{Binding Expense.Merchant}"
-                VerticalOptions="Center" 
-                HorizontalOptions="Center" />
-        </VerticalStackLayout>
-    </ScrollView>
+    <VerticalStackLayout>
+        <Grid ColumnDefinitions=".3*,.7*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto" RowSpacing="10" ColumnSpacing="5">
+            <Label Grid.Row="0" 
+                   Grid.Column="0" 
+                   Text="$" 
+                   HorizontalTextAlignment="End" 
+                   VerticalTextAlignment="Center" 
+                   FontSize="Medium"/>
+            <Entry Grid.Row="0" 
+                   Grid.Column="1" 
+                   Margin="0,40"
+                   HorizontalOptions="StartAndExpand"
+                   VerticalOptions="CenterAndExpand"
+                   VerticalTextAlignment="Center"
+                   FontSize="40"
+                   Text="{Binding Expense.Amount, StringFormat='{0:N2}'}" />
+            <Label Grid.Row="1" 
+                   Grid.Column="0" 
+                   Text="Date" 
+                   HorizontalTextAlignment="End" 
+                   VerticalTextAlignment="Center" 
+                   FontSize="Small"/>
+            <DatePicker Grid.Row="1"
+                        Grid.Column="1"/>
+            <Label Grid.Row="2" 
+                   Grid.Column="0" 
+                   Text="Merchant" 
+                   HorizontalTextAlignment="End" 
+                   VerticalTextAlignment="Center" 
+                   FontSize="Small"/>
+            <Picker Grid.Row="2"
+                    Grid.Column="1"
+                    HorizontalOptions="FillAndExpand"
+                    ItemsSource="{Binding Merchants}"
+                    ItemDisplayBinding="{Binding Name}"
+                    SelectedItem="{Binding SelectedMerchant, Mode=TwoWay}"
+                    SelectedIndexChanged="MerchantPicker_SelectedIndexChanged">
+            </Picker>
+            <Label Grid.Row="3" 
+                   Grid.Column="0" 
+                   Text="Category" 
+                   HorizontalTextAlignment="End" 
+                   VerticalTextAlignment="Center" 
+                   FontSize="Small"/>
+            <Picker Grid.Row="3"
+                    Grid.Column="1"
+                    HorizontalOptions="FillAndExpand"
+                    ItemsSource="{Binding Merchants}"
+                    ItemDisplayBinding="{Binding Name}"
+                    SelectedItem="{Binding SelectedMerchant, Mode=TwoWay}"
+                    SelectedIndexChanged="MerchantPicker_SelectedIndexChanged">
+            </Picker>        
+            <Label Grid.Row="4" 
+                   Grid.Column="0" 
+                   Text="Tag" 
+                   HorizontalTextAlignment="End" 
+                   VerticalTextAlignment="Center" 
+                   FontSize="Small"/>
+            <Picker Grid.Row="4"
+                    Grid.Column="1"
+                    HorizontalOptions="FillAndExpand"
+                    ItemsSource="{Binding Merchants}"
+                    ItemDisplayBinding="{Binding Name}"
+                    SelectedItem="{Binding SelectedMerchant, Mode=TwoWay}"
+                    SelectedIndexChanged="MerchantPicker_SelectedIndexChanged">
+            </Picker>        
+            <Label Grid.Row="5" 
+                   Grid.Column="0" 
+                   Text="Note" 
+                   HorizontalTextAlignment="End" 
+                   VerticalTextAlignment="Start" 
+                   FontSize="Small"/>
+            <Editor Grid.Row="5"
+                    Grid.Column="1"
+                    MaxLength="100"
+                    AutoSize="TextChanges"
+                    HorizontalOptions="FillAndExpand">
+            </Editor>
+        
+
+
+        </Grid>
+        <Grid ColumnDefinitions="*,*">
+            <Button Grid.Row="10" Grid.Column="0" Text="Save" Margin="5" />
+            <Button Grid.Row="10" Grid.Column="1" Text="Cancel" Margin="5" />        
+        </Grid>
+    </VerticalStackLayout>
 </ContentPage>

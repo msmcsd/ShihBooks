@@ -19,6 +19,7 @@ namespace ShihBooks.Plugins.DataStore.InMemory
                     ExpenseDate = new DateTime(2023, 3, 4),
                     MerchantImageUrl="https://www.costco.com/wcsstore/CostcoUSBCCatalogAssetStore/feature-pages/16w0126-media-request-logo.jpg",
                     Merchant = "Costco",
+                    MerchantId = 1,
                     ExpenseType = "Grocery"
                 },
                 new Expense()
@@ -29,6 +30,7 @@ namespace ShihBooks.Plugins.DataStore.InMemory
                     ExpenseDate = new DateTime(2023, DateTime.Now.Month, 4),
                     MerchantImageUrl="https://www.costco.com/wcsstore/CostcoUSBCCatalogAssetStore/feature-pages/16w0126-media-request-logo.jpg",
                     Merchant = "Amazon",
+                    MerchantId = 2,
                     ExpenseType = "Electronics"
                 },
                 new Expense()
@@ -39,6 +41,7 @@ namespace ShihBooks.Plugins.DataStore.InMemory
                     ExpenseDate = new DateTime(2023, DateTime.Now.Month, 1),
                     MerchantImageUrl="https://www.costco.com/wcsstore/CostcoUSBCCatalogAssetStore/feature-pages/16w0126-media-request-logo.jpg",
                     Merchant = "Costco",
+                    MerchantId = 1,
                     ExpenseType="Grocery"
                 },
             };
