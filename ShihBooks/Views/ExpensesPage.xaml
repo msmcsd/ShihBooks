@@ -16,35 +16,35 @@
             ItemsSource="{Binding Expenses}">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="m:Expense">
-                    <Grid Padding="5" BackgroundColor="Aqua">
+                    <Grid Padding="5" BackgroundColor="LightGreen">
                         <Frame Padding="0">
                             <Frame.GestureRecognizers>
                                 <TapGestureRecognizer 
                                     CommandParameter="{Binding .}"
                                     Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ExpensesViewModel} }, Path=GoToExpenseDetailsCommand}" />
                             </Frame.GestureRecognizers>
-                            <Grid Padding="3" ColumnDefinitions="50,50,*,100">
-                                <Image 
+                            <Grid Padding="3" ColumnSpacing="3" ColumnDefinitions="50,50,*,100">
+                                <Label 
                                     Grid.Column="0"
+                                    FontSize="Medium"
+                                    Text="{Binding ExpenseDate, StringFormat='{0:MM/dd}'}" 
+                                    HorizontalOptions="Start"
+                                    VerticalOptions="Center" />
+                                <Image 
+                                    Grid.Column="1"
                                     Aspect="AspectFill"
                                     Source="{Binding MerchantImageUrl}"                           
                                     WidthRequest="50" 
                                     HeightRequest="50"
                                     />
-                                <Label 
-                                    Grid.Column="1"
-                                    Text="{Binding ExpenseDate, StringFormat='{0:MM/dd}'}" 
-                                    HorizontalOptions="Start"
-                                    VerticalOptions="Center"
-                                    BackgroundColor="Yellow"/>
-                                <VerticalStackLayout Grid.Column="2" Padding="3" BackgroundColor="Pink">
+                                <VerticalStackLayout Grid.Column="2" Padding="3" >
                                     <Label Text="{Binding Note}" FontSize="18" />
                                     <Label Text="{Binding ExpenseType}" />
                                 </VerticalStackLayout>
                                 <Label 
                                     Grid.Column="3"
+                                    FontSize="Medium"
                                     Text="{Binding Amount, StringFormat='${0:N2}'}" 
-                                    BackgroundColor="LightGreen"
                                     HorizontalOptions="FillAndExpand"
                                     HorizontalTextAlignment="End"
                                     VerticalOptions="Center"/>

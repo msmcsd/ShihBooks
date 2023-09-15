@@ -9,8 +9,6 @@
 
         public string ExpenseType { get; set; }
 
-        public string Merchant { get; set; }
-
         public int MerchantId { get; set; }
 
         public int CategoryId { get; set; }
