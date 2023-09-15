@@ -14,35 +14,38 @@ namespace ShihBooks.Plugins.DataStore.InMemory
                 new Expense()
                 {
                     Id = 1,
-                    Description = "Meals",
+                    Note = "Meals",
                     Amount = 100.23,
                     ExpenseDate = new DateTime(2023, 3, 4),
                     MerchantImageUrl="https://www.costco.com/wcsstore/CostcoUSBCCatalogAssetStore/feature-pages/16w0126-media-request-logo.jpg",
                     Merchant = "Costco",
                     MerchantId = 1,
-                    ExpenseType = "Grocery"
+                    ExpenseType = "Grocery",
+                    CategoryId = 1,
                 },
                 new Expense()
                 {
                     Id = 1,
-                    Description = "Gaming laptop",
+                    Note = "Gaming laptop",
                     Amount = 1251.34,
                     ExpenseDate = new DateTime(2023, DateTime.Now.Month, 4),
                     MerchantImageUrl="https://www.costco.com/wcsstore/CostcoUSBCCatalogAssetStore/feature-pages/16w0126-media-request-logo.jpg",
                     Merchant = "Amazon",
                     MerchantId = 2,
-                    ExpenseType = "Electronics"
+                    ExpenseType = "Electronics",
+                    CategoryId = 2,
                 },
                 new Expense()
                 {
                     Id = 1,
-                    Description = "Daily shopping",
+                    Note = "Daily shopping",
                     Amount = 12.99,
                     ExpenseDate = new DateTime(2023, DateTime.Now.Month, 1),
                     MerchantImageUrl="https://www.costco.com/wcsstore/CostcoUSBCCatalogAssetStore/feature-pages/16w0126-media-request-logo.jpg",
                     Merchant = "Costco",
                     MerchantId = 1,
-                    ExpenseType="Grocery"
+                    ExpenseType="Grocery",
+                    CategoryId = 1
                 },
             };
         }

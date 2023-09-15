@@ -38,7 +38,7 @@
                                     VerticalOptions="Center"
                                     BackgroundColor="Yellow"/>
                                 <VerticalStackLayout Grid.Column="2" Padding="3" BackgroundColor="Pink">
-                                    <Label Text="{Binding Description}" FontSize="18" />
+                                    <Label Text="{Binding Note}" FontSize="18" />
                                     <Label Text="{Binding ExpenseType}" />
                                 </VerticalStackLayout>
                                 <Label 
