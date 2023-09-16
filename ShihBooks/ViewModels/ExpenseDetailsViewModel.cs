@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using ShihBooks.Core;
+using ShihBooks.UseCases.Interfaces;
 
 namespace ShihBooks.ViewModels
 {
@@ -23,8 +24,16 @@ namespace ShihBooks.ViewModels
 
         [ObservableProperty]
         private ExpenseTag _selectedTag;
+        private readonly IViewExpenseTypesUseCase _viewExpenseTypesUseCase;
 
-        public ExpenseDetailsViewModel()
+        public ExpenseDetailsViewModel(IViewExpenseTypesUseCase viewExpenseTypesUseCase)
+        {
+            _viewExpenseTypesUseCase = viewExpenseTypesUseCase;
+
+            Task.Run(LoadSelectionList);
+        }
+
+        private async Task LoadSelectionList()
         {
             Merchants = new List<Merchant>()
             {
@@ -40,19 +49,7 @@ namespace ShihBooks.ViewModels
                 }
             };
 
-            ExpenseTypes = new List<ExpenseType>()
-            {
-                new ExpenseType
-                {
-                    Id = 1,
-                    Name = "Grocery"
-                },
-                new ExpenseType
-                {
-                    Id = 2,
-                    Name = "Electronics"
-                }
-            };
+            ExpenseTypes = await _viewExpenseTypesUseCase.ExecuteAsync();
 
             ExpenseTags = new List<ExpenseTag>()
             {
