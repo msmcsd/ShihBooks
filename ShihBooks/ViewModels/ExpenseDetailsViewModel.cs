@@ -25,30 +25,20 @@ namespace ShihBooks.ViewModels
         [ObservableProperty]
         private ExpenseTag _selectedTag;
         private readonly IViewExpenseTypesUseCase _viewExpenseTypesUseCase;
+        private readonly IViewMerchantsUseCase _viewMerchantsUseCase;
 
-        public ExpenseDetailsViewModel(IViewExpenseTypesUseCase viewExpenseTypesUseCase)
+        public ExpenseDetailsViewModel(IViewExpenseTypesUseCase viewExpenseTypesUseCase,
+                                       IViewMerchantsUseCase viewMerchantsUseCase)
         {
             _viewExpenseTypesUseCase = viewExpenseTypesUseCase;
+            _viewMerchantsUseCase = viewMerchantsUseCase;
 
             Task.Run(LoadSelectionList);
         }
 
         private async Task LoadSelectionList()
         {
-            Merchants = new List<Merchant>()
-            {
-                new Merchant
-                {
-                    Id = 1,
-                    Name = "Costco"
-                },
-                new Merchant
-                {
-                    Id = 2,
-                    Name = "Amazon"
-                }
-            };
-
+            Merchants = await _viewMerchantsUseCase.ExecuteAsync();
             ExpenseTypes = await _viewExpenseTypesUseCase.ExecuteAsync();
 
             ExpenseTags = new List<ExpenseTag>()

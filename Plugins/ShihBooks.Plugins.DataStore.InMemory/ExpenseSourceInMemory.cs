@@ -65,5 +65,22 @@ namespace ShihBooks.Plugins.DataStore.InMemory
                 new ExpenseType { Id = 2, Name = "Electronics"}
             });
         }
+
+        public Task<List<Merchant>> GetMerchantsAsync()
+        {
+            return Task.FromResult(new List<Merchant>()
+            {
+                new Merchant
+                {
+                    Id = 1,
+                    Name = "Costco"
+                },
+                new Merchant
+                {
+                    Id = 2,
+                    Name = "Amazon"
+                }
+            });
+        }
     }
 }
