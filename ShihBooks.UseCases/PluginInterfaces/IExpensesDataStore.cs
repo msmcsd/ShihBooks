@@ -2,7 +2,7 @@
 
 namespace ShihBooks.UseCases.PluginInterfaces
 {
-    public interface IExpenseSource
+    public interface IExpensesDataStore
     {
         Task<List<Expense>> GetExpenses(int year, int month);
 

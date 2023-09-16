@@ -11,9 +11,9 @@ namespace ShihBooks.UseCases
 {
     public class ViewExpenseTypesUseCase : IViewExpenseTypesUseCase
     {
-        private readonly IExpenseSource _expenseSource;
+        private readonly IExpensesDataStore _expenseSource;
 
-        public ViewExpenseTypesUseCase(IExpenseSource expenseSource)
+        public ViewExpenseTypesUseCase(IExpensesDataStore expenseSource)
         {
             _expenseSource = expenseSource;
         }

@@ -30,7 +30,7 @@ public static class MauiProgram
 		builder.Services.AddTransient<IViewMerchantsUseCase, ViewMerchantsUseCase>();
 		builder.Services.AddTransient<IViewExpenseTagsUseCase, ViewExpenseTagsUseCase>();
 
-		builder.Services.AddSingleton<IExpenseSource, ExpenseSourceInMemory>();
+		builder.Services.AddSingleton<IExpensesDataStore, InMemoryExpensesDataStore>();
 
         builder.Services.AddSingleton<MainPageViewModel>();
         builder.Services.AddTransient<ExpensesViewModel>();

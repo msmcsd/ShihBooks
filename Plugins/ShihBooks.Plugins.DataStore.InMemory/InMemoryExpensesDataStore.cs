@@ -4,10 +4,10 @@ using ShihBooks.UseCases.PluginInterfaces;
 namespace ShihBooks.Plugins.DataStore.InMemory
 {
     // All the code in this file is included in all platforms.
-    public class ExpenseSourceInMemory : IExpenseSource
+    public class InMemoryExpensesDataStore : IExpensesDataStore
     {
         private List<Expense> _expenses;
-        public ExpenseSourceInMemory()
+        public InMemoryExpensesDataStore()
         {
             _expenses = new List<Expense>()
             {

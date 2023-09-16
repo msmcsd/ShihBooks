@@ -6,9 +6,9 @@ namespace ShihBooks.UseCases
 {
     public class ViewExpenseTagsUseCase : IViewExpenseTagsUseCase
     {
-        private readonly IExpenseSource _expenseSource;
+        private readonly IExpensesDataStore _expenseSource;
 
-        public ViewExpenseTagsUseCase(IExpenseSource expenseSource)
+        public ViewExpenseTagsUseCase(IExpensesDataStore expenseSource)
         {
             _expenseSource = expenseSource;
         }

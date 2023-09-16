@@ -7,9 +7,9 @@ namespace ShihBooks.UseCases
     // All the code in this file is included in all platforms.
     public class ViewExpensesByMonthUseCase : IViewExpensesByMonthUseCase
     {
-        private readonly IExpenseSource _expensesSource;
+        private readonly IExpensesDataStore _expensesSource;
 
-        public ViewExpensesByMonthUseCase(IExpenseSource expensesSource)
+        public ViewExpensesByMonthUseCase(IExpensesDataStore expensesSource)
         {
             _expensesSource = expensesSource;
         }
