@@ -57,6 +57,15 @@ namespace ShihBooks.Plugins.DataStore.InMemory
             return Task.FromResult<List<Expense>>(expenses);
         }
 
+        public async Task<List<ExpenseTag>> GetExpenseTagsAsync()
+        {
+           return await Task.FromResult(new List<ExpenseTag>()
+           {
+               new ExpenseTag {Id = 1, TagName = "Kids"},
+               new ExpenseTag {Id = 2, TagName = "One Time"}
+           });
+        }
+
         public async Task<List<ExpenseType>> GetExpenseTypesAsync()
         {
             return await Task.FromResult(new List<ExpenseType>()

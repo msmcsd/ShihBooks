@@ -26,12 +26,15 @@ namespace ShihBooks.ViewModels
         private ExpenseTag _selectedTag;
         private readonly IViewExpenseTypesUseCase _viewExpenseTypesUseCase;
         private readonly IViewMerchantsUseCase _viewMerchantsUseCase;
+        private readonly IViewExpenseTagsUseCase _viewExpenseTagsUseCase;
 
         public ExpenseDetailsViewModel(IViewExpenseTypesUseCase viewExpenseTypesUseCase,
-                                       IViewMerchantsUseCase viewMerchantsUseCase)
+                                       IViewMerchantsUseCase viewMerchantsUseCase,
+                                       IViewExpenseTagsUseCase viewExpenseTagsUseCase)
         {
             _viewExpenseTypesUseCase = viewExpenseTypesUseCase;
             _viewMerchantsUseCase = viewMerchantsUseCase;
+            _viewExpenseTagsUseCase = viewExpenseTagsUseCase;
 
             Task.Run(LoadSelectionList);
         }
@@ -40,21 +43,7 @@ namespace ShihBooks.ViewModels
         {
             Merchants = await _viewMerchantsUseCase.ExecuteAsync();
             ExpenseTypes = await _viewExpenseTypesUseCase.ExecuteAsync();
-
-            ExpenseTags = new List<ExpenseTag>()
-            {
-                null,
-                new ExpenseTag
-                {
-                    Id = 1,
-                    TagName = "Kids"
-                },
-                new ExpenseTag
-                {
-                    Id = 2,
-                    TagName = "One Time"
-                }
-            };
+            ExpenseTags = await _viewExpenseTagsUseCase.ExecuteAsync();
         }
     }
 }

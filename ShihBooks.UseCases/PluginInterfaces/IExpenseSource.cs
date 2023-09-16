@@ -9,5 +9,7 @@ namespace ShihBooks.UseCases.PluginInterfaces
         Task<List<ExpenseType>> GetExpenseTypesAsync();
 
         Task<List<Merchant>> GetMerchantsAsync();
+
+        Task<List<ExpenseTag>> GetExpenseTagsAsync();
     }
 }
