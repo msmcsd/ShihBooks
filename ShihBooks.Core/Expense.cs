@@ -7,11 +7,9 @@
 
         public DateTime ExpenseDate { get; set; }
 
-        public string ExpenseType { get; set; }
-
         public int MerchantId { get; set; }
 
-        public int CategoryId { get; set; }
+        public int ExpenseTypeId { get; set; }
 
         public int? TagId { get; set; }
 

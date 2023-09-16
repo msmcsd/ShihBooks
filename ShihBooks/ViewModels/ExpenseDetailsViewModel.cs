@@ -11,7 +11,7 @@ namespace ShihBooks.ViewModels
 
         public List<Merchant> Merchants { get; set; } = new();
 
-        public List<ExpenseCategory> ExpenseCategories { get; set; } = new();
+        public List<ExpenseType> ExpenseTypes { get; set; } = new();
 
         public List<ExpenseTag> ExpenseTags{ get; set; } = new();
 
@@ -19,7 +19,7 @@ namespace ShihBooks.ViewModels
         private Merchant _selectedMerchant;
 
         [ObservableProperty]
-        private ExpenseCategory _selectedCategory;
+        private ExpenseType _selectedType;
 
         [ObservableProperty]
         private ExpenseTag _selectedTag;
@@ -40,17 +40,17 @@ namespace ShihBooks.ViewModels
                 }
             };
 
-            ExpenseCategories = new List<ExpenseCategory>()
+            ExpenseTypes = new List<ExpenseType>()
             {
-                new ExpenseCategory
+                new ExpenseType
                 {
                     Id = 1,
-                    CategoryName = "Grocery"
+                    Name = "Grocery"
                 },
-                new ExpenseCategory
+                new ExpenseType
                 {
                     Id = 2,
-                    CategoryName = "Electronics"
+                    Name = "Electronics"
                 }
             };
 
