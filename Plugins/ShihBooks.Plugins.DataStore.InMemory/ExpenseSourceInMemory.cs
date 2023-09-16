@@ -14,7 +14,7 @@ namespace ShihBooks.Plugins.DataStore.InMemory
                 new Expense()
                 {
                     Id = 1,
-                    Note = "Meals",
+                    Description = "Meals",
                     Amount = 100.23,
                     ExpenseDate = new DateTime(2023, 3, 4),
                     MerchantImageUrl="https://play-lh.googleusercontent.com/gqOziTbVWioRJtHh7OvfOq07NCTcAHKWBYPQKJOZqNcczpOz5hdrnQNY7i2OatJxmuY=w240-h480-rw",
@@ -25,18 +25,19 @@ namespace ShihBooks.Plugins.DataStore.InMemory
                 new Expense()
                 {
                     Id = 2,
-                    Note = "Gaming laptop",
+                    Description = "Gaming laptop from Amazon",
                     Amount = 1251.34,
                     ExpenseDate = new DateTime(2023, DateTime.Now.Month, 4),
                     MerchantImageUrl="https://www.amazon.com/favicon.ico",
                     MerchantId = 2,
                     ExpenseType = "Electronics",
                     CategoryId = 2,
+                    Note = "For gaming"
                 },
                 new Expense()
                 {
                     Id = 3,
-                    Note = "Daily shopping",
+                    Description = "Daily shopping",
                     Amount = 12.99,
                     ExpenseDate = new DateTime(2023, DateTime.Now.Month, 1),
                     MerchantImageUrl="https://play-lh.googleusercontent.com/gqOziTbVWioRJtHh7OvfOq07NCTcAHKWBYPQKJOZqNcczpOz5hdrnQNY7i2OatJxmuY=w240-h480-rw",

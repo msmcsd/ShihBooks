@@ -17,6 +17,8 @@
 
         public string Note { get; set; }
 
+        public string Description { get; set; }
+
         public double Amount { get; set; }
 
         public string MerchantImageUrl { get; set; }
