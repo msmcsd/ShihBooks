@@ -5,13 +5,15 @@ VisualStudioVersion = 17.0.31611.283
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShihBooks", "ShihBooks\ShihBooks.csproj", "{D33EEB25-2590-4A42-A9A5-0253181C4A29}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShihBooks.Core", "ShihBooks.Core\ShihBooks.Core.csproj", "{DE75034B-CBE0-4FFB-89F3-2306B02CBFFD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShihBooks.Core", "ShihBooks.Core\ShihBooks.Core.csproj", "{DE75034B-CBE0-4FFB-89F3-2306B02CBFFD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShihBooks.UseCases", "ShihBooks.UseCases\ShihBooks.UseCases.csproj", "{55497D79-7536-4628-A4DE-B5E8C1369754}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShihBooks.UseCases", "ShihBooks.UseCases\ShihBooks.UseCases.csproj", "{55497D79-7536-4628-A4DE-B5E8C1369754}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{FBFCF622-4997-4729-863E-06CCEF128927}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShihBooks.Plugins.DataStore.InMemory", "Plugins\ShihBooks.Plugins.DataStore.InMemory\ShihBooks.Plugins.DataStore.InMemory.csproj", "{51C72383-AE8E-482D-9CD4-E968CE35E57C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShihBooks.Plugins.DataStore.InMemory", "Plugins\ShihBooks.Plugins.DataStore.InMemory\ShihBooks.Plugins.DataStore.InMemory.csproj", "{51C72383-AE8E-482D-9CD4-E968CE35E57C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShihBooks.Plugins.DataStore.Sqlite", "Plugins\ShihBooks.Plugins.DataStore.Sqlite\ShihBooks.Plugins.DataStore.Sqlite.csproj", "{5E4A34AB-DF5A-4407-854F-6E184E07A9B0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,12 +39,17 @@ Global
 		{51C72383-AE8E-482D-9CD4-E968CE35E57C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51C72383-AE8E-482D-9CD4-E968CE35E57C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51C72383-AE8E-482D-9CD4-E968CE35E57C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E4A34AB-DF5A-4407-854F-6E184E07A9B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E4A34AB-DF5A-4407-854F-6E184E07A9B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E4A34AB-DF5A-4407-854F-6E184E07A9B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E4A34AB-DF5A-4407-854F-6E184E07A9B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{51C72383-AE8E-482D-9CD4-E968CE35E57C} = {FBFCF622-4997-4729-863E-06CCEF128927}
+		{5E4A34AB-DF5A-4407-854F-6E184E07A9B0} = {FBFCF622-4997-4729-863E-06CCEF128927}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {61F7FB11-1E47-470C-91E2-47F8143E1572}

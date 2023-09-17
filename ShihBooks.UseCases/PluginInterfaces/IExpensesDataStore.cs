@@ -4,7 +4,7 @@ namespace ShihBooks.UseCases.PluginInterfaces
 {
     public interface IExpensesDataStore
     {
-        Task<List<Expense>> GetExpenses(int year, int month);
+        Task<List<ExpenseView>> GetExpenses(int year, int month);
 
         Task<List<ExpenseType>> GetExpenseTypesAsync();
 

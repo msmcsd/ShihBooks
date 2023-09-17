@@ -8,7 +8,7 @@ namespace ShihBooks.ViewModels
     public partial class ExpenseDetailsViewModel : BaseViewModel
     {
         [ObservableProperty]
-        private Expense _expense;
+        private ExpenseView _expense;
 
         public List<Merchant> Merchants { get; set; } = new();
 

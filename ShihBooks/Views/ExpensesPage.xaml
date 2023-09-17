@@ -15,7 +15,7 @@
         <CollectionView
             ItemsSource="{Binding Expenses}">
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="m:Expense">
+                <DataTemplate x:DataType="m:ExpenseView">
                     <Grid Padding="5" BackgroundColor="LightGreen">
                         <Frame Padding="0">
                             <Frame.GestureRecognizers>

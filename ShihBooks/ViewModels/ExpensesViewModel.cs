@@ -19,7 +19,7 @@ namespace ShihBooks.ViewModels
     {
         private readonly IViewExpensesByMonthUseCase _viewExpensesByMonthUseCase;
 
-        public ObservableCollection<Expense> Expenses { get; set; } = new();
+        public ObservableCollection<ExpenseView> Expenses { get; set; } = new();
 
         [ObservableProperty]
         private int _year;
@@ -68,7 +68,7 @@ namespace ShihBooks.ViewModels
         }
 
         [RelayCommand]
-        public async Task GoToExpenseDetailsAsync(Expense expense)
+        public async Task GoToExpenseDetailsAsync(ExpenseView expense)
         {
             if (expense is null) return;
 
