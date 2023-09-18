@@ -3,13 +3,8 @@ using CommunityToolkit.Mvvm.Input;
 using ShihBooks.Core;
 using ShihBooks.UseCases.Interfaces;
 using ShihBooks.Views;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ShihBooks.ViewModels
 {

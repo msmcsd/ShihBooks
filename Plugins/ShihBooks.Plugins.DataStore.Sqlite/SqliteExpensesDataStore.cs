@@ -11,17 +11,92 @@ namespace ShihBooks.Plugins.DataStore.Sqlite
 
         public SqliteExpensesDataStore()
         {
+            var dbExists = File.Exists(Constants.DatabasePath);
             _db = new SQLiteAsyncConnection(Constants.DatabasePath);
 
             _db.CreateTableAsync<ExpenseTag>();
             _db.CreateTableAsync<Merchant>();
             _db.CreateTableAsync<ExpenseType>();
             _db.CreateTableAsync<Expense>();
+
+            if (!dbExists)
+                InsertSampleExpenses();
         }
+
+        private void InsertSampleExpenses()
+        {
+            _db.InsertAllAsync(new List<ExpenseTag>()
+            {
+                new ExpenseTag {Id = 1, TagName = "Kids"},
+                new ExpenseTag {Id = 2, TagName = "One Time"}
+            });
+
+            _db.InsertAllAsync(new List<ExpenseType>()
+            {
+                new ExpenseType { Id = 1, Name = "Grocery" },
+                new ExpenseType { Id = 2, Name = "Electronics"}
+            });
+
+            _db.InsertAllAsync(new List<Merchant>()
+            {
+                new Merchant { Id = 1, Name = "Costco", ImageUrl = "https://play-lh.googleusercontent.com/gqOziTbVWioRJtHh7OvfOq07NCTcAHKWBYPQKJOZqNcczpOz5hdrnQNY7i2OatJxmuY=w240-h480-rw"},
+                new Merchant { Id = 2, Name = "Amazon", ImageUrl = "https://www.amazon.com/favicon.ico"}
+            });
+
+            _db.InsertAllAsync(new List<Expense>()
+            {
+                new Expense()
+                {
+                    Id = 1,
+                    Description = "Meals",
+                    Amount = 100.23,
+                    ExpenseDate = new DateTime(2023, 3, 4),
+                    MerchantId = 1,
+                    ExpenseTypeId = 1,
+                },
+                new Expense()
+                {
+                    Id = 2,
+                    Description = "Gaming laptop from Amazon",
+                    Amount = 1251.34,
+                    ExpenseDate = new DateTime(2023, DateTime.Now.Month, 4),
+                    MerchantId = 2,
+                    ExpenseTypeId = 2,
+                    Note = "For gaming"
+                },
+                new Expense()
+                {
+                    Id = 3,
+                    Description = "Daily shopping",
+                    Amount = 12.99,
+                    ExpenseDate = new DateTime(2023, DateTime.Now.Month, 1),
+                    MerchantId = 1,
+                    ExpenseTypeId = 1
+                },
+            });
+
+        }
+
         public async Task<List<ExpenseView>> GetExpenses(int year, int month)
         {
-            //return await _db.QueryAsync("SELECT e.* FROM Expense e ", "1");
-            return null;
+            var expenses = (from e in await _db.Table<Expense>().ToListAsync()
+                            join m in await _db.Table<Merchant>().ToListAsync()
+                            on e.MerchantId equals m.Id
+                            where e.ExpenseDate.Year == year && e.ExpenseDate.Month == month
+                            select new ExpenseView
+                            {
+                                Id = e.Id,
+                                Description = e.Description,
+                                Amount = e.Amount,
+                                ExpenseDate = e.ExpenseDate,
+                                MerchantId = e.MerchantId,
+                                ExpenseTypeId = e.ExpenseTypeId,
+                                MerchantImageUrl = m.ImageUrl,
+                                TagId = e.TagId,
+                                Note = e.Note
+                            }).ToList();
+            
+            return expenses;
         }
 
         public async Task<List<ExpenseTag>> GetExpenseTagsAsync()

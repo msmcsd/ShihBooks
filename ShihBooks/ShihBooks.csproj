@@ -51,10 +51,12 @@
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+		<PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <ProjectReference Include="..\Plugins\ShihBooks.Plugins.DataStore.InMemory\ShihBooks.Plugins.DataStore.InMemory.csproj" />
+	  <ProjectReference Include="..\Plugins\ShihBooks.Plugins.DataStore.Sqlite\ShihBooks.Plugins.DataStore.Sqlite.csproj" />
 	  <ProjectReference Include="..\ShihBooks.Core\ShihBooks.Core.csproj" />
 	  <ProjectReference Include="..\ShihBooks.UseCases\ShihBooks.UseCases.csproj" />
 	</ItemGroup>
