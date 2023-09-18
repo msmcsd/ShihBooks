@@ -11,6 +11,10 @@ namespace ShihBooks.Core
         public int Id { get; set; }
 
         [Required]
+        [Unique]
         public string TagName { get; set; }
+
+        [Required]
+        public DateTime DateAdded { get; set; }
     }
 }

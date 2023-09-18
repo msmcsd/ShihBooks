@@ -27,20 +27,20 @@ namespace ShihBooks.Plugins.DataStore.Sqlite
         {
             _db.InsertAllAsync(new List<ExpenseTag>()
             {
-                new ExpenseTag {Id = 1, TagName = "Kids"},
-                new ExpenseTag {Id = 2, TagName = "One Time"}
+                new ExpenseTag {Id = 1, TagName = "Kids", DateAdded = DateTime.Now},
+                new ExpenseTag {Id = 2, TagName = "One Time", DateAdded = DateTime.Now}
             });
 
             _db.InsertAllAsync(new List<ExpenseType>()
             {
-                new ExpenseType { Id = 1, Name = "Grocery" },
-                new ExpenseType { Id = 2, Name = "Electronics"}
+                new ExpenseType { Id = 1, Name = "Grocery", DateAdded = DateTime.Now },
+                new ExpenseType { Id = 2, Name = "Electronics", DateAdded = DateTime.Now}
             });
 
             _db.InsertAllAsync(new List<Merchant>()
             {
-                new Merchant { Id = 1, Name = "Costco", ImageUrl = "https://play-lh.googleusercontent.com/gqOziTbVWioRJtHh7OvfOq07NCTcAHKWBYPQKJOZqNcczpOz5hdrnQNY7i2OatJxmuY=w240-h480-rw"},
-                new Merchant { Id = 2, Name = "Amazon", ImageUrl = "https://www.amazon.com/favicon.ico"}
+                new Merchant { Id = 1, Name = "Costco", ImageUrl = "https://play-lh.googleusercontent.com/gqOziTbVWioRJtHh7OvfOq07NCTcAHKWBYPQKJOZqNcczpOz5hdrnQNY7i2OatJxmuY=w240-h480-rw", DateAdded = DateTime.Now},
+                new Merchant { Id = 2, Name = "Amazon", ImageUrl = "https://www.amazon.com/favicon.ico", DateAdded = DateTime.Now}
             });
 
             _db.InsertAllAsync(new List<Expense>()
@@ -62,7 +62,8 @@ namespace ShihBooks.Plugins.DataStore.Sqlite
                     ExpenseDate = new DateTime(2023, DateTime.Now.Month, 4),
                     MerchantId = 2,
                     ExpenseTypeId = 2,
-                    Note = "For gaming"
+                    Note = "For gaming",
+                    TagId = 1,
                 },
                 new Expense()
                 {
