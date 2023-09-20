@@ -31,16 +31,18 @@ public static class MauiProgram
 		builder.Services.AddTransient<IViewMerchantsUseCase, ViewMerchantsUseCase>();
 		builder.Services.AddTransient<IViewExpenseTagsUseCase, ViewExpenseTagsUseCase>();
 
-		//builder.Services.AddSingleton<IExpensesDataStore, InMemoryExpensesDataStore>();
+		// builder.Services.AddSingleton<IExpensesDataStore, InMemoryExpensesDataStore>();
 		builder.Services.AddSingleton<IExpensesDataStore, SqliteExpensesDataStore>();
 
 		builder.Services.AddSingleton<MainPageViewModel>();
         builder.Services.AddTransient<ExpensesViewModel>();
 		builder.Services.AddTransient<ExpenseDetailsViewModel>();
+		builder.Services.AddTransient<ManageExpenseTagsViewModel>();
 
         builder.Services.AddSingleton<MainPage>();
         builder.Services.AddTransient<ExpensesPage>();
 		builder.Services.AddTransient<ExpenseDetailsPage>();
+		builder.Services.AddTransient<ManageExpenseTagsPage>();
 
 		return builder.Build();
 	}

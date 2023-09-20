@@ -68,6 +68,9 @@
 	  <Compile Update="Views\ExpensesPage.xaml.cs">
 	    <DependentUpon>ExpensesPage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\ManageExpenseTagsPage.xaml.cs">
+	    <DependentUpon>ManageExpenseTagsPage.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -75,6 +78,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ExpensesPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ManageExpenseTagsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

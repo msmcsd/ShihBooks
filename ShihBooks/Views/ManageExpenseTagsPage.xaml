@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:m="clr-namespace:ShihBooks.Core;assembly=ShihBooks.Core"
+             xmlns:vm="clr-namespace:ShihBooks.ViewModels"
+             x:Class="ShihBooks.Views.ManageExpenseTagsPage"
+             Title="Manage Expense Tags">
+    <Grid ColumnDefinitions="*,*"
+          RowDefinitions="*, Auto"
+          ColumnSpacing="5"
+          Padding="10">
+
+        <ListView Grid.ColumnSpan="2"
+                  ItemsSource="{Binding ExpenseTags}" >
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="m:ExpenseTag">
+                    <ViewCell>
+                        <Label Text="{Binding TagName}"
+                               FontSize="16"/>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button Grid.Row="1"
+                Grid.Column="0"
+                Text="Add" />  
+        <Button Grid.Row="1"
+                Grid.Column="1"
+                Text="Edit" />
+    </Grid>
+</ContentPage>

@@ -5,11 +5,16 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:ShihBooks"
     xmlns:views="clr-namespace:ShihBooks.Views"
-    Shell.FlyoutBehavior="Disabled">
+    Shell.FlyoutBehavior="Flyout">
 
     <ShellContent
         Title="Home"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
+
+    <ShellContent
+        Title="Tags"
+        ContentTemplate="{DataTemplate views:ManageExpenseTagsPage}"
+        Route="ManageExpenseTagsPage" />
 
 </Shell>
