@@ -7,6 +7,10 @@
     xmlns:views="clr-namespace:ShihBooks.Views"
     Shell.FlyoutBehavior="Flyout">
 
+    <Shell.FlyoutHeader>
+        <Image Source="dotnet_bot.png" />
+    </Shell.FlyoutHeader>
+    
     <ShellContent
         Title="Home"
         ContentTemplate="{DataTemplate local:MainPage}"
@@ -17,4 +21,7 @@
         ContentTemplate="{DataTemplate views:ManageExpenseTagsPage}"
         Route="ManageExpenseTagsPage" />
 
+    <Shell.FlyoutFooter>
+        <Label Text="Copyright (c)" HorizontalOptions="Center" />
+    </Shell.FlyoutFooter>
 </Shell>
