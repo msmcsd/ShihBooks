@@ -6,13 +6,15 @@
              CanBeDismissedByTappingOutsideOfPopup="True">
     
     <Grid ColumnDefinitions="*,*"
-          RowDefinitions="*, *, Auto"
+          RowDefinitions="*, Auto, Auto"
           Padding="10" 
+          RowSpacing="10"
           ColumnSpacing="5">
         
         <Label x:Name="instructionLabel"
                Grid.ColumnSpan="2"
-               Text="Enter the item name:,"
+               Text="Enter the item name:"
+               FontSize="16"
                VerticalOptions="End" 
                HorizontalOptions="Center" />
         
@@ -20,6 +22,7 @@
                Grid.Row="1"
                Grid.Column="0"
                Grid.ColumnSpan="2"
+               FontSize="16"
                VerticalOptions="Start" />
         
         <Button x:Name="addButton"
