@@ -27,8 +27,8 @@ namespace ShihBooks.Plugins.DataStore.Sqlite
         {
             _db.InsertAllAsync(new List<ExpenseTag>()
             {
-                new ExpenseTag {Id = 1, TagName = "Kids", DateAdded = DateTime.Now},
-                new ExpenseTag {Id = 2, TagName = "One Time", DateAdded = DateTime.Now}
+                new ExpenseTag {Id = 1, Name = "Kids", DateAdded = DateTime.Now},
+                new ExpenseTag {Id = 2, Name = "One Time", DateAdded = DateTime.Now}
             });
 
             _db.InsertAllAsync(new List<ExpenseType>()

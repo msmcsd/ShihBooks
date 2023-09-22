@@ -38,7 +38,7 @@ public partial class ManageExpenseTagsPage : ContentPage
         if (itemList.SelectedItem == null) return;
 
         var tag = itemList.SelectedItem as ExpenseTag;
-        var origTagName = tag.TagName;
+        var origTagName = tag.Name;
 
         var ret = await this.ShowPopupAsync(new ManageItemPopupPage(origTagName));
         if (ret is null)

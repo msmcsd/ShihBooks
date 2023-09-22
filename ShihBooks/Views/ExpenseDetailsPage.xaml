@@ -89,7 +89,7 @@
                     FontSize="18"
                     HorizontalOptions="FillAndExpand"
                     ItemsSource="{Binding ExpenseTags}"
-                    ItemDisplayBinding="{Binding TagName}"
+                    ItemDisplayBinding="{Binding Name}"
                     SelectedItem="{Binding SelectedTag, Mode=TwoWay}">
             </Picker>        
             <Label Grid.Row="6" 

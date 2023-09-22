@@ -8,8 +8,8 @@ namespace ShihBooks.Plugins.DataStore.InMemory
     {
         private List<ExpenseTag> _expenseTags = new List<ExpenseTag>()
         {
-            new ExpenseTag {Id = 1, TagName = "Kids"},
-            new ExpenseTag {Id = 2, TagName = "One Time"}
+            new ExpenseTag {Id = 1, Name = "Kids"},
+            new ExpenseTag {Id = 2, Name = "One Time"}
         };
 
         private List<ExpenseType> _expenseTypes = new List<ExpenseType>()
@@ -86,7 +86,7 @@ namespace ShihBooks.Plugins.DataStore.InMemory
 
         public async Task<List<ExpenseTag>> GetExpenseTagsAsync()
         {
-           return await Task.FromResult(_expenseTags.OrderBy(t=>t.TagName).ToList());
+           return await Task.FromResult(_expenseTags.OrderBy(t=>t.Name).ToList());
         }
 
         public async Task<List<ExpenseType>> GetExpenseTypesAsync()
@@ -109,7 +109,7 @@ namespace ShihBooks.Plugins.DataStore.InMemory
             _expenseTags.Add(new ExpenseTag
             { 
                 Id = _expenseTags.Count() + 1, 
-                TagName = tagName 
+                Name = tagName 
             });
         }
 
@@ -118,7 +118,7 @@ namespace ShihBooks.Plugins.DataStore.InMemory
             var tag = _expenseTags.FirstOrDefault(t => t.Id == tagId);
             if (tag != null)
             {
-                tag.TagName = tagName;
+                tag.Name = tagName;
             }
 
             return Task.FromResult(true);

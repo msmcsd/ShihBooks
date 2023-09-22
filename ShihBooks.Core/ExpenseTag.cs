@@ -12,7 +12,7 @@ namespace ShihBooks.Core
 
         [Required]
         [Unique]
-        public string TagName { get; set; }
+        public string Name { get; set; }
 
         [Required]
         public DateTime DateAdded { get; set; }

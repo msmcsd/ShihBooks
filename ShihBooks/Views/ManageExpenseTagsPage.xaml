@@ -16,7 +16,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="m:ExpenseTag">
                     <ViewCell>
-                        <Label Text="{Binding TagName}"
+                        <Label Text="{Binding Name}"
                                FontSize="16"/>
                     </ViewCell>
                 </DataTemplate>
