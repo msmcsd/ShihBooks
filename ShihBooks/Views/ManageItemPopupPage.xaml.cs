@@ -9,9 +9,10 @@ public partial class ManageItemPopupPage : Popup
 		InitializeComponent();
 	}
 
-    public ManageItemPopupPage(string defaultItemName)
+    public ManageItemPopupPage(string instruction, string defaultItemName)
     {
         InitializeComponent();
+        instructionLabel.Text = instruction;
         itemName.Text = defaultItemName;
     }
 

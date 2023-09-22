@@ -9,8 +9,9 @@
           Padding="10" 
           ColumnSpacing="5">
         
-        <Label Grid.ColumnSpan="2"
-               Text="Welcome to .NET MAUI!"
+        <Label x:Name="instructionLabel"
+               Grid.ColumnSpan="2"
+               Text="Enter the item name:,"
                VerticalOptions="End" 
                HorizontalOptions="Center" />
         
