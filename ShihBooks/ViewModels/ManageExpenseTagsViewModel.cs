@@ -8,12 +8,18 @@ namespace ShihBooks.ViewModels
     public class ManageExpenseTagsViewModel : BaseViewModel
     {
         private readonly IViewExpenseTagsUseCase _viewExpenseTagsUseCase;
+        private readonly ISaveExpenseTagUseCase _saveExpenseTagUseCase;
+        private readonly IUpdateExpenseTagUseCase _updateExpenseTagUseCase;
 
         public ObservableCollection<ExpenseTag> ExpenseTags { get; set; } = new();
 
-        public ManageExpenseTagsViewModel(IViewExpenseTagsUseCase viewExpenseTagsUseCase)
+        public ManageExpenseTagsViewModel(IViewExpenseTagsUseCase viewExpenseTagsUseCase,
+                                          ISaveExpenseTagUseCase saveExpenseTagUseCase,
+                                          IUpdateExpenseTagUseCase updateExpenseTagUseCase)
         {
             _viewExpenseTagsUseCase = viewExpenseTagsUseCase;
+            _saveExpenseTagUseCase = saveExpenseTagUseCase;
+            _updateExpenseTagUseCase = updateExpenseTagUseCase;
         }
 
         public async Task GetAllExpenseTagsAsync()
@@ -47,6 +53,24 @@ namespace ShihBooks.ViewModels
                 IsBusy = false;
             }
 
+        }
+
+        public async Task SaveExpenseTag(string tagName)
+        {
+            if (string.IsNullOrWhiteSpace(tagName)) return;
+
+            await _saveExpenseTagUseCase.ExecuteAsync(tagName);
+
+            await GetAllExpenseTagsAsync();
+        }
+
+        public async Task<bool> UpdateExpenseTag(int tagId, string tagName)
+        {
+            bool ret = await _updateExpenseTagUseCase.ExecuteAsync(tagId, tagName);
+            if (ret)
+                await GetAllExpenseTagsAsync();
+
+            return ret;
         }
     }
 }

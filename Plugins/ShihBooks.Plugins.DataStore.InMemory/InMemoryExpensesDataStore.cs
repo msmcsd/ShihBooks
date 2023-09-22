@@ -6,25 +6,25 @@ namespace ShihBooks.Plugins.DataStore.InMemory
     // All the code in this file is included in all platforms.
     public class InMemoryExpensesDataStore : IExpensesDataStore
     {
-        private List<ExpenseTag> _expenseTags => new List<ExpenseTag>()
+        private List<ExpenseTag> _expenseTags = new List<ExpenseTag>()
         {
             new ExpenseTag {Id = 1, TagName = "Kids"},
             new ExpenseTag {Id = 2, TagName = "One Time"}
         };
 
-        private List<ExpenseType> _expenseTypes => new List<ExpenseType>()
+        private List<ExpenseType> _expenseTypes = new List<ExpenseType>()
         {
             new ExpenseType { Id = 1, Name = "Grocery" },
             new ExpenseType { Id = 2, Name = "Electronics"}
         };
 
-        private List<Merchant> _merchants => new List<Merchant>()
+        private List<Merchant> _merchants =>new List<Merchant>()
         {
             new Merchant { Id = 1, Name = "Costco", ImageUrl = "https://play-lh.googleusercontent.com/gqOziTbVWioRJtHh7OvfOq07NCTcAHKWBYPQKJOZqNcczpOz5hdrnQNY7i2OatJxmuY=w240-h480-rw"},
             new Merchant { Id = 2, Name = "Amazon", ImageUrl = "https://www.amazon.com/favicon.ico"}
         };
 
-        private List<Expense> _expenses => new List<Expense>()
+        private List<Expense> _expenses = new List<Expense>()
         {
             new Expense()
             {
@@ -86,7 +86,7 @@ namespace ShihBooks.Plugins.DataStore.InMemory
 
         public async Task<List<ExpenseTag>> GetExpenseTagsAsync()
         {
-           return await Task.FromResult(_expenseTags);
+           return await Task.FromResult(_expenseTags.OrderBy(t=>t.TagName).ToList());
         }
 
         public async Task<List<ExpenseType>> GetExpenseTypesAsync()
@@ -97,6 +97,31 @@ namespace ShihBooks.Plugins.DataStore.InMemory
         public Task<List<Merchant>> GetMerchantsAsync()
         {
             return Task.FromResult(_merchants);
+        }
+
+        public async Task SavExpenseTag(string tagName)
+        {
+            if (string.IsNullOrWhiteSpace(tagName))
+            {
+                return;
+            }
+
+            _expenseTags.Add(new ExpenseTag
+            { 
+                Id = _expenseTags.Count() + 1, 
+                TagName = tagName 
+            });
+        }
+
+        public Task<bool> UpdateExpenseTag(int tagId, string tagName)
+        {
+            var tag = _expenseTags.FirstOrDefault(t => t.Id == tagId);
+            if (tag != null)
+            {
+                tag.TagName = tagName;
+            }
+
+            return Task.FromResult(true);
         }
     }
 }

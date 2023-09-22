@@ -114,5 +114,15 @@ namespace ShihBooks.Plugins.DataStore.Sqlite
         {
             return await _db.Table<Merchant>().ToListAsync();
         }
+
+        public Task SavExpenseTag(string tagName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> UpdateExpenseTag(int tagId, string tagName)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

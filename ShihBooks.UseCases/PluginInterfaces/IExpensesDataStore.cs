@@ -11,5 +11,9 @@ namespace ShihBooks.UseCases.PluginInterfaces
         Task<List<Merchant>> GetMerchantsAsync();
 
         Task<List<ExpenseTag>> GetExpenseTagsAsync();
+
+        Task SavExpenseTag(string tagName);
+
+        Task<bool> UpdateExpenseTag(int tagId, string tagName);
     }
 }

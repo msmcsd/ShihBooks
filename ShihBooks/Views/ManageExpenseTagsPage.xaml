@@ -11,6 +11,7 @@
           Padding="10">
 
         <ListView Grid.ColumnSpan="2"
+                  x:Name="itemList"
                   ItemsSource="{Binding ExpenseTags}" >
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="m:ExpenseTag">
@@ -23,9 +24,11 @@
         </ListView>
         <Button Grid.Row="1"
                 Grid.Column="0"
+                Clicked="AddTag_Clicked"
                 Text="Add" />  
         <Button Grid.Row="1"
                 Grid.Column="1"
-                Text="Edit" />
+                Text="Edit" 
+                Clicked="EditTag_Clicked"/>
     </Grid>
 </ContentPage>

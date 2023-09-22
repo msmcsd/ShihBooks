@@ -1,3 +1,6 @@
+using CommunityToolkit.Maui.Views;
+using CommunityToolkit.Mvvm.Input;
+using ShihBooks.Core;
 using ShihBooks.ViewModels;
 
 namespace ShihBooks.Views;
@@ -17,5 +20,36 @@ public partial class ManageExpenseTagsPage : ContentPage
     {
         base.OnAppearing();
         await _manageExpenseTagsViewModel.GetAllExpenseTagsAsync();
+    }
+
+    private async void AddTag_Clicked(object sender, EventArgs e)
+    {
+        var ret= await this.ShowPopupAsync(new ManageItemPopupPage());
+        if (ret is null)
+        {
+            return;
+        }
+
+        await _manageExpenseTagsViewModel.SaveExpenseTag(ret as string);
+    }
+
+    private async void EditTag_Clicked(object sender, EventArgs e)
+    {
+        if (itemList.SelectedItem == null) return;
+
+        var tag = itemList.SelectedItem as ExpenseTag;
+        var origTagName = tag.TagName;
+
+        var ret = await this.ShowPopupAsync(new ManageItemPopupPage(origTagName));
+        if (ret is null)
+        {
+            return;
+        }
+
+        var newTagName = ret as string;
+        if (newTagName != origTagName)
+        {
+            await _manageExpenseTagsViewModel.UpdateExpenseTag(tag.Id, newTagName);
+        }
     }
 }

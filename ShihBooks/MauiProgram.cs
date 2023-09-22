@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using CommunityToolkit.Maui;
+using Microsoft.Extensions.Logging;
 using ShihBooks.Plugins.DataStore.InMemory;
 using ShihBooks.Plugins.DataStore.Sqlite;
 using ShihBooks.UseCases;
@@ -16,6 +17,7 @@ public static class MauiProgram
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()
+			.UseMauiCommunityToolkit()
 			.ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -30,9 +32,11 @@ public static class MauiProgram
 		builder.Services.AddTransient<IViewExpenseTypesUseCase, ViewExpenseTypesUseCase>();
 		builder.Services.AddTransient<IViewMerchantsUseCase, ViewMerchantsUseCase>();
 		builder.Services.AddTransient<IViewExpenseTagsUseCase, ViewExpenseTagsUseCase>();
+		builder.Services.AddTransient<ISaveExpenseTagUseCase, SaveExpenseTagUseCase>();
+		builder.Services.AddTransient<IUpdateExpenseTagUseCase, UpdateExpenseTagUseCase>();
 
-		// builder.Services.AddSingleton<IExpensesDataStore, InMemoryExpensesDataStore>();
-		builder.Services.AddSingleton<IExpensesDataStore, SqliteExpensesDataStore>();
+		builder.Services.AddSingleton<IExpensesDataStore, InMemoryExpensesDataStore>();
+		//builder.Services.AddSingleton<IExpensesDataStore, SqliteExpensesDataStore>();
 
 		builder.Services.AddSingleton<MainPageViewModel>();
         builder.Services.AddTransient<ExpensesViewModel>();
