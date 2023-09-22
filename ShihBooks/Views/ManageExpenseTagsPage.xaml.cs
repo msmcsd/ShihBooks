@@ -24,7 +24,7 @@ public partial class ManageExpenseTagsPage : ContentPage
 
     private async void AddTag_Clicked(object sender, EventArgs e)
     {
-        var ret= await this.ShowPopupAsync(new ManageItemPopupPage("Enter the tag name:", ""));
+        var ret= await this.ShowPopupAsync(new ManageItemPopupPage(true, "Enter the tag name:", ""));
         if (ret is null)
         {
             return;
@@ -40,7 +40,7 @@ public partial class ManageExpenseTagsPage : ContentPage
         var tag = tagList.SelectedItem as ExpenseTag;
         var origTagName = tag.Name;
 
-        var ret = await this.ShowPopupAsync(new ManageItemPopupPage("Enter the tag name:", origTagName));
+        var ret = await this.ShowPopupAsync(new ManageItemPopupPage(false, "Enter the new tag name:", origTagName));
         if (ret is null)
         {
             return;

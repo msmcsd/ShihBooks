@@ -9,11 +9,17 @@ public partial class ManageItemPopupPage : Popup
 		InitializeComponent();
 	}
 
-    public ManageItemPopupPage(string instruction, string defaultItemName)
+    public ManageItemPopupPage(bool isAdd, string instruction, string defaultItemName)
     {
         InitializeComponent();
         instructionLabel.Text = instruction;
         itemName.Text = defaultItemName;
+        addButton.Text = isAdd ? "Add" : "Change";
+        if (!isAdd)
+        {
+            itemName.CursorPosition = 0;
+            itemName.SelectionLength = itemName.Text.Length;
+        }
     }
 
     private void Cancel_Clicked(object sender, EventArgs e)
