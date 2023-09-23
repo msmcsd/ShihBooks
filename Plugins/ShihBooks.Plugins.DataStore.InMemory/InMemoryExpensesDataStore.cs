@@ -113,7 +113,7 @@ namespace ShihBooks.Plugins.DataStore.InMemory
             });
         }
 
-        public Task<bool> UpdateExpenseTag(int tagId, string tagName)
+        public async Task<bool> UpdateExpenseTag(int tagId, string tagName)
         {
             var tag = _expenseTags.FirstOrDefault(t => t.Id == tagId);
             if (tag != null)
@@ -121,7 +121,24 @@ namespace ShihBooks.Plugins.DataStore.InMemory
                 tag.Name = tagName;
             }
 
-            return Task.FromResult(true);
+            return true;
+        }
+
+        public async Task<bool> UpdateExpense(Expense expense)
+        {
+            var exp = _expenses.FirstOrDefault(e => e.Id == expense.Id);
+            if (exp != null)
+            {
+                exp.ExpenseTypeId = expense.ExpenseTypeId;
+                exp.Note = expense.Note;
+                exp.ExpenseDate = expense.ExpenseDate;
+                exp.Description = expense.Description;
+                exp.Amount = expense.Amount;
+                exp.MerchantId = expense.MerchantId;
+                exp.TagId = expense.TagId;
+            }
+
+            return true;
         }
     }
 }

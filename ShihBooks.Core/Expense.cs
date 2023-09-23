@@ -14,9 +14,9 @@ namespace ShihBooks.Core
         [Required]
         public DateTime ExpenseDate { get; set; }
 
-        public int MerchantId { get; set; }
+        public int? MerchantId { get; set; }
 
-        public int ExpenseTypeId { get; set; }
+        public int? ExpenseTypeId { get; set; }
 
         public int? TagId { get; set; }
 

@@ -124,5 +124,11 @@ namespace ShihBooks.Plugins.DataStore.Sqlite
         {
             throw new NotImplementedException();
         }
+
+        public Task<bool> UpdateExpense(Expense expense)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

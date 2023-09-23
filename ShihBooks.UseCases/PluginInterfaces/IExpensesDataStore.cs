@@ -15,5 +15,8 @@ namespace ShihBooks.UseCases.PluginInterfaces
         Task SavExpenseTag(string tagName);
 
         Task<bool> UpdateExpenseTag(int tagId, string tagName);
+
+        Task <bool> UpdateExpense(Expense expense);
     }
 }
+ 

@@ -48,7 +48,8 @@
                    FontSize="18"/>
             <DatePicker Grid.Row="2"
                         Grid.Column="1"
-                        FontSize="18"/>
+                        FontSize="18"
+                        Date="{Binding Expense.ExpenseDate}"/>
             <Label Grid.Row="3" 
                    Grid.Column="0" 
                    Text="Where:" 
@@ -76,7 +77,8 @@
                     HorizontalOptions="FillAndExpand"
                     ItemsSource="{Binding ExpenseTypes}"
                     ItemDisplayBinding="{Binding Name}"
-                    SelectedItem="{Binding SelectedType, Mode=TwoWay}">
+                    SelectedItem="{Binding SelectedType, Mode=TwoWay}"
+                    SelectedIndexChanged="ExpenseType_SelectedIndexChanged">
             </Picker>        
             <Label Grid.Row="5" 
                    Grid.Column="0" 
@@ -90,7 +92,8 @@
                     HorizontalOptions="FillAndExpand"
                     ItemsSource="{Binding ExpenseTags}"
                     ItemDisplayBinding="{Binding Name}"
-                    SelectedItem="{Binding SelectedTag, Mode=TwoWay}">
+                    SelectedItem="{Binding SelectedTag, Mode=TwoWay}"
+                    SelectedIndexChanged="ExpenseTag_SelectedIndexChanged">
             </Picker>        
             <Label Grid.Row="6" 
                    Grid.Column="0" 
@@ -103,13 +106,25 @@
                     FontSize="18"
                     MaxLength="100"
                     AutoSize="TextChanges"
+                    Text="{Binding Expense.Note}"
                     HorizontalOptions="FillAndExpand">
             </Editor>
         
         </Grid>
         <Grid ColumnDefinitions="*,*">
-            <Button Grid.Row="10" Grid.Column="0" Text="Save" Margin="5" FontSize="18"/>
-            <Button Grid.Row="10" Grid.Column="1" Text="Cancel" Margin="5" FontSize="18"/>        
+            <Button Grid.Row="10" 
+                    Grid.Column="0" 
+                    Text="Save" 
+                    Margin="5" 
+                    Command="{Binding UpdateExpenseCommand}"
+                    FontSize="18"/>
+            
+            <Button Grid.Row="10" 
+                    Grid.Column="1" 
+                    Text="Cancel" 
+                    Margin="5" 
+                    Command="{Binding CancelUpdateExpenseCommand}"
+                    FontSize="18"/>        
         </Grid>
     </VerticalStackLayout>
 </ContentPage>
