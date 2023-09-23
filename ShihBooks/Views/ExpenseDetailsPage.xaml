@@ -26,6 +26,7 @@
                    VerticalTextAlignment="Center"
                    FontSize="40"
                    TextColor="Orange"
+                   Keyboard="Numeric"
                    Text="{Binding Expense.Amount, StringFormat='{0:N2}'}" />
             <Label Grid.Row="1" 
                    Grid.Column="0" 
