@@ -9,7 +9,7 @@
           ColumnDefinitions="*, *">    
         <Grid Padding="10,0,20,10" Grid.ColumnSpan="2"
               ColumnDefinitions=".3*,.7*" 
-              RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" 
+              RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" 
               RowSpacing="10" 
               ColumnSpacing="5">
             <Label Grid.Row="0" 
@@ -96,14 +96,29 @@
                     ItemDisplayBinding="{Binding Name}"
                     SelectedItem="{Binding SelectedTag, Mode=TwoWay}"
                     SelectedIndexChanged="ExpenseTag_SelectedIndexChanged">
-            </Picker>        
+            </Picker>               
             <Label Grid.Row="6" 
+                   Grid.Column="0" 
+                   Text="Event:" 
+                   HorizontalTextAlignment="End" 
+                   VerticalTextAlignment="Center" 
+                   FontSize="18"/>
+            <Picker Grid.Row="6"
+                    Grid.Column="1"
+                    FontSize="18"
+                    HorizontalOptions="FillAndExpand"
+                    ItemsSource="{Binding ExpenseEvents}"
+                    ItemDisplayBinding="{Binding Name}"
+                    SelectedItem="{Binding SelectedEvent, Mode=TwoWay}"
+                    SelectedIndexChanged="ExpenseEvent_SelectedIndexChanged">
+            </Picker>        
+            <Label Grid.Row="7" 
                    Grid.Column="0" 
                    Text="Note:" 
                    HorizontalTextAlignment="End" 
                    VerticalTextAlignment="Center" 
                    FontSize="18"/>
-            <Editor Grid.Row="6"
+            <Editor Grid.Row="7"
                     Grid.Column="1"
                     FontSize="18"
                     MaxLength="100"

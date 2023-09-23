@@ -23,6 +23,10 @@ public partial class ExpenseDetailsPage : ContentPage
         _expenseDetailsViewModel.SelectedType = _expenseDetailsViewModel.ExpenseTypes.FirstOrDefault(m => m.Id == _expenseDetailsViewModel.Expense.ExpenseTypeId);
         if (_expenseDetailsViewModel.Expense.TagId != null)
             _expenseDetailsViewModel.SelectedTag = _expenseDetailsViewModel.ExpenseTags.FirstOrDefault(m => m.Id == _expenseDetailsViewModel.Expense.TagId);
+        
+        if (_expenseDetailsViewModel.Expense.EventId != null)
+            _expenseDetailsViewModel.SelectedEvent = _expenseDetailsViewModel.ExpenseEvents.FirstOrDefault(m => m.Id == _expenseDetailsViewModel.Expense.EventId);
+
     }
 
     private void MerchantPicker_SelectedIndexChanged(object sender, EventArgs e)
@@ -52,5 +56,11 @@ public partial class ExpenseDetailsPage : ContentPage
     {
         var picker = (Picker)sender;
         _expenseDetailsViewModel.Expense.TagId = picker?.SelectedItem == null ? null : (picker.SelectedItem as ExpenseTag).Id;
+    }
+
+    private void ExpenseEvent_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        var picker = (Picker)sender;
+        _expenseDetailsViewModel.Expense.EventId = picker?.SelectedItem == null ? null : (picker.SelectedItem as ExpenseEvent).Id;
     }
 }

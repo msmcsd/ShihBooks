@@ -35,8 +35,9 @@ public static class MauiProgram
 		builder.Services.AddTransient<ISaveExpenseTagUseCase, SaveExpenseTagUseCase>();
 		builder.Services.AddTransient<IUpdateExpenseTagUseCase, UpdateExpenseTagUseCase>();
 		builder.Services.AddTransient<IUpdateExpenseUseCase, UpdateExpenseUseCase>();
+        builder.Services.AddTransient<IViewExpenseEventsUseCase, ViewExpenseEventsUseCase>();
 
-		builder.Services.AddSingleton<IExpensesDataStore, InMemoryExpensesDataStore>();
+        builder.Services.AddSingleton<IExpensesDataStore, InMemoryExpensesDataStore>();
 		//builder.Services.AddSingleton<IExpensesDataStore, SqliteExpensesDataStore>();
 
 		builder.Services.AddSingleton<MainPageViewModel>();

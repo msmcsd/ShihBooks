@@ -24,6 +24,12 @@ namespace ShihBooks.Plugins.DataStore.InMemory
             new Merchant { Id = 2, Name = "Amazon", ImageUrl = "https://www.amazon.com/favicon.ico"}
         };
 
+        private List<ExpenseEvent> _expenseEvents = new List<ExpenseEvent>()
+        {
+            new ExpenseEvent {Id = 1, Name = "Travel"},
+            new ExpenseEvent {Id = 2, Name = "New semester"}
+        };
+
         private List<Expense> _expenses = new List<Expense>()
         {
             new Expense()
@@ -43,7 +49,8 @@ namespace ShihBooks.Plugins.DataStore.InMemory
                 ExpenseDate = new DateTime(2023, DateTime.Now.Month, 4),
                 MerchantId = 2,
                 ExpenseTypeId = 2,
-                Note = "For gaming"
+                Note = "For gaming",
+                EventId = 2
             },
             new Expense()
             {
@@ -77,6 +84,7 @@ namespace ShihBooks.Plugins.DataStore.InMemory
                             ExpenseTypeId = e.ExpenseTypeId,
                             MerchantImageUrl = m.ImageUrl,
                             TagId = e.TagId,
+                            EventId = e.EventId,
                             Note = e.Note
                          }).ToList();
                        
@@ -136,9 +144,15 @@ namespace ShihBooks.Plugins.DataStore.InMemory
                 exp.Amount = expense.Amount;
                 exp.MerchantId = expense.MerchantId;
                 exp.TagId = expense.TagId;
+                exp.EventId = expense.EventId;
             }
 
             return true;
+        }
+
+        public async Task<List<ExpenseEvent>> GetExpenseEventsAsync()
+        {
+            return _expenseEvents;
         }
     }
 }

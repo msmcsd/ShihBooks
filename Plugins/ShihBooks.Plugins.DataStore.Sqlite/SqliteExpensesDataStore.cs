@@ -18,6 +18,7 @@ namespace ShihBooks.Plugins.DataStore.Sqlite
             _db.CreateTableAsync<Merchant>();
             _db.CreateTableAsync<ExpenseType>();
             _db.CreateTableAsync<Expense>();
+            _db.CreateTableAsync<ExpenseEvent>();
 
             if (!dbExists)
                 InsertSampleExpenses();
@@ -29,6 +30,12 @@ namespace ShihBooks.Plugins.DataStore.Sqlite
             {
                 new ExpenseTag {Id = 1, Name = "Kids", DateAdded = DateTime.Now},
                 new ExpenseTag {Id = 2, Name = "One Time", DateAdded = DateTime.Now}
+            });
+                      
+            _db.InsertAllAsync(new List<ExpenseEvent>()
+            {
+                new ExpenseEvent {Id = 1, Name = "Travel"},
+                new ExpenseEvent {Id = 2, Name = "New semester"}
             });
 
             _db.InsertAllAsync(new List<ExpenseType>()
@@ -64,6 +71,7 @@ namespace ShihBooks.Plugins.DataStore.Sqlite
                     ExpenseTypeId = 2,
                     Note = "For gaming",
                     TagId = 1,
+                    EventId = 2
                 },
                 new Expense()
                 {
@@ -94,6 +102,7 @@ namespace ShihBooks.Plugins.DataStore.Sqlite
                                 ExpenseTypeId = e.ExpenseTypeId,
                                 MerchantImageUrl = m.ImageUrl,
                                 TagId = e.TagId,
+                                EventId = e.EventId,
                                 Note = e.Note
                             }).ToList();
             
@@ -130,5 +139,9 @@ namespace ShihBooks.Plugins.DataStore.Sqlite
             throw new NotImplementedException();
         }
 
+        public Task<List<ExpenseEvent>> GetExpenseEventsAsync()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

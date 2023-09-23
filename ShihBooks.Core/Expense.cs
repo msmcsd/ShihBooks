@@ -20,6 +20,8 @@ namespace ShihBooks.Core
 
         public int? TagId { get; set; }
 
+        public int? EventId { get; set; }
+
         public string Note { get; set; }
 
         [Required]
