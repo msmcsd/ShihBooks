@@ -19,6 +19,8 @@ namespace ShihBooks.UseCases.PluginInterfaces
         Task <bool> UpdateExpense(Expense expense);
 
         Task<List<ExpenseEvent>> GetExpenseEventsAsync();
+
+        Task<bool> DeleteExpense(int expenseId);
     }
 }
  

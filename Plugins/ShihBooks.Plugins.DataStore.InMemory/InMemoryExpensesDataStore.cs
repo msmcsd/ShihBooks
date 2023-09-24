@@ -154,5 +154,13 @@ namespace ShihBooks.Plugins.DataStore.InMemory
         {
             return _expenseEvents;
         }
+
+        public Task<bool> DeleteExpense(int expenseId)
+        {
+            var e = _expenses.FirstOrDefault(e => e.Id == expenseId);
+            if (e != null) _expenses.Remove(e);
+
+            return Task.FromResult(true);
+        }
     }
 }

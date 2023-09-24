@@ -16,40 +16,62 @@
             ItemsSource="{Binding Expenses}">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="m:ExpenseView">
-                    <Grid Padding="5" BackgroundColor="LightGreen">
-                        <Frame Padding="0">
-                            <Frame.GestureRecognizers>
-                                <TapGestureRecognizer 
+                    <SwipeView>
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItemView CommandParameter="{Binding .}"
+                                               Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ExpensesViewModel}}, Path=DeleteExpenseCommand}">
+                                    <Frame BackgroundColor="OrangeRed"
+                                           HeightRequest="50"
+                                           WidthRequest="50"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center"
+                                           CornerRadius="25"
+                                           Padding="0">
+                                        <Label Text="X" 
+                                               FontSize="20"
+                                               FontAttributes="Bold"
+                                               VerticalOptions="Center"
+                                               HorizontalOptions="Center"/>
+                                    </Frame>
+                                </SwipeItemView>
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+                        <Grid Padding="5" BackgroundColor="LightGreen">
+                            <Frame Padding="0">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer 
                                     CommandParameter="{Binding .}"
                                     Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ExpensesViewModel} }, Path=GoToExpenseDetailsCommand}" />
-                            </Frame.GestureRecognizers>
-                            <Grid Padding="3" ColumnSpacing="5" ColumnDefinitions="55,40,*,100">
-                                <Label Grid.Column="0"
+                                </Frame.GestureRecognizers>
+                                <Grid Padding="3" ColumnSpacing="5" ColumnDefinitions="55,40,*,100">
+                                    <Label Grid.Column="0"
                                        FontSize="16"
                                        Text="{Binding ExpenseDate, StringFormat='{0:MM/dd}'}" 
                                        HorizontalOptions="Start"
                                        VerticalOptions="Center" />
-                                <Image Grid.Column="1"
+                                    <Image Grid.Column="1"
                                        Aspect="AspectFill"
                                        Source="{Binding MerchantImageUrl}"                           
                                        WidthRequest="32" 
                                        HeightRequest="32"
                                     />
-                                <Label Grid.Column="2" 
+                                    <Label Grid.Column="2" 
                                        Text="{Binding Description}" 
                                        LineBreakMode="WordWrap"
                                        VerticalOptions="Center"
                                        VerticalTextAlignment="Center"
                                        FontSize="16" />
-                                <Label Grid.Column="3"
+                                    <Label Grid.Column="3"
                                        FontSize="16"
                                        Text="{Binding Amount, StringFormat='${0:N2}'}" 
                                        HorizontalOptions="FillAndExpand"
                                        HorizontalTextAlignment="End"
                                        VerticalOptions="Center"/>
+                                </Grid>
+                            </Frame>
                         </Grid>
-                        </Frame>
-                    </Grid>
+                    </SwipeView>
                 </DataTemplate> 
             </CollectionView.ItemTemplate>
         </CollectionView>

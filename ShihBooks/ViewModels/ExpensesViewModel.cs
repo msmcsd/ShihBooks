@@ -13,6 +13,7 @@ namespace ShihBooks.ViewModels
     public partial class ExpensesViewModel : BaseViewModel
     {
         private readonly IViewExpensesByMonthUseCase _viewExpensesByMonthUseCase;
+        private readonly IDeleteExpenseUseCase _deleteExpenseUseCase;
 
         public ObservableCollection<ExpenseView> Expenses { get; set; } = new();
 
@@ -22,9 +23,11 @@ namespace ShihBooks.ViewModels
         [ObservableProperty]
         private int _month;
 
-        public ExpensesViewModel(IViewExpensesByMonthUseCase viewExpensesByMonthUseCase)
+        public ExpensesViewModel(IViewExpensesByMonthUseCase viewExpensesByMonthUseCase,
+                                 IDeleteExpenseUseCase deleteExpenseUseCase)
         {
             _viewExpensesByMonthUseCase = viewExpensesByMonthUseCase;
+            _deleteExpenseUseCase = deleteExpenseUseCase;
         }
 
         public async Task LoadExpensesByMonthAsync(int year, int month)
@@ -71,6 +74,16 @@ namespace ShihBooks.ViewModels
                 new Dictionary<string, object>() {
                     { "Expense", expense }
                 });
+        }
+
+        [RelayCommand]
+        public async Task DeleteExpenseAsync(ExpenseView expense)
+        {
+            if (expense != null)
+            {
+                var ret = await _deleteExpenseUseCase.ExecuteAsync(expense.Id);
+                if (ret) Expenses.Remove(expense);
+            }
         }
     }
 }
