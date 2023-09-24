@@ -1,4 +1,4 @@
-﻿namespace ShihBooks.UseCases.Interfaces
+﻿namespace ShihBooks.UseCases.Interfaces.ExpenseTags
 {
     public interface IUpdateExpenseTagUseCase
     {

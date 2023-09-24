@@ -1,8 +1,8 @@
 ﻿using ShihBooks.Core;
-using ShihBooks.UseCases.Interfaces;
+using ShihBooks.UseCases.Interfaces.ExpenseEvents;
 using ShihBooks.UseCases.PluginInterfaces;
 
-namespace ShihBooks.UseCases
+namespace ShihBooks.UseCases.UseCases.ExpenseEvents
 {
     public class ViewExpenseEventsUseCase : IViewExpenseEventsUseCase
     {

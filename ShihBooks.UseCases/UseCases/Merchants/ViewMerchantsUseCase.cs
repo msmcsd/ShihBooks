@@ -1,8 +1,8 @@
 ﻿using ShihBooks.Core;
-using ShihBooks.UseCases.Interfaces;
+using ShihBooks.UseCases.Interfaces.Merchants;
 using ShihBooks.UseCases.PluginInterfaces;
 
-namespace ShihBooks.UseCases
+namespace ShihBooks.UseCases.UseCases.Merchants
 {
     public class ViewMerchantsUseCase : IViewMerchantsUseCase
     {

@@ -1,5 +1,5 @@
 ﻿using ShihBooks.Core;
-using ShihBooks.UseCases.Interfaces;
+using ShihBooks.UseCases.Interfaces.ExpenseTags;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 

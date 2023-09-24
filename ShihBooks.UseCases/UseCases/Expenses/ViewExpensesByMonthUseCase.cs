@@ -1,8 +1,8 @@
 ﻿using ShihBooks.Core;
-using ShihBooks.UseCases.Interfaces;
+using ShihBooks.UseCases.Interfaces.Expenses;
 using ShihBooks.UseCases.PluginInterfaces;
 
-namespace ShihBooks.UseCases
+namespace ShihBooks.UseCases.UseCases.Expenses
 {
     // All the code in this file is included in all platforms.
     public class ViewExpensesByMonthUseCase : IViewExpensesByMonthUseCase

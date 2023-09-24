@@ -2,9 +2,17 @@
 using Microsoft.Extensions.Logging;
 using ShihBooks.Plugins.DataStore.InMemory;
 using ShihBooks.Plugins.DataStore.Sqlite;
-using ShihBooks.UseCases;
-using ShihBooks.UseCases.Interfaces;
+using ShihBooks.UseCases.Interfaces.ExpenseEvents;
+using ShihBooks.UseCases.Interfaces.Expenses;
+using ShihBooks.UseCases.Interfaces.ExpenseTags;
+using ShihBooks.UseCases.Interfaces.ExpenseTypes;
+using ShihBooks.UseCases.Interfaces.Merchants;
 using ShihBooks.UseCases.PluginInterfaces;
+using ShihBooks.UseCases.UseCases.ExpenseEvents;
+using ShihBooks.UseCases.UseCases.Expenses;
+using ShihBooks.UseCases.UseCases.ExpenseTags;
+using ShihBooks.UseCases.UseCases.ExpenseTypes;
+using ShihBooks.UseCases.UseCases.Merchants;
 using ShihBooks.ViewModels;
 using ShihBooks.Views;
 

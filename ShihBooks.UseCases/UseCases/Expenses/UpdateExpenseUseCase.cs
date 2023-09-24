@@ -1,5 +1,5 @@
 ﻿using ShihBooks.Core;
-using ShihBooks.UseCases.Interfaces;
+using ShihBooks.UseCases.Interfaces.Expenses;
 using ShihBooks.UseCases.PluginInterfaces;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShihBooks.UseCases
+namespace ShihBooks.UseCases.UseCases.Expenses
 {
     public class UpdateExpenseUseCase : IUpdateExpenseUseCase
     {

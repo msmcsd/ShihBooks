@@ -1,6 +1,6 @@
 ﻿using ShihBooks.Core;
 
-namespace ShihBooks.UseCases.Interfaces
+namespace ShihBooks.UseCases.Interfaces.Expenses
 {
     public interface IUpdateExpenseUseCase
     {
