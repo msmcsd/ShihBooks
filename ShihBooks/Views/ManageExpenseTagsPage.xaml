@@ -10,18 +10,40 @@
           ColumnSpacing="5"
           Padding="10">
 
-        <ListView Grid.ColumnSpan="2"
+        <CollectionView Grid.ColumnSpan="2"
                   x:Name="tagList"
-                  ItemsSource="{Binding ExpenseTags}" >
-            <ListView.ItemTemplate>
+                  ItemsSource="{Binding ExpenseTags}" 
+                  SelectionMode="Single">
+            <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="m:ExpenseTag">
-                    <ViewCell>
-                        <Label Text="{Binding Name}"
-                               FontSize="16"/>
-                    </ViewCell>
+                    <SwipeView>
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItemView CommandParameter="{Binding .}"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ManageExpenseTagsViewModel}}, Path=DeleteExpenseTagCommand}">
+                                    <Frame BackgroundColor="OrangeRed"
+                                           HeightRequest="50"
+                                           WidthRequest="50"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center"
+                                           CornerRadius="25"
+                                           Padding="0">
+                                        <Label Text="X" 
+                                               FontSize="20"
+                                               FontAttributes="Bold"
+                                               VerticalOptions="Center"
+                                               HorizontalOptions="Center"/>
+                                    </Frame>
+                                </SwipeItemView>
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+                        <Frame Padding="5" BorderColor="White" BackgroundColor="Transparent" CornerRadius="0">
+                            <Label Text="{Binding Name}" Padding="5" FontSize="16"/>
+                        </Frame>
+                    </SwipeView>
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
         <Button Grid.Row="1"
                 Grid.Column="0"
                 Clicked="AddTag_Clicked"

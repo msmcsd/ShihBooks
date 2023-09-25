@@ -1,25 +1,30 @@
-﻿using ShihBooks.Core;
+﻿using CommunityToolkit.Mvvm.Input;
+using ShihBooks.Core;
 using ShihBooks.UseCases.Interfaces.ExpenseTags;
+using ShihBooks.UseCases.UseCases.ExpenseTags;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 
 namespace ShihBooks.ViewModels
 {
-    public class ManageExpenseTagsViewModel : BaseViewModel
+    public partial class ManageExpenseTagsViewModel : BaseViewModel
     {
         private readonly IViewExpenseTagsUseCase _viewExpenseTagsUseCase;
         private readonly ISaveExpenseTagUseCase _saveExpenseTagUseCase;
         private readonly IUpdateExpenseTagUseCase _updateExpenseTagUseCase;
+        private readonly IDeleteExpenseTagUseCase _deleteExpenseTagUseCase;
 
         public ObservableCollection<ExpenseTag> ExpenseTags { get; set; } = new();
 
         public ManageExpenseTagsViewModel(IViewExpenseTagsUseCase viewExpenseTagsUseCase,
                                           ISaveExpenseTagUseCase saveExpenseTagUseCase,
-                                          IUpdateExpenseTagUseCase updateExpenseTagUseCase)
+                                          IUpdateExpenseTagUseCase updateExpenseTagUseCase,
+                                          IDeleteExpenseTagUseCase deleteExpenseTagUseCase)
         {
             _viewExpenseTagsUseCase = viewExpenseTagsUseCase;
             _saveExpenseTagUseCase = saveExpenseTagUseCase;
             _updateExpenseTagUseCase = updateExpenseTagUseCase;
+            _deleteExpenseTagUseCase = deleteExpenseTagUseCase;
         }
 
         public async Task GetAllExpenseTagsAsync()
@@ -71,6 +76,14 @@ namespace ShihBooks.ViewModels
                 await GetAllExpenseTagsAsync();
 
             return ret;
+        }
+
+        [RelayCommand]
+        public async Task DeleteExpenseTagAsync(ExpenseTag expenseTag)
+        {
+            var ret = await _deleteExpenseTagUseCase.ExecuteAsync(expenseTag.Id);
+            if (string.IsNullOrEmpty(ret))
+                ExpenseTags.Remove(expenseTag);
         }
     }
 }

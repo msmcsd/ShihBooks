@@ -162,5 +162,20 @@ namespace ShihBooks.Plugins.DataStore.InMemory
 
             return Task.FromResult(true);
         }
+
+        public Task<string> DeleteExpenseTag(int tagId)
+        {
+            var tag = _expenseTags.FirstOrDefault(e => e.Id == tagId);
+            if (tag == null) return Task.FromResult("");
+
+            var expense = _expenses.FirstOrDefault(e => e.TagId == tagId);
+            if (expense == null)
+            {
+                _expenseTags.Remove(tag);
+                return Task.FromResult("");
+            }
+
+            return Task.FromResult($"Expense on {expense.ExpenseDate.ToString("MM/dd/yyyy")} is using tag {tag.Name}.");
+        }
     }
 }

@@ -148,5 +148,10 @@ namespace ShihBooks.Plugins.DataStore.Sqlite
         {
             throw new NotImplementedException();
         }
+
+        public Task<string> DeleteExpenseTag(int tagId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
