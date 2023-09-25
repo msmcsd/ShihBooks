@@ -16,7 +16,7 @@
                   SelectionMode="Single">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="m:ExpenseTag">
-                    <SwipeView>
+                    <!--<SwipeView>
                         <SwipeView.RightItems>
                             <SwipeItems>
                                 <SwipeItemView CommandParameter="{Binding .}"
@@ -40,7 +40,8 @@
                         <Frame Padding="5" BorderColor="White" BackgroundColor="Transparent" CornerRadius="0">
                             <Label Text="{Binding Name}" Padding="5" FontSize="16"/>
                         </Frame>
-                    </SwipeView>
+                    </SwipeView>-->
+                    <Label Text="{Binding Name}" Padding="5" FontSize="16"/>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
