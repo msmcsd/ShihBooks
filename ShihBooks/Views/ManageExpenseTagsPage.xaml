@@ -5,6 +5,11 @@
              xmlns:vm="clr-namespace:ShihBooks.ViewModels"
              x:Class="ShihBooks.Views.ManageExpenseTagsPage"
              Title="Expense Tags">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="+" Clicked="AddTag_Clicked" />
+    </ContentPage.ToolbarItems>
+    
     <Grid ColumnDefinitions="*,*"
           RowDefinitions="Auto, *, Auto"
           ColumnSpacing="5"
