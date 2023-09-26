@@ -4,15 +4,19 @@
              xmlns:m="clr-namespace:ShihBooks.Core;assembly=ShihBooks.Core"
              xmlns:vm="clr-namespace:ShihBooks.ViewModels"
              x:Class="ShihBooks.Views.ManageExpenseTagsPage"
-             Title="Manage Expense Tags">
+             Title="Expense Tags">
     <Grid ColumnDefinitions="*,*"
-          RowDefinitions="*, Auto"
+          RowDefinitions="Auto, *, Auto"
           ColumnSpacing="5"
           Padding="10">
 
-        <CollectionView Grid.ColumnSpan="2"
+        <VerticalStackLayout Grid.ColumnSpan="2">
+            <SearchBar Text="{Binding SearchText}"
+                       TextChanged="SearchBar_TextChanged"/>
+        </VerticalStackLayout>
+        <CollectionView Grid.Row="1" Grid.ColumnSpan="2"
                   x:Name="tagList"
-                  ItemsSource="{Binding ExpenseTags}" 
+                  ItemsSource="{Binding FilteredTags}" 
                   SelectionMode="Single">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="m:ExpenseTag">
@@ -45,11 +49,11 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-        <Button Grid.Row="1"
+        <Button Grid.Row="2"
                 Grid.Column="0"
                 Clicked="AddTag_Clicked"
                 Text="Add" />  
-        <Button Grid.Row="1"
+        <Button Grid.Row="2"
                 Grid.Column="1"
                 Text="Edit" 
                 Clicked="EditTag_Clicked"/>

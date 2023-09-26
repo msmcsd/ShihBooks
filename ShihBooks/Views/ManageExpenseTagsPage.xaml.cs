@@ -49,7 +49,19 @@ public partial class ManageExpenseTagsPage : ContentPage
         var newTagName = ret as string;
         if (newTagName != origTagName)
         {
+            var origSearchText = _manageExpenseTagsViewModel.SearchText;
+
             await _manageExpenseTagsViewModel.UpdateExpenseTag(tag.Id, newTagName);
+
+            if (!string.IsNullOrEmpty(origSearchText))
+            {
+                _manageExpenseTagsViewModel.SearchText = null;
+            }
         }
+    }
+
+    private async void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        await _manageExpenseTagsViewModel.PerformSearchAsync();
     }
 }

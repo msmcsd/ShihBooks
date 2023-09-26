@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using ShihBooks.Core;
 using ShihBooks.UseCases.Interfaces.ExpenseTags;
 using ShihBooks.UseCases.UseCases.ExpenseTags;
@@ -14,7 +15,12 @@ namespace ShihBooks.ViewModels
         private readonly IUpdateExpenseTagUseCase _updateExpenseTagUseCase;
         private readonly IDeleteExpenseTagUseCase _deleteExpenseTagUseCase;
 
-        public ObservableCollection<ExpenseTag> ExpenseTags { get; set; } = new();
+        public List<ExpenseTag> ExpenseTags { get; set; } = new();
+
+        public ObservableCollection<ExpenseTag> FilteredTags { get; set; } = new();
+
+        [ObservableProperty]
+        private string _searchText;
 
         public ManageExpenseTagsViewModel(IViewExpenseTagsUseCase viewExpenseTagsUseCase,
                                           ISaveExpenseTagUseCase saveExpenseTagUseCase,
@@ -31,21 +37,21 @@ namespace ShihBooks.ViewModels
         {
             if (IsBusy) return;
 
-            if (ExpenseTags.Count > 0)
+            if (FilteredTags.Count > 0)
             {
-                ExpenseTags.Clear();
+                FilteredTags.Clear();
             }
 
             try
             {
                 IsBusy = true;
 
-                var tags = await _viewExpenseTagsUseCase.ExecuteAsync();
-                if (tags?.Count > 0)
+                ExpenseTags = await _viewExpenseTagsUseCase.ExecuteAsync();
+                if (ExpenseTags?.Count > 0)
                 {
-                    foreach (var tag in tags)
+                    foreach (var tag in ExpenseTags)
                     {
-                        ExpenseTags.Add(tag);
+                        FilteredTags.Add(tag);
                     }
                 }
             }
@@ -83,7 +89,18 @@ namespace ShihBooks.ViewModels
         {
             var ret = await _deleteExpenseTagUseCase.ExecuteAsync(expenseTag.Id);
             if (string.IsNullOrEmpty(ret))
-                ExpenseTags.Remove(expenseTag);
+                FilteredTags.Remove(expenseTag);
+        }
+
+        public async Task PerformSearchAsync()
+        {
+            if (SearchText == null) return;
+
+            var list = SearchText.Length <= 0 ? ExpenseTags : 
+                                                ExpenseTags.Where(t => t.Name.IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0);
+            
+            if (FilteredTags.Count() > 0) FilteredTags.Clear();
+            foreach(var t in list) FilteredTags.Add(t);
         }
     }
 }
