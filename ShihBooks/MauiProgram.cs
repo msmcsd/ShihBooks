@@ -15,6 +15,7 @@ using ShihBooks.UseCases.UseCases.ExpenseTypes;
 using ShihBooks.UseCases.UseCases.Merchants;
 using ShihBooks.ViewModels;
 using ShihBooks.Views;
+using ShihBooks.Views.Controls;
 
 namespace ShihBooks;
 
@@ -48,17 +49,18 @@ public static class MauiProgram
         builder.Services.AddTransient<IDeleteExpenseTagUseCase, DeleteExpenseTagUseCase>();
 
         builder.Services.AddSingleton<IExpensesDataStore, InMemoryExpensesDataStore>();
-		//builder.Services.AddSingleton<IExpensesDataStore, SqliteExpensesDataStore>();
 
 		builder.Services.AddSingleton<MainPageViewModel>();
         builder.Services.AddTransient<ExpensesViewModel>();
 		builder.Services.AddTransient<ExpenseDetailsViewModel>();
 		builder.Services.AddTransient<ManageExpenseTagsViewModel>();
+		//builder.Services.AddTransient<ExpenseDatePickerViewModel>();
 
-        builder.Services.AddSingleton<MainPage>();
+		builder.Services.AddSingleton<MainPage>();
         builder.Services.AddTransient<ExpensesPage>();
 		builder.Services.AddTransient<ExpenseDetailsPage>();
 		builder.Services.AddTransient<ManageExpenseTagsPage>();
+		builder.Services.AddTransient<ExpenseDatePicker>();
 
 		return builder.Build();
 	}

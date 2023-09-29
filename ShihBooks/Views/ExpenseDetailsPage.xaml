@@ -2,80 +2,82 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:ShihBooks.ViewModels"
+             xmlns:controls="clr-namespace:ShihBooks.Views.Controls"
              x:DataType="vm:ExpenseDetailsViewModel"
              x:Class="ShihBooks.Views.ExpenseDetailsPage"
              Title="Expense Details">
     <ScrollView>
-    <VerticalStackLayout Padding="10">
+        <VerticalStackLayout Padding="10">
             <Grid ColumnDefinitions="Auto, Auto, Auto">
-            <Label Text="$" Grid.Column="1"
-                   TextColor="Orange"
-                   HorizontalTextAlignment="Start" 
-                   VerticalTextAlignment="Center" 
-                   FontSize="Large"/>
-            <Entry Grid.Column="2" HorizontalOptions="StartAndExpand"
-                   VerticalOptions="CenterAndExpand"
-                   VerticalTextAlignment="Center"
-                   FontSize="30"
-                   TextColor="Orange"
-                   Keyboard="Numeric"
-                   Text="{Binding Expense.Amount, StringFormat='{0:N2}'}" />
+                <controls:ExpenseDatePicker Date="{Binding Expense.ExpenseDate, Mode=TwoWay}" 
+                                            Margin="20,0,0,0"/>
+                <Label Text="$" 
+                        Grid.Column="1"
+                        Margin="30,0,0,0"
+                        TextColor="Orange"
+                        HorizontalTextAlignment="Start" 
+                        VerticalTextAlignment="Center" 
+                        FontSize="Large"/>
+                <Entry Grid.Column="2" HorizontalOptions="StartAndExpand"
+                        Margin="0,0,20,0"
+                        VerticalOptions="CenterAndExpand"
+                        VerticalTextAlignment="Center"
+                        FontSize="25"
+                        TextColor="Orange"
+                        Keyboard="Numeric"
+                        Text="{Binding Expense.Amount, StringFormat='{0:N2}'}" />
             </Grid>
 
             <Label Text="For" FontAttributes="Bold" Padding="0,10,0,0" />
             <Border HeightRequest="50" Margin="20, 0, 0, 0">
-            <Border.StrokeShape>
-                <RoundRectangle CornerRadius="8" />
-            </Border.StrokeShape>
-            <Entry Grid.Row="1" 
-                   Grid.Column="1" 
-                   HorizontalOptions="StartAndExpand"
-                   VerticalOptions="CenterAndExpand"
-                   VerticalTextAlignment="Center"
-                   Text="{Binding Expense.Description}"/>
-        </Border>
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="8" />
+                </Border.StrokeShape>
+                <Entry Grid.Row="1" 
+                        Grid.Column="1" 
+                        HorizontalOptions="StartAndExpand"
+                        VerticalOptions="CenterAndExpand"
+                        VerticalTextAlignment="Center"
+                        Text="{Binding Expense.Description}"/>
+            </Border>
 
-        <Label Text="Date" FontAttributes="Bold" Padding="0,10,0,0"
-               HorizontalTextAlignment="Start" 
-               VerticalTextAlignment="Center"/>
-            <Border HeightRequest="50" Margin="20, 0, 0, 0">
-            <Border.StrokeShape>
-                <RoundRectangle CornerRadius="8" />
-            </Border.StrokeShape>
-            <DatePicker Date="{Binding Expense.ExpenseDate}" Format="MMM dd, yy"/>
-        </Border>
-
-        <Label Text="Where" FontAttributes="Bold" Padding="0,10,0,0"
-                HorizontalTextAlignment="Start" 
-                VerticalTextAlignment="Center" />
+            <Label Text="Date" FontAttributes="Bold" Padding="0,10,0,0"
+                   HorizontalTextAlignment="Start" 
+                   VerticalTextAlignment="Center"/>
             <Border HeightRequest="50" Margin="20, 0, 0, 0">
                 <Border.StrokeShape>
                     <RoundRectangle CornerRadius="8" />
                 </Border.StrokeShape>
-                <Picker 
-                    HorizontalOptions="FillAndExpand"
-                    ItemsSource="{Binding Merchants}"
-                    ItemDisplayBinding="{Binding Name}"
-                    SelectedItem="{Binding SelectedMerchant, Mode=TwoWay}"
-                    SelectedIndexChanged="MerchantPicker_SelectedIndexChanged">
-            </Picker>
-        </Border>
+                <DatePicker Date="{Binding Expense.ExpenseDate}" Format="MMM dd, yy"/>
+            </Border>
 
-
-        <Label Text="Type" FontAttributes="Bold" Padding="0,10,0,0"
-                HorizontalTextAlignment="Start" 
-                VerticalTextAlignment="Center"/>
+            <Label Text="Where" FontAttributes="Bold" Padding="0,10,0,0"
+                    HorizontalTextAlignment="Start" 
+                    VerticalTextAlignment="Center" />
             <Border HeightRequest="50" Margin="20, 0, 0, 0">
-            <Border.StrokeShape>
-                <RoundRectangle CornerRadius="8" />
-            </Border.StrokeShape>
-            <Picker HorizontalOptions="FillAndExpand"
-                     ItemsSource="{Binding ExpenseTypes}"
-                     ItemDisplayBinding="{Binding Name}"
-                     SelectedItem="{Binding SelectedType, Mode=TwoWay}"
-                     SelectedIndexChanged="ExpenseType_SelectedIndexChanged">
-                    </Picker>
-        </Border>
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="8" />
+                </Border.StrokeShape>
+                <Picker HorizontalOptions="FillAndExpand"
+                        ItemsSource="{Binding Merchants}"
+                        ItemDisplayBinding="{Binding Name}"
+                        SelectedItem="{Binding SelectedMerchant, Mode=TwoWay}"
+                        SelectedIndexChanged="MerchantPicker_SelectedIndexChanged" />
+            </Border>
+
+            <Label Text="Type" FontAttributes="Bold" Padding="0,10,0,0"
+                    HorizontalTextAlignment="Start" 
+                    VerticalTextAlignment="Center"/>
+            <Border HeightRequest="50" Margin="20, 0, 0, 0">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="8" />
+                </Border.StrokeShape>
+                <Picker HorizontalOptions="FillAndExpand"
+                        ItemsSource="{Binding ExpenseTypes}"
+                        ItemDisplayBinding="{Binding Name}"
+                        SelectedItem="{Binding SelectedType, Mode=TwoWay}"
+                        SelectedIndexChanged="ExpenseType_SelectedIndexChanged" />
+            </Border>
 
             <Label Text="Tag" FontAttributes="Bold" Padding="0,10,0,0"
                    HorizontalTextAlignment="Start" 
@@ -84,14 +86,13 @@
                 <Border.StrokeShape>
                     <RoundRectangle CornerRadius="8" />
                 </Border.StrokeShape>
-
                 <Picker HorizontalOptions="FillAndExpand"
-                    ItemsSource="{Binding ExpenseTags}"
-                    ItemDisplayBinding="{Binding Name}"
-                    SelectedItem="{Binding SelectedTag, Mode=TwoWay}"
-                    SelectedIndexChanged="ExpenseTag_SelectedIndexChanged">
-                </Picker>
+                        ItemsSource="{Binding ExpenseTags}"
+                        ItemDisplayBinding="{Binding Name}"
+                        SelectedItem="{Binding SelectedTag, Mode=TwoWay}"
+                        SelectedIndexChanged="ExpenseTag_SelectedIndexChanged" />
             </Border>
+            
             <Label Text="Event" FontAttributes="Bold" Padding="0,10,0,0"
                    HorizontalTextAlignment="Start" 
                    VerticalTextAlignment="Center" />
@@ -101,15 +102,14 @@
                 </Border.StrokeShape>
 
                 <Picker HorizontalOptions="FillAndExpand"
-                    ItemsSource="{Binding ExpenseEvents}"
-                    ItemDisplayBinding="{Binding Name}"
-                    SelectedItem="{Binding SelectedEvent, Mode=TwoWay}"
-                    SelectedIndexChanged="ExpenseEvent_SelectedIndexChanged">
-                </Picker>
+                        ItemsSource="{Binding ExpenseEvents}"
+                        ItemDisplayBinding="{Binding Name}"
+                        SelectedItem="{Binding SelectedEvent, Mode=TwoWay}"
+                        SelectedIndexChanged="ExpenseEvent_SelectedIndexChanged" />
             </Border>
 
             <Label Text="Note" FontAttributes="Bold" Padding="0,10,0,0"
-                   HorizontalTextAlignment="Start" 
+                    HorizontalTextAlignment="Start" 
                    VerticalTextAlignment="Center" />
             <Border HeightRequest="50" Margin="20, 0, 0, 0"> 
                 <Border.StrokeShape>
@@ -122,16 +122,17 @@
                     HorizontalOptions="FillAndExpand">
                 </Editor>
             </Border>
+            
             <Grid ColumnDefinitions="*, *" Padding="20, 20, 20, 0">
-            <Button Text="Save" 
-                Margin="5" 
-                Command="{Binding UpdateExpenseCommand}"
-                FontSize="18"/>
+                <Button Text="Save" 
+                        Margin="5" 
+                        Command="{Binding UpdateExpenseCommand}"
+                        FontSize="18"/>
 
-        <Button Text="Cancel" Grid.Column="1"
-                Margin="5" 
-                Command="{Binding CancelUpdateExpenseCommand}"
-                FontSize="18"/>
+                <Button Text="Cancel" Grid.Column="1"
+                        Margin="5" 
+                        Command="{Binding CancelUpdateExpenseCommand}"
+                        FontSize="18"/>
             </Grid>
         </VerticalStackLayout>
     </ScrollView>
