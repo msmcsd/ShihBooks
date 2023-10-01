@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace ShihBooks.UseCases.UseCases.ExpenseTags
 {
-    public class SaveExpenseTagUseCase : ISaveExpenseTagUseCase
+    public class AddExpenseTagUseCase : IAddExpenseTagUseCase
     {
         private readonly IExpensesDataStore _expensesDataStore;
 
-        public SaveExpenseTagUseCase(IExpensesDataStore expensesDataStore)
+        public AddExpenseTagUseCase(IExpensesDataStore expensesDataStore)
         {
             _expensesDataStore = expensesDataStore;
         }

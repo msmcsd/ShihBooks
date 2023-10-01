@@ -11,7 +11,7 @@ namespace ShihBooks.ViewModels
     public partial class ManageExpenseTagsViewModel : BaseViewModel
     {
         private readonly IViewExpenseTagsUseCase _viewExpenseTagsUseCase;
-        private readonly ISaveExpenseTagUseCase _saveExpenseTagUseCase;
+        private readonly IAddExpenseTagUseCase _saveExpenseTagUseCase;
         private readonly IUpdateExpenseTagUseCase _updateExpenseTagUseCase;
         private readonly IDeleteExpenseTagUseCase _deleteExpenseTagUseCase;
 
@@ -23,7 +23,7 @@ namespace ShihBooks.ViewModels
         private string _searchText;
 
         public ManageExpenseTagsViewModel(IViewExpenseTagsUseCase viewExpenseTagsUseCase,
-                                          ISaveExpenseTagUseCase saveExpenseTagUseCase,
+                                          IAddExpenseTagUseCase saveExpenseTagUseCase,
                                           IUpdateExpenseTagUseCase updateExpenseTagUseCase,
                                           IDeleteExpenseTagUseCase deleteExpenseTagUseCase)
         {
@@ -66,7 +66,7 @@ namespace ShihBooks.ViewModels
 
         }
 
-        public async Task SaveExpenseTag(string tagName)
+        public async Task AddExpenseTag(string tagName)
         {
             if (string.IsNullOrWhiteSpace(tagName)) return;
 

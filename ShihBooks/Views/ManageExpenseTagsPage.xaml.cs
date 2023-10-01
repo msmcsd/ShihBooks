@@ -30,7 +30,7 @@ public partial class ManageExpenseTagsPage : ContentPage
             return;
         }
 
-        await _manageExpenseTagsViewModel.SaveExpenseTag(ret as string);
+        await _manageExpenseTagsViewModel.AddExpenseTag(ret as string);
     }
 
     private async void EditTag_Clicked(object sender, EventArgs e)

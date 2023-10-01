@@ -41,7 +41,7 @@ public static class MauiProgram
 		builder.Services.AddTransient<IViewExpenseTypesUseCase, ViewExpenseTypesUseCase>();
 		builder.Services.AddTransient<IViewMerchantsUseCase, ViewMerchantsUseCase>();
 		builder.Services.AddTransient<IViewExpenseTagsUseCase, ViewExpenseTagsUseCase>();
-		builder.Services.AddTransient<ISaveExpenseTagUseCase, SaveExpenseTagUseCase>();
+		builder.Services.AddTransient<IAddExpenseTagUseCase, AddExpenseTagUseCase>();
 		builder.Services.AddTransient<IUpdateExpenseTagUseCase, UpdateExpenseTagUseCase>();
 		builder.Services.AddTransient<IUpdateExpenseUseCase, UpdateExpenseUseCase>();
         builder.Services.AddTransient<IViewExpenseEventsUseCase, ViewExpenseEventsUseCase>();
