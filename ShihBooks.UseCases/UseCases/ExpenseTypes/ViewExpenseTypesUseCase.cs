@@ -1,11 +1,6 @@
 ﻿using ShihBooks.Core;
 using ShihBooks.UseCases.Interfaces.ExpenseTypes;
 using ShihBooks.UseCases.PluginInterfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ShihBooks.UseCases.UseCases.ExpenseTypes
 {
@@ -17,9 +12,15 @@ namespace ShihBooks.UseCases.UseCases.ExpenseTypes
         {
             _expenseSource = expenseSource;
         }
-        public async Task<List<ExpenseType>> ExecuteAsync()
+
+        public async Task<List<ExpenseEntity>> ExecuteAsync()
         {
-            return await _expenseSource.GetExpenseTypesAsync();
+            var ret = await _expenseSource.GetExpenseTypesAsync();
+            return ret.ConvertAll(t => new ExpenseEntity
+            {
+                Id = t.Id,
+                Name = t.Name
+            });
         }
     }
 }

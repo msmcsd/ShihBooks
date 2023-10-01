@@ -59,7 +59,12 @@ namespace ShihBooks.ViewModels
         private async Task LoadSelectionList()
         {
             Merchants = await _viewMerchantsUseCase.ExecuteAsync();
-            ExpenseTypes = await _viewExpenseTypesUseCase.ExecuteAsync();
+            var ret = await _viewExpenseTypesUseCase.ExecuteAsync();
+            ExpenseTypes = ret.ConvertAll(t => new ExpenseType
+            {
+                Id = t.Id,
+                Name = t.Name,
+            });
             ExpenseTags = await _viewExpenseTagsUseCase.ExecuteAsync();
             ExpenseEvents = await _viewExpenseEventsUseCase.ExecuteAsync();
         }

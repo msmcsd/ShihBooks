@@ -5,15 +5,11 @@
              x:Class="ShihBooks.Views.ManageItemPopupPage"
              CanBeDismissedByTappingOutsideOfPopup="True">
     
-    <Grid ColumnDefinitions="*,*"
-          RowDefinitions="*, Auto, Auto"
-          Padding="10" 
-          RowSpacing="10"
-          ColumnSpacing="5">
+    <VerticalStackLayout Padding="5">
         
         <Label x:Name="instructionLabel"
                Grid.ColumnSpan="2"
-               Text="Enter the item name:"
+               Text="Enter name:"
                FontSize="16"
                VerticalOptions="End" 
                HorizontalOptions="Center" />
@@ -22,18 +18,17 @@
                Grid.Row="1"
                Grid.Column="0"
                Grid.ColumnSpan="2"
-               FontSize="16"
+               Margin="0,10"
+               WidthRequest="200"
                VerticalOptions="Start" />
         
         <Button x:Name="addButton"
                 Grid.Row="2"
+                Grid.ColumnSpan="2"
                 Grid.Column="0"
+                Padding="0,5"
                 Text="Add" 
                 Clicked="Add_Clicked"/>
-        
-        <Button Grid.Row="2"
-                Grid.Column="1"
-                Text="Cancel" 
-                Clicked="Cancel_Clicked"/>
-    </Grid>
+
+    </VerticalStackLayout>
 </toolkit:Popup>

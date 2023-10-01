@@ -1,9 +1,8 @@
-﻿using ShihBooks.Core;
+﻿using ShihBooks.UseCases.Interfaces.Entities;
 
 namespace ShihBooks.UseCases.Interfaces.ExpenseTypes
 {
-    public interface IViewExpenseTypesUseCase
+    public interface IViewExpenseTypesUseCase : IViewEntitiesUseCase
     {
-        Task<List<ExpenseType>> ExecuteAsync();
     }
 }

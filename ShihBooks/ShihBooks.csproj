@@ -95,6 +95,6 @@
 	  </MauiXaml>
 	</ItemGroup>
 
-	<ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadGenericExceptionInfoBarShihBooksHideInfoBar="True" /></VisualStudio></ProjectExtensions>
+	<ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadDebuggerTimeoutExceptionShihBooksHideInfoBar="True" XamarinHotReloadGenericExceptionInfoBarShihBooksHideInfoBar="True" /></VisualStudio></ProjectExtensions>
 
 </Project>

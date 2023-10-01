@@ -1,7 +1,8 @@
-﻿namespace ShihBooks.UseCases.Interfaces.ExpenseTypes
+﻿using ShihBooks.UseCases.Interfaces.Entities;
+
+namespace ShihBooks.UseCases.Interfaces.ExpenseTypes
 {
-    public interface IAddExpenseTypeUseCase
+    public interface IAddExpenseTypeUseCase : IAddEntityUseCase
     {
-        Task<bool> ExecuteAsync(string name);
     }
 }

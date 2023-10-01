@@ -1,10 +1,5 @@
 ﻿using ShihBooks.UseCases.Interfaces.ExpenseTypes;
 using ShihBooks.UseCases.PluginInterfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ShihBooks.UseCases.UseCases.ExpenseTypes
 {
