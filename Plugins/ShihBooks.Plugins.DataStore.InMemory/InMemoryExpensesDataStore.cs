@@ -177,5 +177,40 @@ namespace ShihBooks.Plugins.DataStore.InMemory
 
             return Task.FromResult($"Expense on {expense.ExpenseDate.ToString("MM/dd/yyyy")} is using tag {tag.Name}.");
         }
+
+        public Task<bool> AddExpenseType(string name)
+        {
+            var type = _expenseTypes.FirstOrDefault(t => t.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase));
+            if (type != null) return Task.FromResult(false);
+
+            _expenseTypes.Add(new ExpenseType() 
+            { 
+                Id = _expenseTypes.Count() + 1,
+                Name = name 
+            });
+
+            return Task.FromResult(true);
+        }
+
+        public async Task<bool> UpdateExpenseType(int id, string newTypeName)
+        {
+            var type = _expenseTypes.FirstOrDefault(t => t.Id == id);
+            if (type == null) return false;
+
+            type.Name = newTypeName;
+            return true;
+        }
+
+        public async Task<int> DeleteExpenseTypeAsync(int id)
+        {
+            var type = _expenseTypes.FirstOrDefault(t => t.Id == id);
+            if (type != null)
+            {
+                _expenseTypes.Remove(type);
+                return 0;
+            }
+
+            return id;
+        }
     }
 }

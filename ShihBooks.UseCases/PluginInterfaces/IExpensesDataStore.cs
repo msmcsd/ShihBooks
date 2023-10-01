@@ -23,6 +23,12 @@ namespace ShihBooks.UseCases.PluginInterfaces
         Task<bool> DeleteExpense(int expenseId);
 
         Task<string> DeleteExpenseTag(int tagId);
+
+        Task<bool> AddExpenseType(string name);
+
+        Task<bool> UpdateExpenseType(int id, string newTypeName);
+
+        Task<int> DeleteExpenseTypeAsync(int id);
     }
 }
  

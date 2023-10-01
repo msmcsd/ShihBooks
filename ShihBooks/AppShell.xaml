@@ -17,6 +17,11 @@
         Route="MainPage" />
 
     <ShellContent
+        Title="Expense Types"
+        ContentTemplate="{DataTemplate views:ManageExpenseTypesPage}"
+        Route="ManageExpenseTypessPage" />
+    
+    <ShellContent
         Title="Tags"
         ContentTemplate="{DataTemplate views:ManageExpenseTagsPage}"
         Route="ManageExpenseTagsPage" />

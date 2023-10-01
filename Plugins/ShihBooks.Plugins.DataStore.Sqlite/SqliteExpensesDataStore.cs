@@ -153,5 +153,20 @@ namespace ShihBooks.Plugins.DataStore.Sqlite
         {
             throw new NotImplementedException();
         }
+
+        public Task<bool> AddExpenseType(string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> UpdateExpenseType(int id, string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<int> DeleteExpenseTypeAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
