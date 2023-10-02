@@ -13,8 +13,8 @@ namespace ShihBooks.ViewModels
     {
         private readonly IViewEntitiesUseCase _viewEntitiesUseCase;
         private readonly IAddEntityUseCase _addEntityUseCase;
-        private readonly IDeleteEntityUseCase _deleteEntityUseCase;
         private readonly IUpdateEntityUseCase _updateEntityUseCase;
+        private readonly IDeleteEntityUseCase _deleteEntityUseCase;
 
         private List<ExpenseEntity> _cachedEntities { get; set; } = new();
 
@@ -28,13 +28,13 @@ namespace ShihBooks.ViewModels
 
         public ManageEntitiesViewModel(IViewEntitiesUseCase viewEntitiesUseCase,
                                        IAddEntityUseCase addEntityUseCase,
-                                       IDeleteEntityUseCase deleteEntityUseCase,
-                                       IUpdateEntityUseCase updateEntityUseCase)
+                                       IUpdateEntityUseCase updateEntityUseCase,
+                                       IDeleteEntityUseCase deleteEntityUseCase)
         {                                     
             _viewEntitiesUseCase = viewEntitiesUseCase;
             _addEntityUseCase = addEntityUseCase;
-            _deleteEntityUseCase = deleteEntityUseCase;
             _updateEntityUseCase = updateEntityUseCase;
+            _deleteEntityUseCase = deleteEntityUseCase;
         }
 
         public async Task GetExpenseEntitiesAsync()

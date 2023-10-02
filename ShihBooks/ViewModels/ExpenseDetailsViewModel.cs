@@ -72,7 +72,12 @@ namespace ShihBooks.ViewModels
                 Name = t.Name,
             });
 
-            ExpenseEvents = await _viewExpenseEventsUseCase.ExecuteAsync();
+            ret = await _viewExpenseEventsUseCase.ExecuteAsync();
+            ExpenseEvents = ret.ConvertAll(t=>new ExpenseEvent
+            {
+                Id = t.Id,
+                Name = t.Name
+            });
         }
 
         [RelayCommand]

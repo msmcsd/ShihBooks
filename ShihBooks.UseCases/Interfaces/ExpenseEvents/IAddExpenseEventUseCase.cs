@@ -2,7 +2,7 @@
 
 namespace ShihBooks.UseCases.Interfaces.ExpenseEvents
 {
-    public interface IViewExpenseEventsUseCase : IViewEntitiesUseCase
+    public interface IAddExpenseEventUseCase : IAddEntityUseCase
     {
     }
 }

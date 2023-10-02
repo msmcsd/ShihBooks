@@ -11,8 +11,8 @@ namespace ShihBooks.ViewModels
                                            IDeleteExpenseTypeUseCase deleteExpenseTypeUseCase) : 
             base(viewExpenseTypesUseCase, 
                  addExpenseTypeUseCase,
-                 deleteExpenseTypeUseCase,
-                 updateExpenseTypeUseCase)
+                 updateExpenseTypeUseCase,
+                 deleteExpenseTypeUseCase)
         {
         }
     }

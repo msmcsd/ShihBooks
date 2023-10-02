@@ -168,5 +168,20 @@ namespace ShihBooks.Plugins.DataStore.Sqlite
         {
             throw new NotImplementedException();
         }
+
+        public Task<bool> AddExpenseEventAsync(string eventName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> UpdateEventAsync(int id, string newEventName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<int> DeleteExpenseEventAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

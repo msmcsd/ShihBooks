@@ -45,6 +45,12 @@ namespace ShihBooks.UseCases.PluginInterfaces
 
         Task<List<ExpenseEvent>> GetExpenseEventsAsync();
 
+        Task<bool> AddExpenseEventAsync(string eventName);
+
+        Task<bool> UpdateEventAsync(int id, string newEventName);
+
+        Task<int> DeleteExpenseEventAsync(int id);
+
         #endregion
     }
 }

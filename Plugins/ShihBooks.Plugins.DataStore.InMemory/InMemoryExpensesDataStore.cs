@@ -1,5 +1,6 @@
 ﻿using ShihBooks.Core;
 using ShihBooks.UseCases.PluginInterfaces;
+using System.Xml.Linq;
 
 namespace ShihBooks.Plugins.DataStore.InMemory
 {
@@ -29,7 +30,7 @@ namespace ShihBooks.Plugins.DataStore.InMemory
             new ExpenseEvent {Id = 1, Name = "Travel"},
             new ExpenseEvent {Id = 2, Name = "New semester"}
         };
-
+                
         private List<Expense> _expenses = new List<Expense>()
         {
             new Expense()
@@ -94,17 +95,17 @@ namespace ShihBooks.Plugins.DataStore.InMemory
 
         public async Task<List<ExpenseTag>> GetExpenseTagsAsync()
         {
-           return await Task.FromResult(_expenseTags.OrderBy(t=>t.Name).ToList());
+            return await Task.FromResult(_expenseTags.OrderBy(t => t.Name).ToList());
         }
 
         public async Task<List<ExpenseType>> GetExpenseTypesAsync()
         {
-            return await Task.FromResult(_expenseTypes);
+            return await Task.FromResult(_expenseTypes.OrderBy(t => t.Name).ToList());
         }
 
         public Task<List<Merchant>> GetMerchantsAsync()
         {
-            return Task.FromResult(_merchants);
+            return Task.FromResult(_merchants.OrderBy(t => t.Name).ToList());
         }
 
         public async Task<bool> AddExpenseTagAsync(string tagName)
@@ -210,6 +211,41 @@ namespace ShihBooks.Plugins.DataStore.InMemory
             if (type != null)
             {
                 _expenseTypes.Remove(type);
+                return 0;
+            }
+
+            return id;
+        }
+
+        public async Task<bool> AddExpenseEventAsync(string eventName)
+        {
+            var ev = _expenseEvents.FirstOrDefault(t => t.Name.Equals(eventName, StringComparison.InvariantCultureIgnoreCase));
+            if (ev != null) return false;
+
+            _expenseEvents.Add(new ExpenseEvent
+            {
+                Id = _expenseTypes.Count() + 1,
+                Name = eventName
+            });
+
+            return true;
+        }
+
+        public async Task<bool> UpdateEventAsync(int id, string newEventName)
+        {
+            var ev = _expenseEvents.FirstOrDefault(t => t.Id == id);
+            if (ev == null) return false;
+
+            ev.Name = newEventName;
+            return true;
+        }
+
+        public async Task<int> DeleteExpenseEventAsync(int id)
+        {
+            var ev = _expenseEvents.FirstOrDefault(t => t.Id == id);
+            if (ev != null)
+            {
+                _expenseEvents.Remove(ev);
                 return 0;
             }
 

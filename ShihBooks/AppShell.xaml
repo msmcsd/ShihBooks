@@ -19,7 +19,12 @@
     <ShellContent
         Title="Expense Types"
         ContentTemplate="{DataTemplate views:ManageExpenseTypesPage}"
-        Route="ManageExpenseTypessPage" />
+        Route="ManageExpenseTypesPage" />
+    
+    <ShellContent
+        Title="Expense Events"
+        ContentTemplate="{DataTemplate views:ManageExpenseEventsPage}"
+        Route="ManageExpenseEventsPage" />
     
     <ShellContent
         Title="Tags"

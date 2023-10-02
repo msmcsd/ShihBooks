@@ -16,8 +16,8 @@ namespace ShihBooks.ViewModels
                                           IDeleteExpenseTagUseCase deleteExpenseTagUseCase) :
             base(viewExpenseTagUseCase,
                  addExpenseTagUseCase,
-                 deleteExpenseTagUseCase,
-                 updateExpenseTagUseCase)
+                 updateExpenseTagUseCase,
+                 deleteExpenseTagUseCase)
         {
         }
     }

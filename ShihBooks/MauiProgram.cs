@@ -58,6 +58,12 @@ public static class MauiProgram
         builder.Services.AddTransient<IUpdateExpenseTypeUseCase, UpdateExpenseTypeUseCase>();
         builder.Services.AddTransient<IDeleteExpenseTypeUseCase, DeleteExpenseTypeUseCase>();
 
+		// Expense Event
+        builder.Services.AddTransient<IViewExpenseEventsUseCase, ViewExpenseEventsUseCase>();
+        builder.Services.AddTransient<IAddExpenseEventUseCase, AddExpenseEventUseCase>();
+        builder.Services.AddTransient<IUpdateExpenseEventUseCase, UpdateExpenseEventUseCase>();
+        builder.Services.AddTransient<IDeleteExpenseEventUseCase, DeleteExpenseEventUseCase>();
+
         builder.Services.AddSingleton<IExpensesDataStore, InMemoryExpensesDataStore>();
 
 		builder.Services.AddSingleton<MainPageViewModel>();
@@ -65,6 +71,7 @@ public static class MauiProgram
 		builder.Services.AddTransient<ExpenseDetailsViewModel>();
 		builder.Services.AddTransient<ManageExpenseTagsViewModel>();
 		builder.Services.AddTransient<ManageExpenseTypesViewModel>();
+		builder.Services.AddTransient<ManageExpenseEventsViewModel>();
 		//builder.Services.AddTransient<ExpenseDatePickerViewModel>();
 
 		builder.Services.AddSingleton<MainPage>();
@@ -72,6 +79,7 @@ public static class MauiProgram
 		builder.Services.AddTransient<ExpenseDetailsPage>();
 		builder.Services.AddTransient<ManageExpenseTagsPage>();
 		builder.Services.AddTransient<ManageExpenseTypesPage>();
+		builder.Services.AddTransient<ManageExpenseEventsPage>();
 		builder.Services.AddTransient<ExpenseDatePicker>();
 
 		return builder.Build();
