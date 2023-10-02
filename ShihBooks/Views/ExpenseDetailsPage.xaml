@@ -6,6 +6,11 @@
              x:DataType="vm:ExpenseDetailsViewModel"
              x:Class="ShihBooks.Views.ExpenseDetailsPage"
              Title="Expense Details">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Save" Command="{Binding UpdateExpenseCommand}" />
+    </ContentPage.ToolbarItems>
+    
     <ScrollView>
         <VerticalStackLayout Padding="10">
             <Grid ColumnDefinitions="Auto, Auto, Auto">
@@ -122,18 +127,6 @@
                     HorizontalOptions="FillAndExpand">
                 </Editor>
             </Border>
-            
-            <Grid ColumnDefinitions="*, *" Padding="20, 20, 20, 0">
-                <Button Text="Save" 
-                        Margin="5" 
-                        Command="{Binding UpdateExpenseCommand}"
-                        FontSize="18"/>
-
-                <Button Text="Cancel" Grid.Column="1"
-                        Margin="5" 
-                        Command="{Binding CancelUpdateExpenseCommand}"
-                        FontSize="18"/>
-            </Grid>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
