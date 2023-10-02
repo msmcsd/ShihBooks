@@ -3,17 +3,37 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:m="clr-namespace:ShihBooks.Core;assembly=ShihBooks.Core"
              xmlns:vm="clr-namespace:ShihBooks.ViewModels"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:DataType="vm:ExpensesViewModel"
-             x:Class="ShihBooks.Views.ExpensesPage">
+             x:Class="ShihBooks.Views.ExpensesPage"
+             x:Name="this">
+    
     <ContentPage.Title>
         <MultiBinding StringFormat="{}{0}/{1}">
             <Binding Path="Month" StringFormat="Expenses for {0:D1}"/>
             <Binding Path="Year"/>
         </MultiBinding>
     </ContentPage.Title>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="+" Command="{Binding AddExpenseCommand}" />
+    </ContentPage.ToolbarItems>
+    
     <VerticalStackLayout>
+        <Border HeightRequest="50" Margin="0, 0, 0, 0">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="22" />
+            </Border.StrokeShape>
+            <SearchBar Text="{Binding SearchText}">
+                <SearchBar.Behaviors>
+                    <toolkit:EventToCommandBehavior 
+                            EventName="TextChanged"
+                            Command="{Binding Source={x:Reference this}, Path=BindingContext.SearchExpenseCommand}" />
+                </SearchBar.Behaviors>
+            </SearchBar>
+        </Border>
         <CollectionView
-            ItemsSource="{Binding Expenses}">
+            ItemsSource="{Binding FilteredExpenses}">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="m:ExpenseView">
                     <SwipeView>

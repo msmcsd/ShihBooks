@@ -15,13 +15,18 @@ namespace ShihBooks.ViewModels
         private readonly IViewExpensesByMonthUseCase _viewExpensesByMonthUseCase;
         private readonly IDeleteExpenseUseCase _deleteExpenseUseCase;
 
-        public ObservableCollection<ExpenseView> Expenses { get; set; } = new();
+        private List<ExpenseView> _cachedExpenses { get; set; } = new();
 
         [ObservableProperty]
         private int _year;
 
         [ObservableProperty]
         private int _month;
+
+        [ObservableProperty]
+        private string _searchText;
+
+        public ObservableCollection<ExpenseView> FilteredExpenses { get; set; } = new();
 
         public ExpensesViewModel(IViewExpensesByMonthUseCase viewExpensesByMonthUseCase,
                                  IDeleteExpenseUseCase deleteExpenseUseCase)
@@ -34,24 +39,24 @@ namespace ShihBooks.ViewModels
         {
             if (IsBusy) return;
 
-            if (Expenses.Count > 0)
+            if (FilteredExpenses.Count > 0)
             {
-                Expenses.Clear();
+                FilteredExpenses.Clear();
             }
 
             try
             {
                 IsBusy = true;
 
-                var expenses = await _viewExpensesByMonthUseCase.ExecuteAsync(year, month);
+                _cachedExpenses = await _viewExpensesByMonthUseCase.ExecuteAsync(year, month);
 
-                if (expenses?.Count > 0)
+                if (_cachedExpenses?.Count > 0)
                 {
-                    foreach (var e in expenses)
+                    foreach (var e in _cachedExpenses)
                     {
                         // There is not AddRange currently. This will notify the
                         // collection change every time an element is added.
-                        Expenses.Add(e);
+                        FilteredExpenses.Add(e);
                     }
                 }
             }
@@ -74,6 +79,8 @@ namespace ShihBooks.ViewModels
                 new Dictionary<string, object>() {
                     { "Expense", expense }
                 });
+
+            SearchText = "";
         }
 
         [RelayCommand]
@@ -82,8 +89,31 @@ namespace ShihBooks.ViewModels
             if (expense != null)
             {
                 var ret = await _deleteExpenseUseCase.ExecuteAsync(expense.Id);
-                if (ret) Expenses.Remove(expense);
+                if (ret) _cachedExpenses.Remove(expense);
+
+                SearchText = "";
             }
+        }
+
+        [RelayCommand]
+        public async Task SearchExpenseAsync()
+        {
+            var list = SearchText?.Length <= 0 ?
+                            _cachedExpenses :
+                            _cachedExpenses.Where(t => t.Description.Contains(SearchText, StringComparison.OrdinalIgnoreCase));
+
+            if (FilteredExpenses.Count > 0) FilteredExpenses.Clear();
+
+            foreach (var t in list)
+            {
+                FilteredExpenses.Add(t);
+            }
+        }
+
+        [RelayCommand]
+        public async Task AddExpenseAsync()
+        {
+
         }
     }
 }
