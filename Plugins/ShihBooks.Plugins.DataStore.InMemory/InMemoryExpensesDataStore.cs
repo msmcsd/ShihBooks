@@ -30,6 +30,12 @@ namespace ShihBooks.Plugins.DataStore.InMemory
             new ExpenseEvent {Id = 1, Name = "Travel"},
             new ExpenseEvent {Id = 2, Name = "New semester"}
         };
+
+        private List<IncomeSource> _incomeSources = new List<IncomeSource>()
+        {
+            new IncomeSource {Id = 1, Name = "Interest"},
+            new IncomeSource {Id = 2, Name = "Lottery"}
+        };
                 
         private List<Expense> _expenses = new List<Expense>()
         {
@@ -250,6 +256,46 @@ namespace ShihBooks.Plugins.DataStore.InMemory
             }
 
             return id;
+        }
+
+        public async Task<bool> AddIncomeSourceAsync(string sourceName)
+        {
+            var source = _incomeSources.FirstOrDefault(t => t.Name.Equals(sourceName, StringComparison.InvariantCultureIgnoreCase));
+            if (source != null) return false;
+
+            _incomeSources.Add(new IncomeSource
+            {
+                Id = _expenseTypes.Count() + 1,
+                Name = sourceName
+            });
+
+            return true;
+        }
+
+        public async Task<int> DeleteIncomeSourceAsync(int id)
+        {
+            var source = _incomeSources.FirstOrDefault(t => t.Id == id);
+            if (source != null)
+            {
+                _incomeSources.Remove(source);
+                return 0;
+            }
+
+            return id;
+        }
+
+        public async Task<bool> UpdateIncomeSourceAsync(int id, string newSourceName)
+        {
+            var source = _incomeSources.FirstOrDefault(t => t.Id == id);
+            if (source == null) return false;
+
+            source.Name = newSourceName;
+            return true;
+        }
+
+        public async Task<List<IncomeSource>> GetIncomeSourcesAsync()
+        {
+            return _incomeSources;
         }
     }
 }

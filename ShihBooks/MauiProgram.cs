@@ -6,12 +6,14 @@ using ShihBooks.UseCases.Interfaces.ExpenseEvents;
 using ShihBooks.UseCases.Interfaces.Expenses;
 using ShihBooks.UseCases.Interfaces.ExpenseTags;
 using ShihBooks.UseCases.Interfaces.ExpenseTypes;
+using ShihBooks.UseCases.Interfaces.IncomeSources;
 using ShihBooks.UseCases.Interfaces.Merchants;
 using ShihBooks.UseCases.PluginInterfaces;
 using ShihBooks.UseCases.UseCases.ExpenseEvents;
 using ShihBooks.UseCases.UseCases.Expenses;
 using ShihBooks.UseCases.UseCases.ExpenseTags;
 using ShihBooks.UseCases.UseCases.ExpenseTypes;
+using ShihBooks.UseCases.UseCases.IncomeSources;
 using ShihBooks.UseCases.UseCases.Merchants;
 using ShihBooks.ViewModels;
 using ShihBooks.Views;
@@ -64,6 +66,12 @@ public static class MauiProgram
         builder.Services.AddTransient<IUpdateExpenseEventUseCase, UpdateExpenseEventUseCase>();
         builder.Services.AddTransient<IDeleteExpenseEventUseCase, DeleteExpenseEventUseCase>();
 
+		// Income Source
+        builder.Services.AddTransient<IViewIncomeSourcesUseCase, ViewIncomeSourcesUseCase>();
+        builder.Services.AddTransient<IAddIncomeSourceUseCase, AddIncomeSourceUseCase>();
+        builder.Services.AddTransient<IUpdateIncomeSourceUseCase, UpdateIncomeSourceUseCase>();
+        builder.Services.AddTransient<IDeleteIncomeSourceUseCase, DeleteIncomeSourceUseCase>();
+
         builder.Services.AddSingleton<IExpensesDataStore, InMemoryExpensesDataStore>();
 
 		builder.Services.AddSingleton<MainPageViewModel>();
@@ -72,6 +80,7 @@ public static class MauiProgram
 		builder.Services.AddTransient<ManageExpenseTagsViewModel>();
 		builder.Services.AddTransient<ManageExpenseTypesViewModel>();
 		builder.Services.AddTransient<ManageExpenseEventsViewModel>();
+		builder.Services.AddTransient<ManageIncomeSourcesViewModel>();
 		//builder.Services.AddTransient<ExpenseDatePickerViewModel>();
 
 		builder.Services.AddSingleton<MainPage>();
@@ -80,6 +89,7 @@ public static class MauiProgram
 		builder.Services.AddTransient<ManageExpenseTagsPage>();
 		builder.Services.AddTransient<ManageExpenseTypesPage>();
 		builder.Services.AddTransient<ManageExpenseEventsPage>();
+		builder.Services.AddTransient<ManageIncomeSourcesPage>();
 		builder.Services.AddTransient<ExpenseDatePicker>();
 
 		return builder.Build();

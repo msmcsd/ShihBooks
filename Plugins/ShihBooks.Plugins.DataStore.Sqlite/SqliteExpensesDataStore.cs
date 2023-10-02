@@ -183,5 +183,25 @@ namespace ShihBooks.Plugins.DataStore.Sqlite
         {
             throw new NotImplementedException();
         }
+
+        public Task<bool> AddIncomeSourceAsync(string sourceName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<int> DeleteIncomeSourceAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> UpdateIncomeSourceAsync(int id, string newSourceName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<IncomeSource>> GetIncomeSourcesAsync()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

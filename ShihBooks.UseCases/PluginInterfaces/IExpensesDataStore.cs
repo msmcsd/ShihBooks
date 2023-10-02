@@ -52,6 +52,18 @@ namespace ShihBooks.UseCases.PluginInterfaces
         Task<int> DeleteExpenseEventAsync(int id);
 
         #endregion
+
+        #region Income Source
+
+        Task<bool> AddIncomeSourceAsync(string sourceName);
+
+        Task<int> DeleteIncomeSourceAsync(int id);
+
+        Task<bool> UpdateIncomeSourceAsync(int id, string newSourceName);
+
+        Task<List<IncomeSource>> GetIncomeSourcesAsync();
+
+        #endregion
     }
 }
  
