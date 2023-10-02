@@ -14,7 +14,7 @@ namespace ShihBooks.UseCases.UseCases.ExpenseTags
 
         public async Task<bool> ExecuteAsync(int tagId, string tagName)
         {
-            return await _expensesDataStore.UpdateExpenseTag(tagId, tagName);
+            return await _expensesDataStore.UpdateExpenseTagAsync(tagId, tagName);
         }
     }
 }

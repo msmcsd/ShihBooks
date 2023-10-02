@@ -19,7 +19,7 @@ namespace ShihBooks.UseCases.UseCases.ExpenseTags
                 return false;
             }
 
-            return await _expensesDataStore.AddExpenseTag(tagName);
+            return await _expensesDataStore.AddExpenseTagAsync(tagName);
         }
     }
 }

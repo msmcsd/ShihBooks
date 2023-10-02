@@ -16,7 +16,7 @@ namespace ShihBooks.UseCases.UseCases.Expenses
 
         public async Task<List<ExpenseView>> ExecuteAsync(int year, int month)
         {
-            return await _expensesSource.GetExpenses(year, month);
+            return await _expensesSource.GetExpensesAsync(year, month);
         }
     }
 }

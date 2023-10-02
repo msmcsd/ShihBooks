@@ -63,7 +63,7 @@ namespace ShihBooks.Plugins.DataStore.InMemory
             },
         };
 
-        public Task<List<ExpenseView>> GetExpenses(int year, int month)
+        public Task<List<ExpenseView>> GetExpensesAsync(int year, int month)
         {
             var expenses = new List<ExpenseView>();
 
@@ -107,7 +107,7 @@ namespace ShihBooks.Plugins.DataStore.InMemory
             return Task.FromResult(_merchants);
         }
 
-        public async Task<bool> AddExpenseTag(string tagName)
+        public async Task<bool> AddExpenseTagAsync(string tagName)
         {
             if (string.IsNullOrWhiteSpace(tagName))
             {
@@ -123,7 +123,7 @@ namespace ShihBooks.Plugins.DataStore.InMemory
             return true;
         }
 
-        public async Task<bool> UpdateExpenseTag(int tagId, string tagName)
+        public async Task<bool> UpdateExpenseTagAsync(int tagId, string tagName)
         {
             var tag = _expenseTags.FirstOrDefault(t => t.Id == tagId);
             if (tag != null)
@@ -134,7 +134,7 @@ namespace ShihBooks.Plugins.DataStore.InMemory
             return true;
         }
 
-        public async Task<bool> UpdateExpense(Expense expense)
+        public async Task<bool> UpdateExpenseAsync(Expense expense)
         {
             var exp = _expenses.FirstOrDefault(e => e.Id == expense.Id);
             if (exp != null)
@@ -157,7 +157,7 @@ namespace ShihBooks.Plugins.DataStore.InMemory
             return _expenseEvents;
         }
 
-        public Task<bool> DeleteExpense(int expenseId)
+        public Task<bool> DeleteExpenseAsync(int expenseId)
         {
             var e = _expenses.FirstOrDefault(e => e.Id == expenseId);
             if (e != null) _expenses.Remove(e);
@@ -181,7 +181,7 @@ namespace ShihBooks.Plugins.DataStore.InMemory
             return Task.FromResult(0);
         }
 
-        public Task<bool> AddExpenseType(string name)
+        public Task<bool> AddExpenseTypeAsync(string name)
         {
             var type = _expenseTypes.FirstOrDefault(t => t.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase));
             if (type != null) return Task.FromResult(false);
@@ -195,7 +195,7 @@ namespace ShihBooks.Plugins.DataStore.InMemory
             return Task.FromResult(true);
         }
 
-        public async Task<bool> UpdateExpenseType(int id, string newTypeName)
+        public async Task<bool> UpdateExpenseTypeAsync(int id, string newTypeName)
         {
             var type = _expenseTypes.FirstOrDefault(t => t.Id == id);
             if (type == null) return false;

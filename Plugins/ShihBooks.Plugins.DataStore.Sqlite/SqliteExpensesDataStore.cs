@@ -86,7 +86,7 @@ namespace ShihBooks.Plugins.DataStore.Sqlite
 
         }
 
-        public async Task<List<ExpenseView>> GetExpenses(int year, int month)
+        public async Task<List<ExpenseView>> GetExpensesAsync(int year, int month)
         {
             var expenses = (from e in await _db.Table<Expense>().ToListAsync()
                             join m in await _db.Table<Merchant>().ToListAsync()
@@ -124,17 +124,17 @@ namespace ShihBooks.Plugins.DataStore.Sqlite
             return await _db.Table<Merchant>().ToListAsync();
         }
 
-        public Task<bool> AddExpenseTag(string tagName)
+        public Task<bool> AddExpenseTagAsync(string tagName)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> UpdateExpenseTag(int tagId, string tagName)
+        public Task<bool> UpdateExpenseTagAsync(int tagId, string tagName)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> UpdateExpense(Expense expense)
+        public Task<bool> UpdateExpenseAsync(Expense expense)
         {
             throw new NotImplementedException();
         }
@@ -144,7 +144,7 @@ namespace ShihBooks.Plugins.DataStore.Sqlite
             throw new NotImplementedException();
         }
 
-        public Task<bool> DeleteExpense(int expenseId)
+        public Task<bool> DeleteExpenseAsync(int expenseId)
         {
             throw new NotImplementedException();
         }
@@ -154,12 +154,12 @@ namespace ShihBooks.Plugins.DataStore.Sqlite
             throw new NotImplementedException();
         }
 
-        public Task<bool> AddExpenseType(string name)
+        public Task<bool> AddExpenseTypeAsync(string name)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> UpdateExpenseType(int id, string name)
+        public Task<bool> UpdateExpenseTypeAsync(int id, string name)
         {
             throw new NotImplementedException();
         }

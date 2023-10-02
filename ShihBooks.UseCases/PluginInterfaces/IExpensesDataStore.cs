@@ -4,31 +4,48 @@ namespace ShihBooks.UseCases.PluginInterfaces
 {
     public interface IExpensesDataStore
     {
-        Task<List<ExpenseView>> GetExpenses(int year, int month);
+        #region Expense
 
-        Task<List<ExpenseType>> GetExpenseTypesAsync();
+        Task<List<ExpenseView>> GetExpensesAsync(int year, int month);
+
+        Task<bool> UpdateExpenseAsync(Expense expense);
+
+        Task<bool> DeleteExpenseAsync(int expenseId);
+
+        #endregion
 
         Task<List<Merchant>> GetMerchantsAsync();
 
+
+        #region Expense Tag
+
         Task<List<ExpenseTag>> GetExpenseTagsAsync();
 
-        Task<bool> AddExpenseTag(string tagName);
+        Task<bool> AddExpenseTagAsync(string tagName);
 
-        Task<bool> UpdateExpenseTag(int tagId, string tagName);
-
-        Task <bool> UpdateExpense(Expense expense);
-
-        Task<List<ExpenseEvent>> GetExpenseEventsAsync();
-
-        Task<bool> DeleteExpense(int expenseId);
+        Task<bool> UpdateExpenseTagAsync(int tagId, string tagName);
 
         Task<int> DeleteExpenseTagAsync(int tagId);
 
-        Task<bool> AddExpenseType(string name);
+        #endregion
 
-        Task<bool> UpdateExpenseType(int id, string newTypeName);
+        #region Expense Type
+
+        Task<List<ExpenseType>> GetExpenseTypesAsync();
+
+        Task<bool> AddExpenseTypeAsync(string name);
+
+        Task<bool> UpdateExpenseTypeAsync(int id, string newTypeName);
 
         Task<int> DeleteExpenseTypeAsync(int id);
+
+        #endregion
+
+        #region Expense Event
+
+        Task<List<ExpenseEvent>> GetExpenseEventsAsync();
+
+        #endregion
     }
 }
  

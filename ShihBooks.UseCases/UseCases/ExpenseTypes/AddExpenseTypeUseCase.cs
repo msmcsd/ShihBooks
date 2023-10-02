@@ -14,7 +14,7 @@ namespace ShihBooks.UseCases.UseCases.ExpenseTypes
 
         public async Task<bool> ExecuteAsync(string name)
         {
-            return await _expensesDataStore.AddExpenseType(name);
+            return await _expensesDataStore.AddExpenseTypeAsync(name);
         }
     }
 }

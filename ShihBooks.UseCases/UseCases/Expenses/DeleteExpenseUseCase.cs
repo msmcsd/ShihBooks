@@ -14,7 +14,7 @@ namespace ShihBooks.UseCases.UseCases.Expenses
 
         public async Task<bool> ExecuteAsync(int expenseId)
         {
-            return await _expensesDataStore.DeleteExpense(expenseId);
+            return await _expensesDataStore.DeleteExpenseAsync(expenseId);
         }
     }
 }

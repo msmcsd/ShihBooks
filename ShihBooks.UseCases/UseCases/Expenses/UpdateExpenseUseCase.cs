@@ -22,7 +22,7 @@ namespace ShihBooks.UseCases.UseCases.Expenses
         {
             if (expense == null) return false;
 
-            return await _expensesDataStore.UpdateExpense(expense);
+            return await _expensesDataStore.UpdateExpenseAsync(expense);
         }
     }
 }
