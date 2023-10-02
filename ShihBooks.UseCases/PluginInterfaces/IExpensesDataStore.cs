@@ -12,7 +12,7 @@ namespace ShihBooks.UseCases.PluginInterfaces
 
         Task<List<ExpenseTag>> GetExpenseTagsAsync();
 
-        Task SavExpenseTag(string tagName);
+        Task<bool> AddExpenseTag(string tagName);
 
         Task<bool> UpdateExpenseTag(int tagId, string tagName);
 
@@ -22,7 +22,7 @@ namespace ShihBooks.UseCases.PluginInterfaces
 
         Task<bool> DeleteExpense(int expenseId);
 
-        Task<string> DeleteExpenseTag(int tagId);
+        Task<int> DeleteExpenseTagAsync(int tagId);
 
         Task<bool> AddExpenseType(string name);
 

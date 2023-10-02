@@ -40,14 +40,19 @@ public static class MauiProgram
 		builder.Services.AddTransient<IViewExpensesByMonthUseCase, ViewExpensesByMonthUseCase>();
 		builder.Services.AddTransient<IViewExpenseTypesUseCase, ViewExpenseTypesUseCase>();
 		builder.Services.AddTransient<IViewMerchantsUseCase, ViewMerchantsUseCase>();
-		builder.Services.AddTransient<IViewExpenseTagsUseCase, ViewExpenseTagsUseCase>();
-		builder.Services.AddTransient<IAddExpenseTagUseCase, AddExpenseTagUseCase>();
-		builder.Services.AddTransient<IUpdateExpenseTagUseCase, UpdateExpenseTagUseCase>();
-		builder.Services.AddTransient<IUpdateExpenseUseCase, UpdateExpenseUseCase>();
+
+        // Expense
         builder.Services.AddTransient<IViewExpenseEventsUseCase, ViewExpenseEventsUseCase>();
+        builder.Services.AddTransient<IUpdateExpenseUseCase, UpdateExpenseUseCase>();
         builder.Services.AddTransient<IDeleteExpenseUseCase, DeleteExpenseUseCase>();
+
+		// Expense Tag
+        builder.Services.AddTransient<IViewExpenseTagsUseCase, ViewExpenseTagsUseCase>();
+        builder.Services.AddTransient<IAddExpenseTagUseCase, AddExpenseTagUseCase>();
+        builder.Services.AddTransient<IUpdateExpenseTagUseCase, UpdateExpenseTagUseCase>();
         builder.Services.AddTransient<IDeleteExpenseTagUseCase, DeleteExpenseTagUseCase>();
 
+		// Expense Type
         builder.Services.AddTransient<IViewExpenseTypesUseCase, ViewExpenseTypesUseCase>();
         builder.Services.AddTransient<IAddExpenseTypeUseCase, AddExpenseTypeUseCase>();
         builder.Services.AddTransient<IUpdateExpenseTypeUseCase, UpdateExpenseTypeUseCase>();

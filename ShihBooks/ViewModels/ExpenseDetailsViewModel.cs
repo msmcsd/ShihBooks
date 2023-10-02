@@ -65,7 +65,13 @@ namespace ShihBooks.ViewModels
                 Id = t.Id,
                 Name = t.Name,
             });
-            ExpenseTags = await _viewExpenseTagsUseCase.ExecuteAsync();
+            ret = await _viewExpenseTagsUseCase.ExecuteAsync();
+            ExpenseTags = ret.ConvertAll(t => new ExpenseTag
+            {
+                Id = t.Id,
+                Name = t.Name,
+            });
+
             ExpenseEvents = await _viewExpenseEventsUseCase.ExecuteAsync();
         }
 

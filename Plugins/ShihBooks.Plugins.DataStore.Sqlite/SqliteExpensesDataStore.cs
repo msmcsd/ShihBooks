@@ -124,7 +124,7 @@ namespace ShihBooks.Plugins.DataStore.Sqlite
             return await _db.Table<Merchant>().ToListAsync();
         }
 
-        public Task SavExpenseTag(string tagName)
+        public Task<bool> AddExpenseTag(string tagName)
         {
             throw new NotImplementedException();
         }
@@ -149,7 +149,7 @@ namespace ShihBooks.Plugins.DataStore.Sqlite
             throw new NotImplementedException();
         }
 
-        public Task<string> DeleteExpenseTag(int tagId)
+        public Task<int> DeleteExpenseTagAsync(int tagId)
         {
             throw new NotImplementedException();
         }

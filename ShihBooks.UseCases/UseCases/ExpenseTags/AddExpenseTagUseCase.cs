@@ -1,11 +1,5 @@
-﻿using ShihBooks.Core;
-using ShihBooks.UseCases.Interfaces.ExpenseTags;
+﻿using ShihBooks.UseCases.Interfaces.ExpenseTags;
 using ShihBooks.UseCases.PluginInterfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ShihBooks.UseCases.UseCases.ExpenseTags
 {
@@ -18,14 +12,14 @@ namespace ShihBooks.UseCases.UseCases.ExpenseTags
             _expensesDataStore = expensesDataStore;
         }
 
-        public async Task ExecuteAsync(string tagName)
+        public async Task<bool> ExecuteAsync(string tagName)
         {
             if (tagName == null)
             {
-                return;
+                return false;
             }
 
-            await _expensesDataStore.SavExpenseTag(tagName);
+            return await _expensesDataStore.AddExpenseTag(tagName);
         }
     }
 }

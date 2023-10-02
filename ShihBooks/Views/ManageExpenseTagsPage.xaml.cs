@@ -19,49 +19,6 @@ public partial class ManageExpenseTagsPage : ContentPage
     protected async override void OnAppearing()
     {
         base.OnAppearing();
-        await _manageExpenseTagsViewModel.GetAllExpenseTagsAsync();
-    }
-
-    private async void AddTag_Clicked(object sender, EventArgs e)
-    {
-        var ret= await this.ShowPopupAsync(new ManageItemPopupPage(true, "Enter the tag name:", ""));
-        if (ret is null)
-        {
-            return;
-        }
-
-        await _manageExpenseTagsViewModel.AddExpenseTag(ret as string);
-    }
-
-    private async void EditTag_Clicked(object sender, EventArgs e)
-    {
-        if (tagList.SelectedItem == null) return;
-
-        var tag = tagList.SelectedItem as ExpenseTag;
-        var origTagName = tag.Name;
-
-        var ret = await this.ShowPopupAsync(new ManageItemPopupPage(false, "Enter the new tag name:", origTagName));
-        if (ret is null)
-        {
-            return;
-        }
-
-        var newTagName = ret as string;
-        if (newTagName != origTagName)
-        {
-            var origSearchText = _manageExpenseTagsViewModel.SearchText;
-
-            await _manageExpenseTagsViewModel.UpdateExpenseTag(tag.Id, newTagName);
-
-            if (!string.IsNullOrEmpty(origSearchText))
-            {
-                _manageExpenseTagsViewModel.SearchText = null;
-            }
-        }
-    }
-
-    private async void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
-    {
-        await _manageExpenseTagsViewModel.PerformSearchAsync();
+        await _manageExpenseTagsViewModel.GetExpenseEntitiesAsync();
     }
 }

@@ -3,16 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:m="clr-namespace:ShihBooks.Core;assembly=ShihBooks.Core"
              xmlns:vm="clr-namespace:ShihBooks.ViewModels"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="ShihBooks.Views.ManageExpenseTagsPage"
-             Title="Expense Tags">
+             Title="Expense Tags"
+             x:Name="this">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add"
-                     Clicked="AddTag_Clicked" />       
-        <ToolbarItem Text="Edit"
-                     Clicked="EditTag_Clicked" />
+        <ToolbarItem Text="Add" Command="{Binding AddEntityCommand}" />
+        <ToolbarItem Text="Edit" Command="{Binding UpdateEntityCommand}" />
     </ContentPage.ToolbarItems>
-    
+
     <Grid ColumnDefinitions="*,*"
           RowDefinitions="Auto, *"
           ColumnSpacing="5"
@@ -23,15 +23,21 @@
                 <Border.StrokeShape>
                     <RoundRectangle CornerRadius="22" />
                 </Border.StrokeShape>
-                <SearchBar Text="{Binding SearchText}"
-                           TextChanged="SearchBar_TextChanged"/>
+                <SearchBar Text="{Binding SearchText}">
+                    <SearchBar.Behaviors>
+                        <toolkit:EventToCommandBehavior 
+                            EventName="TextChanged"
+                            Command="{Binding Source={x:Reference this}, Path=BindingContext.SearchEntityCommand}" />
+                    </SearchBar.Behaviors>
+                </SearchBar>
             </Border>
         </VerticalStackLayout>
         <CollectionView Grid.Row="1" 
                         Grid.ColumnSpan="2"
                         Margin="0,10"
-                        x:Name="tagList"
-                        ItemsSource="{Binding FilteredTags}" 
+                        x:Name="itemList"
+                        ItemsSource="{Binding FilteredEntities}" 
+                        SelectedItem="{Binding SelectedEntity}"
                         SelectionMode="Single">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="m:ExpenseTag">

@@ -13,9 +13,14 @@ namespace ShihBooks.UseCases.UseCases.ExpenseTags
             _expenseSource = expenseSource;
         }
 
-        public async Task<List<ExpenseTag>> ExecuteAsync()
+        public async Task<List<ExpenseEntity>> ExecuteAsync()
         {
-            return await _expenseSource.GetExpenseTagsAsync();
+            var ret = await _expenseSource.GetExpenseTagsAsync();
+            return ret.ConvertAll(t => new ExpenseEntity
+            {
+                Id = t.Id,
+                Name = t.Name
+            });
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace ShihBooks.UseCases.Interfaces.ExpenseTags
 {
-    public interface IUpdateExpenseTagUseCase : IUpdateEntityUseCase
+    public interface IDeleteExpenseTagUseCase : IDeleteEntityUseCase
     {
     }
 }

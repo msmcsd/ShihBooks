@@ -107,11 +107,11 @@ namespace ShihBooks.Plugins.DataStore.InMemory
             return Task.FromResult(_merchants);
         }
 
-        public async Task SavExpenseTag(string tagName)
+        public async Task<bool> AddExpenseTag(string tagName)
         {
             if (string.IsNullOrWhiteSpace(tagName))
             {
-                return;
+                return false;
             }
 
             _expenseTags.Add(new ExpenseTag
@@ -119,6 +119,8 @@ namespace ShihBooks.Plugins.DataStore.InMemory
                 Id = _expenseTags.Count() + 1, 
                 Name = tagName 
             });
+
+            return true;
         }
 
         public async Task<bool> UpdateExpenseTag(int tagId, string tagName)
@@ -163,19 +165,20 @@ namespace ShihBooks.Plugins.DataStore.InMemory
             return Task.FromResult(true);
         }
 
-        public Task<string> DeleteExpenseTag(int tagId)
+        public Task<int> DeleteExpenseTagAsync(int tagId)
         {
             var tag = _expenseTags.FirstOrDefault(e => e.Id == tagId);
-            if (tag == null) return Task.FromResult("");
+            if (tag == null) return Task.FromResult(-1);
 
             var expense = _expenses.FirstOrDefault(e => e.TagId == tagId);
             if (expense == null)
             {
                 _expenseTags.Remove(tag);
-                return Task.FromResult("");
+                return Task.FromResult(tagId);
             }
 
-            return Task.FromResult($"Expense on {expense.ExpenseDate.ToString("MM/dd/yyyy")} is using tag {tag.Name}.");
+            // return Task.FromResult($"Expense on {expense.ExpenseDate.ToString("MM/dd/yyyy")} is using tag {tag.Name}.");
+            return Task.FromResult(0);
         }
 
         public Task<bool> AddExpenseType(string name)
