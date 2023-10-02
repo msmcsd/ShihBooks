@@ -116,12 +116,11 @@ namespace ShihBooks.ViewModels
                 if (ret)
                 {
                     await GetExpenseEntitiesAsync();
-                    SelectedEntity = null;
                 }
 
                 if (!string.IsNullOrEmpty(origSearchText))
                 {
-                    SearchText = null;
+                    SearchText = "";
                 }
             }
         }
