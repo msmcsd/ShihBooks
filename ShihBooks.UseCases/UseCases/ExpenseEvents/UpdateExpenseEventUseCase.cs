@@ -14,7 +14,7 @@ namespace ShihBooks.UseCases.UseCases.ExpenseEvents
 
         public async Task<bool> ExecuteAsync(int id, string newEventName)
         {
-            return await _expensesDataStore.UpdateEventAsync(id, newEventName);
+            return await _expensesDataStore.UpdateExpenseEventAsync(id, newEventName);
         }
     }
 }

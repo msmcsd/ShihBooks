@@ -237,7 +237,7 @@ namespace ShihBooks.Plugins.DataStore.InMemory
             return true;
         }
 
-        public async Task<bool> UpdateEventAsync(int id, string newEventName)
+        public async Task<bool> UpdateExpenseEventAsync(int id, string newEventName)
         {
             var ev = _expenseEvents.FirstOrDefault(t => t.Id == id);
             if (ev == null) return false;

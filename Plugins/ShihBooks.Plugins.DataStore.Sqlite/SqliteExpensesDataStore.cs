@@ -12,6 +12,11 @@ namespace ShihBooks.Plugins.DataStore.Sqlite
         public SqliteExpensesDataStore()
         {
             var dbExists = File.Exists(Constants.DatabasePath);
+            if (dbExists)
+            {
+                File.Delete(Constants.DatabasePath);
+            }
+
             _db = new SQLiteAsyncConnection(Constants.DatabasePath);
 
             _db.CreateTableAsync<ExpenseTag>();
@@ -20,8 +25,7 @@ namespace ShihBooks.Plugins.DataStore.Sqlite
             _db.CreateTableAsync<Expense>();
             _db.CreateTableAsync<ExpenseEvent>();
 
-            if (!dbExists)
-                InsertSampleExpenses();
+            // InsertSampleExpenses();
         }
 
         private void InsertSampleExpenses()
@@ -86,6 +90,8 @@ namespace ShihBooks.Plugins.DataStore.Sqlite
 
         }
 
+        #region Expense
+
         public async Task<List<ExpenseView>> GetExpensesAsync(int year, int month)
         {
             var expenses = (from e in await _db.Table<Expense>().ToListAsync()
@@ -109,99 +115,192 @@ namespace ShihBooks.Plugins.DataStore.Sqlite
             return expenses;
         }
 
-        public async Task<List<ExpenseTag>> GetExpenseTagsAsync()
+        public async Task<bool> UpdateExpenseAsync(Expense expense)
         {
-            return await _db.Table<ExpenseTag>().ToListAsync();
+            await _db.UpdateAsync(expense);
+
+            return true;
         }
 
-        public async Task<List<ExpenseType>> GetExpenseTypesAsync()
+        public async Task<bool> DeleteExpenseAsync(int expenseId)
         {
-            return await _db.Table<ExpenseType>().ToListAsync();
+            await _db.DeleteAsync(new Expense
+            {
+                Id = expenseId,
+            });
+
+            return true;
         }
+
+        #endregion
+
+        #region Merchant
 
         public async Task<List<Merchant>> GetMerchantsAsync()
         {
             return await _db.Table<Merchant>().ToListAsync();
         }
 
-        public Task<bool> AddExpenseTagAsync(string tagName)
+        #endregion
+
+        #region Expense Tag
+
+        public async Task<List<ExpenseTag>> GetExpenseTagsAsync()
         {
-            throw new NotImplementedException();
+            return await _db.Table<ExpenseTag>().ToListAsync();
         }
 
-        public Task<bool> UpdateExpenseTagAsync(int tagId, string tagName)
+        public async Task<bool> AddExpenseTagAsync(string tagName)
         {
-            throw new NotImplementedException();
+            await _db.InsertAsync(new ExpenseTag
+            {
+                Name = tagName,
+            });
+
+            return true;
         }
 
-        public Task<bool> UpdateExpenseAsync(Expense expense)
+        public async Task<bool> UpdateExpenseTagAsync(int tagId, string tagName)
         {
-            throw new NotImplementedException();
+            await _db.UpdateAsync(new ExpenseTag
+            {
+                Id = tagId,
+                Name = tagName,
+            });
+
+            return true;
         }
 
-        public Task<List<ExpenseEvent>> GetExpenseEventsAsync()
+        public async Task<int> DeleteExpenseTagAsync(int tagId)
         {
-            throw new NotImplementedException();
+            await _db.DeleteAsync(new ExpenseTag
+            {
+                Id = tagId,
+            });
+
+            return tagId;
         }
 
-        public Task<bool> DeleteExpenseAsync(int expenseId)
+        #endregion
+
+        #region Expense Type
+
+        public async Task<List<ExpenseType>> GetExpenseTypesAsync()
         {
-            throw new NotImplementedException();
+            return await _db.Table<ExpenseType>().ToListAsync();
         }
 
-        public Task<int> DeleteExpenseTagAsync(int tagId)
+        public async Task<bool> AddExpenseTypeAsync(string name)
         {
-            throw new NotImplementedException();
+            await _db.InsertAsync(new ExpenseType
+            {
+                Name = name,
+            });
+
+            return true;
         }
 
-        public Task<bool> AddExpenseTypeAsync(string name)
+        public async Task<bool> UpdateExpenseTypeAsync(int id, string name)
         {
-            throw new NotImplementedException();
+            await _db.UpdateAsync(new ExpenseType
+            {
+                Id = id,
+                Name = name,
+            });
+
+            return true;
         }
 
-        public Task<bool> UpdateExpenseTypeAsync(int id, string name)
+        public async Task<int> DeleteExpenseTypeAsync(int id)
         {
-            throw new NotImplementedException();
+            await _db.DeleteAsync(new ExpenseType
+            {
+                Id = id,
+            });
+
+            return id;
         }
 
-        public Task<int> DeleteExpenseTypeAsync(int id)
+        #endregion
+
+        #region Expense Event
+
+        public async Task<List<ExpenseEvent>> GetExpenseEventsAsync()
         {
-            throw new NotImplementedException();
+            return await _db.Table<ExpenseEvent>().ToListAsync();
         }
 
-        public Task<bool> AddExpenseEventAsync(string eventName)
+        public async Task<bool> AddExpenseEventAsync(string eventName)
         {
-            throw new NotImplementedException();
+            await _db.InsertAsync(new ExpenseEvent
+            {
+                Name = eventName,
+            });
+
+            return true;
         }
 
-        public Task<bool> UpdateEventAsync(int id, string newEventName)
+        public async Task<bool> UpdateExpenseEventAsync(int id, string newEventName)
         {
-            throw new NotImplementedException();
+            await _db.UpdateAsync(new ExpenseEvent
+            {
+                Id = id,
+                Name = newEventName,
+            });
+
+            return true;
         }
 
-        public Task<int> DeleteExpenseEventAsync(int id)
+        public async Task<int> DeleteExpenseEventAsync(int id)
         {
-            throw new NotImplementedException();
+            await _db.DeleteAsync(new ExpenseEvent
+            {
+                Id = id,
+            });
+
+            return id;
         }
 
-        public Task<bool> AddIncomeSourceAsync(string sourceName)
-        {
-            throw new NotImplementedException();
-        }
+        #endregion
 
-        public Task<int> DeleteIncomeSourceAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> UpdateIncomeSourceAsync(int id, string newSourceName)
-        {
-            throw new NotImplementedException();
-        }
+        #region Income Source
 
         public Task<List<IncomeSource>> GetIncomeSourcesAsync()
         {
             throw new NotImplementedException();
         }
+
+        public async Task<bool> AddIncomeSourceAsync(string sourceName)
+        {
+            await _db.InsertAsync(new IncomeSource
+            {
+                Name = sourceName,
+            });
+
+            return true;
+        }
+
+        public async Task<bool> UpdateIncomeSourceAsync(int id, string newSourceName)
+        {
+            await _db.UpdateAsync(new IncomeSource
+            {
+                Id = id,
+                Name = newSourceName,
+            });
+
+            return true;
+        }
+ 
+        public async Task<int> DeleteIncomeSourceAsync(int id)
+        {
+            await _db.DeleteAsync(new IncomeSource
+            {
+                Id = id,
+            });
+
+            return id;
+        }
+
+        #endregion
     }
 }

@@ -72,7 +72,8 @@ public static class MauiProgram
         builder.Services.AddTransient<IUpdateIncomeSourceUseCase, UpdateIncomeSourceUseCase>();
         builder.Services.AddTransient<IDeleteIncomeSourceUseCase, DeleteIncomeSourceUseCase>();
 
-        builder.Services.AddSingleton<IExpensesDataStore, InMemoryExpensesDataStore>();
+		builder.Services.AddSingleton<IExpensesDataStore, InMemoryExpensesDataStore>();
+		//builder.Services.AddSingleton<IExpensesDataStore, SqliteExpensesDataStore>();
 
 		builder.Services.AddSingleton<MainPageViewModel>();
         builder.Services.AddTransient<ExpensesViewModel>();

@@ -47,7 +47,7 @@ namespace ShihBooks.UseCases.PluginInterfaces
 
         Task<bool> AddExpenseEventAsync(string eventName);
 
-        Task<bool> UpdateEventAsync(int id, string newEventName);
+        Task<bool> UpdateExpenseEventAsync(int id, string newEventName);
 
         Task<int> DeleteExpenseEventAsync(int id);
 
