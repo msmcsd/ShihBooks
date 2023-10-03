@@ -11,8 +11,8 @@ using ShihBooks.WebApi;
 namespace ShihBooks.WebApi.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231003190902_init")]
-    partial class init
+    [Migration("20231003235111_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -31,6 +31,7 @@ namespace ShihBooks.WebApi.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
+                        .HasMaxLength(25)
                         .HasColumnType("TEXT");
 
                     b.Property<int?>("EventId")
@@ -46,6 +47,7 @@ namespace ShihBooks.WebApi.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Note")
+                        .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
                     b.Property<int?>("TagId")
@@ -142,6 +144,31 @@ namespace ShihBooks.WebApi.Migrations
                         .IsUnique();
 
                     b.ToTable("IncomeSources");
+                });
+
+            modelBuilder.Entity("ShihBooks.WebApi.Models.Merchant", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("DateAdded")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
+
+                    b.ToTable("Merchants");
                 });
 #pragma warning restore 612, 618
         }

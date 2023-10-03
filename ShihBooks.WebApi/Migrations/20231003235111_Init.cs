@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ShihBooks.WebApi.Migrations
 {
     /// <inheritdoc />
-    public partial class init : Migration
+    public partial class Init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -32,13 +32,13 @@ namespace ShihBooks.WebApi.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     ExpenseDate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    Amount = table.Column<double>(type: "REAL", nullable: false),
                     MerchantId = table.Column<int>(type: "INTEGER", nullable: true),
                     ExpenseTypeId = table.Column<int>(type: "INTEGER", nullable: true),
                     TagId = table.Column<int>(type: "INTEGER", nullable: true),
                     EventId = table.Column<int>(type: "INTEGER", nullable: true),
-                    Note = table.Column<string>(type: "TEXT", nullable: true),
-                    Description = table.Column<string>(type: "TEXT", nullable: false),
-                    Amount = table.Column<double>(type: "REAL", nullable: false)
+                    Note = table.Column<string>(type: "TEXT", maxLength: 50, nullable: true),
+                    Description = table.Column<string>(type: "TEXT", maxLength: 25, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -87,6 +87,21 @@ namespace ShihBooks.WebApi.Migrations
                     table.PrimaryKey("PK_IncomeSources", x => x.Id);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Merchants",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ImageUrl = table.Column<string>(type: "TEXT", nullable: true),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 20, nullable: false),
+                    DateAdded = table.Column<DateTime>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Merchants", x => x.Id);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_ExpenseEvents_Name",
                 table: "ExpenseEvents",
@@ -110,6 +125,12 @@ namespace ShihBooks.WebApi.Migrations
                 table: "IncomeSources",
                 column: "Name",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Merchants_Name",
+                table: "Merchants",
+                column: "Name",
+                unique: true);
         }
 
         /// <inheritdoc />
@@ -129,6 +150,9 @@ namespace ShihBooks.WebApi.Migrations
 
             migrationBuilder.DropTable(
                 name: "IncomeSources");
+
+            migrationBuilder.DropTable(
+                name: "Merchants");
         }
     }
 }
