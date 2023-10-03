@@ -44,8 +44,11 @@ namespace ShihBooks.WebApi.Controllers
             var ev = await db.ExpenseTypes.FindAsync(id);
             if (ev != null)
             {
-                ev.Name = newTypeName;
-                await db.SaveChangesAsync();
+                if (ev.Name != newTypeName)
+                {
+                    ev.Name = newTypeName;
+                    await db.SaveChangesAsync();
+                }
             }
         }
 

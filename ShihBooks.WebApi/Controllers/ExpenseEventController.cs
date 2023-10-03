@@ -45,7 +45,11 @@ namespace ShihBooks.WebApi.Controllers
             if (ev != null)
             {
                 ev.Name = newEventName;
-                await db.SaveChangesAsync();
+                if (ev.Name != newEventName)
+                {
+                    ev.Name = newEventName;
+                    await db.SaveChangesAsync();
+                }
             }
         }
 

@@ -39,13 +39,16 @@ namespace ShihBooks.WebApi.Controllers
         }
 
         [HttpPut]
-        public async Task UpdateType(ApplicationDbContext db, int id, string newTypeName)
+        public async Task UpdateType(ApplicationDbContext db, int id, string newSourceName)
         {
             var ev = await db.IncomeSources.FindAsync(id);
             if (ev != null)
             {
-                ev.Name = newTypeName;
-                await db.SaveChangesAsync();
+                if (ev.Name != newSourceName)
+                {
+                    ev.Name = newSourceName;
+                    await db.SaveChangesAsync();
+                }
             }
         }
 
