@@ -1,8 +1,14 @@
+using Microsoft.EntityFrameworkCore;
+using ShihBooks.WebApi;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+builder.Services.AddDbContext<ApplicationDbContext>(
+    options => options.UseSqlite(builder.Configuration.GetConnectionString("SqliteConnection")));
 
 var app = builder.Build();
 

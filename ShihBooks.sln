@@ -13,7 +13,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{FBFC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShihBooks.Plugins.DataStore.InMemory", "Plugins\ShihBooks.Plugins.DataStore.InMemory\ShihBooks.Plugins.DataStore.InMemory.csproj", "{51C72383-AE8E-482D-9CD4-E968CE35E57C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShihBooks.Plugins.DataStore.Sqlite", "Plugins\ShihBooks.Plugins.DataStore.Sqlite\ShihBooks.Plugins.DataStore.Sqlite.csproj", "{5E4A34AB-DF5A-4407-854F-6E184E07A9B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShihBooks.Plugins.DataStore.Sqlite", "Plugins\ShihBooks.Plugins.DataStore.Sqlite\ShihBooks.Plugins.DataStore.Sqlite.csproj", "{5E4A34AB-DF5A-4407-854F-6E184E07A9B0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShihBooks.WebApi", "ShihBooks.WebApi\ShihBooks.WebApi.csproj", "{09D5C2F6-5EE7-4A33-8BCB-866CC4C49869}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,6 +45,10 @@ Global
 		{5E4A34AB-DF5A-4407-854F-6E184E07A9B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E4A34AB-DF5A-4407-854F-6E184E07A9B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E4A34AB-DF5A-4407-854F-6E184E07A9B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09D5C2F6-5EE7-4A33-8BCB-866CC4C49869}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09D5C2F6-5EE7-4A33-8BCB-866CC4C49869}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09D5C2F6-5EE7-4A33-8BCB-866CC4C49869}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09D5C2F6-5EE7-4A33-8BCB-866CC4C49869}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

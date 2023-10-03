@@ -45,6 +45,7 @@ obj/
 bin/
 .vs/
 *.user
+*.db
 
 # Kernel Module Compile Results
 *.mod*
