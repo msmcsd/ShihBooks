@@ -46,6 +46,8 @@ bin/
 .vs/
 *.user
 *.db
+*.db-shm
+*.db-wal
 
 # Kernel Module Compile Results
 *.mod*
