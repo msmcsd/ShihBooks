@@ -24,6 +24,16 @@ namespace ShihBooks.WebApi.Controllers
         [HttpPost]
         public async Task AddEvent(ApplicationDbContext db, ExpenseEvent expenseEvent)
         {
+            var t = await db.ExpenseEvents.FirstOrDefaultAsync(e => e.Name.Equals(expenseEvent.Name, StringComparison.InvariantCultureIgnoreCase));
+            if (t != null)
+            {
+                if (t.Name != expenseEvent.Name)
+                {
+                    await UpdateEvent(db, expenseEvent.Id, expenseEvent.Name);
+                }
+                return;
+            }
+
             db.ExpenseEvents.Add(expenseEvent);
             await db.SaveChangesAsync();
         }
