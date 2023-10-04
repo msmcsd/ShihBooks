@@ -18,35 +18,35 @@ namespace ShihBooks.WebApi.Controllers
         [HttpGet]
         public async Task<IEnumerable<ExpenseType>> GetTypes(ApplicationDbContext db)
         {
-            return await db.ExpenseTypes.ToListAsync();
+            return await db.ExpenseTypes.OrderBy(e => e.Name).ToListAsync();
         }
 
         [HttpPost]
-        public async Task AddType(ApplicationDbContext db, ExpenseType expenseType)
+        public async Task AddType(ApplicationDbContext db, string name)
         {
-            var t = await db.ExpenseTypes.FirstOrDefaultAsync(e => e.Name.Equals(expenseType.Name, StringComparison.InvariantCultureIgnoreCase));
+            var t = await db.ExpenseTypes.FirstOrDefaultAsync(e => e.Name.ToLower() == name.ToLower());
             if (t != null)
             {
-                if (t.Name != expenseType.Name)
+                if (t.Name != name)
                 {
-                    await UpdateType(db, expenseType.Id, expenseType.Name);
+                    await UpdateType(db, t.Id, name);
                 }
                 return;
             }
 
-            db.ExpenseTypes.Add(expenseType);
+            db.ExpenseTypes.Add(new ExpenseType { Name = name });
             await db.SaveChangesAsync();
         }
 
         [HttpPut]
-        public async Task UpdateType(ApplicationDbContext db, int id, string newTypeName)
+        public async Task UpdateType(ApplicationDbContext db, int id, string name)
         {
             var ev = await db.ExpenseTypes.FindAsync(id);
             if (ev != null)
             {
-                if (ev.Name != newTypeName)
+                if (ev.Name != name)
                 {
-                    ev.Name = newTypeName;
+                    ev.Name = name;
                     await db.SaveChangesAsync();
                 }
             }

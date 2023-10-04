@@ -18,35 +18,35 @@ namespace ShihBooks.WebApi.Controllers
         [HttpGet]
         public async Task<IEnumerable<ExpenseTag>> GetTags(ApplicationDbContext db)
         {
-            return await db.ExpenseTags.ToListAsync();
+            return await db.ExpenseTags.OrderBy(e => e.Name).ToListAsync();
         }
 
         [HttpPost]
-        public async Task AddTag(ApplicationDbContext db, ExpenseTag expenseTag)
+        public async Task AddTag(ApplicationDbContext db, string name)
         {
-            var t = await db.ExpenseTags.FirstOrDefaultAsync(e => e.Name.Equals(expenseTag.Name, StringComparison.InvariantCultureIgnoreCase));
+            var t = await db.ExpenseTags.FirstOrDefaultAsync(e => e.Name.ToLower() == name.ToLower());
             if (t != null)
             {
-                if (t.Name != expenseTag.Name)
+                if (t.Name != name)
                 {
-                    await UpdateTag(db, expenseTag.Id, expenseTag.Name);
+                    await UpdateTag(db, t.Id, name);
                 }
                 return;
             }
 
-            db.ExpenseTags.Add(expenseTag);
+            db.ExpenseTags.Add(new ExpenseTag { Name = name});
             await db.SaveChangesAsync();
         }
 
         [HttpPut]
-        public async Task UpdateTag(ApplicationDbContext db, int id, string newTagName)
+        public async Task UpdateTag(ApplicationDbContext db, int id, string name)
         {
             var ev = await db.ExpenseTags.FindAsync(id);
             if (ev != null)
             {
-                if (ev.Name != newTagName)
+                if (ev.Name != name)
                 {
-                    ev.Name = newTagName;
+                    ev.Name = name;
                     await db.SaveChangesAsync();
                 }
             }

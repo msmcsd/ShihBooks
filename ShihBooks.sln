@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShihBooks.Plugins.DataStore
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShihBooks.Plugins.DataStore.Sqlite", "Plugins\ShihBooks.Plugins.DataStore.Sqlite\ShihBooks.Plugins.DataStore.Sqlite.csproj", "{5E4A34AB-DF5A-4407-854F-6E184E07A9B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShihBooks.WebApi", "ShihBooks.WebApi\ShihBooks.WebApi.csproj", "{09D5C2F6-5EE7-4A33-8BCB-866CC4C49869}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShihBooks.WebApi", "ShihBooks.WebApi\ShihBooks.WebApi.csproj", "{09D5C2F6-5EE7-4A33-8BCB-866CC4C49869}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShihBooks.Plugins.DataStore.WebApi", "Plugins\ShihBooks.Plugins.DataStore.WebApi\ShihBooks.Plugins.DataStore.WebApi.csproj", "{EF258990-6A22-4A99-AAE2-25426327AAAE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +51,10 @@ Global
 		{09D5C2F6-5EE7-4A33-8BCB-866CC4C49869}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09D5C2F6-5EE7-4A33-8BCB-866CC4C49869}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09D5C2F6-5EE7-4A33-8BCB-866CC4C49869}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF258990-6A22-4A99-AAE2-25426327AAAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF258990-6A22-4A99-AAE2-25426327AAAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF258990-6A22-4A99-AAE2-25426327AAAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF258990-6A22-4A99-AAE2-25426327AAAE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -56,6 +62,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{51C72383-AE8E-482D-9CD4-E968CE35E57C} = {FBFCF622-4997-4729-863E-06CCEF128927}
 		{5E4A34AB-DF5A-4407-854F-6E184E07A9B0} = {FBFCF622-4997-4729-863E-06CCEF128927}
+		{EF258990-6A22-4A99-AAE2-25426327AAAE} = {FBFCF622-4997-4729-863E-06CCEF128927}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {61F7FB11-1E47-470C-91E2-47F8143E1572}

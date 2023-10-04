@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ShihBooks.WebApi.Models;
+using System.Xml.Linq;
 
 namespace ShihBooks.WebApi.Controllers
 {
@@ -18,36 +19,35 @@ namespace ShihBooks.WebApi.Controllers
         [HttpGet]
         public async Task<IEnumerable<ExpenseEvent>> GetEvents(ApplicationDbContext db)
         {
-            return await db.ExpenseEvents.ToListAsync();
+            return await db.ExpenseEvents.OrderBy(e => e.Name).ToListAsync();
         }       
         
         [HttpPost]
-        public async Task AddEvent(ApplicationDbContext db, ExpenseEvent expenseEvent)
+        public async Task AddEvent(ApplicationDbContext db, string name)
         {
-            var t = await db.ExpenseEvents.FirstOrDefaultAsync(e => e.Name.Equals(expenseEvent.Name, StringComparison.InvariantCultureIgnoreCase));
+            var t = await db.ExpenseEvents.FirstOrDefaultAsync(e => e.Name.ToLower() == name.ToLower());
             if (t != null)
             {
-                if (t.Name != expenseEvent.Name)
+                if (t.Name != name)
                 {
-                    await UpdateEvent(db, expenseEvent.Id, expenseEvent.Name);
+                    await UpdateEvent(db, t.Id, name);
                 }
                 return;
             }
 
-            db.ExpenseEvents.Add(expenseEvent);
+            db.ExpenseEvents.Add(new ExpenseEvent { Name = name });
             await db.SaveChangesAsync();
         }
 
         [HttpPut]
-        public async Task UpdateEvent(ApplicationDbContext db, int id, string newEventName)
+        public async Task UpdateEvent(ApplicationDbContext db, int id, string name)
         {
             var ev = await db.ExpenseEvents.FindAsync(id);
             if (ev != null)
             {
-                ev.Name = newEventName;
-                if (ev.Name != newEventName)
+                if (ev.Name != name)
                 {
-                    ev.Name = newEventName;
+                    ev.Name = name;
                     await db.SaveChangesAsync();
                 }
             }

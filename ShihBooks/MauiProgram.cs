@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using ShihBooks.Plugins.DataStore.InMemory;
 using ShihBooks.Plugins.DataStore.Sqlite;
+using ShihBooks.Plugins.DataStore.WebApi;
 using ShihBooks.UseCases.Interfaces.ExpenseEvents;
 using ShihBooks.UseCases.Interfaces.Expenses;
 using ShihBooks.UseCases.Interfaces.ExpenseTags;
@@ -72,8 +73,9 @@ public static class MauiProgram
         builder.Services.AddTransient<IUpdateIncomeSourceUseCase, UpdateIncomeSourceUseCase>();
         builder.Services.AddTransient<IDeleteIncomeSourceUseCase, DeleteIncomeSourceUseCase>();
 
-		builder.Services.AddSingleton<IExpensesDataStore, InMemoryExpensesDataStore>();
+		//builder.Services.AddSingleton<IExpensesDataStore, InMemoryExpensesDataStore>();
 		//builder.Services.AddSingleton<IExpensesDataStore, SqliteExpensesDataStore>();
+		builder.Services.AddSingleton<IExpensesDataStore, WebApiExpensesDataStore>();
 
 		builder.Services.AddSingleton<MainPageViewModel>();
         builder.Services.AddTransient<ExpensesViewModel>();
