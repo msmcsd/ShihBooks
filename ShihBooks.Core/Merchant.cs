@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace ShihBooks.Core
 {
     [Table("Merchants")]
-    public class Merchant
+    public class Merchant //: CoreEntity
     {
         [Required]
         [PrimaryKey, AutoIncrement]
@@ -14,10 +14,9 @@ namespace ShihBooks.Core
         [Unique]
         public string Name { get; set; }
 
-        public string ImageUrl { get; set; }
-
         [Required]
         public DateTime DateAdded { get; set; }
 
+        public string ImageUrl { get; set; }
     }
 }

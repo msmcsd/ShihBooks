@@ -16,15 +16,15 @@ namespace ShihBooks.ViewModels
         private readonly IUpdateEntityUseCase _updateEntityUseCase;
         private readonly IDeleteEntityUseCase _deleteEntityUseCase;
 
-        private List<ExpenseEntity> _cachedEntities { get; set; } = new();
+        private List<CoreEntity> _cachedEntities { get; set; } = new();
 
-        public ObservableCollection<ExpenseEntity> FilteredEntities { get; set; } = new();
+        public ObservableCollection<CoreEntity> FilteredEntities { get; set; } = new();
+
+        //[ObservableProperty]
+        //private string _searchText;
 
         [ObservableProperty]
-        private string _searchText;
-
-        [ObservableProperty]
-        private ExpenseEntity _selectedEntity;
+        private CoreEntity _selectedEntity;
 
         public ManageEntitiesViewModel(IViewEntitiesUseCase viewEntitiesUseCase,
                                        IAddEntityUseCase addEntityUseCase,
@@ -37,7 +37,7 @@ namespace ShihBooks.ViewModels
             _deleteEntityUseCase = deleteEntityUseCase;
         }
 
-        public async Task GetExpenseEntitiesAsync()
+        public override async Task GetEntitiesAsync()
         {
             if (IsBusy) return;
 
@@ -70,15 +70,14 @@ namespace ShihBooks.ViewModels
         }
 
         [RelayCommand]
-        public async Task DeleteEntityAsync(ExpenseEntity expenseEntity)
+        public async Task DeleteEntityAsync(CoreEntity expenseEntity)
         {
             var ret = await _deleteEntityUseCase.ExecuteAsync(expenseEntity.Id);
             if (ret == 0)
                 FilteredEntities.Remove(expenseEntity);
         }
 
-        [RelayCommand]
-        public async Task AddEntity()
+        public override async Task AddEntityAsync()
         {
             var name = await Shell.Current.CurrentPage.ShowPopupAsync(new ManageItemPopupPage(true, "Enter name:", ""));
             if (name is null)
@@ -89,13 +88,12 @@ namespace ShihBooks.ViewModels
             var ret = await _addEntityUseCase.ExecuteAsync(name as string);
             if (ret)
             {
-                await GetExpenseEntitiesAsync();
+                await GetEntitiesAsync();
                 SelectedEntity = null;
             }
         }
 
-        [RelayCommand]
-        public async Task UpdateEntity()
+        public override async Task UpdateEntityAsync()
         {
             if (SelectedEntity == null) return;
 
@@ -115,7 +113,7 @@ namespace ShihBooks.ViewModels
                 var ret = await _updateEntityUseCase.ExecuteAsync(SelectedEntity.Id, newEntityName);
                 if (ret)
                 {
-                    await GetExpenseEntitiesAsync();
+                    await GetEntitiesAsync();
                 }
 
                 if (!string.IsNullOrEmpty(origSearchText))
@@ -125,12 +123,11 @@ namespace ShihBooks.ViewModels
             }
         }
 
-        [RelayCommand]
-        public async Task SearchEntity()
+        public override async Task SearchEntityAsync()
         {
             var list = SearchText?.Length <= 0 ? 
                 _cachedEntities :
-                _cachedEntities.Where(t => t.Name.Contains(SearchText, StringComparison.OrdinalIgnoreCase));
+                _cachedEntities.Where(t => t.Name.Contains(SearchText, StringComparison.InvariantCultureIgnoreCase));
 
             if (FilteredEntities.Count > 0) FilteredEntities.Clear();
 

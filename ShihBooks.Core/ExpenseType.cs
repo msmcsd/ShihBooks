@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace ShihBooks.Core
 {
     [Table("ExpenseTypes")]
-    public class ExpenseType : ExpenseEntity
+    public class ExpenseType : CoreEntity
     {
     }
 }

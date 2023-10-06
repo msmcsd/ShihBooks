@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ShihBooks.Core
 {
-    public class ExpenseEntity
+    public class CoreEntity
     {
         [Required]
         [PrimaryKey, AutoIncrement]

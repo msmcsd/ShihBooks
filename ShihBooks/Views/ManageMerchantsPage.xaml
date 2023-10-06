@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:m="clr-namespace:ShihBooks.Core;assembly=ShihBooks.Core"
+             xmlns:vm="clr-namespace:ShihBooks.ViewModels"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="ShihBooks.Views.ManageMerchantsPage"
+             Title="Merchants"
+             x:Name="this">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Command="{Binding AddEntityCommand}" />
+        <ToolbarItem Text="Edit" Command="{Binding UpdateEntityCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <Grid ColumnDefinitions="*,*"
+          RowDefinitions="Auto, *"
+          ColumnSpacing="5"
+          Padding="10">
+
+        <VerticalStackLayout Grid.ColumnSpan="2">
+            <Border HeightRequest="50" Margin="0, 0, 0, 0">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="22" />
+                </Border.StrokeShape>
+                <SearchBar Text="{Binding SearchText}">
+                    <SearchBar.Behaviors>
+                        <toolkit:EventToCommandBehavior 
+                            EventName="TextChanged"
+                            Command="{Binding Source={x:Reference this}, Path=BindingContext.SearchEntityCommand}" />
+                    </SearchBar.Behaviors>
+                </SearchBar>
+            </Border>
+        </VerticalStackLayout>
+        <CollectionView Grid.Row="1" 
+                        Grid.ColumnSpan="2"
+                        Margin="0,10"
+                        x:Name="itemList"
+                        ItemsSource="{Binding FilteredEntities}" 
+                        SelectedItem="{Binding SelectedMerchant}"
+                        SelectionMode="Single">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="m:Merchant">
+                    <!--<SwipeView>
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItemView CommandParameter="{Binding .}"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ManageExpenseTagsViewModel}}, Path=DeleteExpenseTagCommand}">
+                                    <Frame BackgroundColor="OrangeRed"
+                                           HeightRequest="50"
+                                           WidthRequest="50"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center"
+                                           CornerRadius="25"
+                                           Padding="0">
+                                        <Label Text="X" 
+                                               FontSize="20"
+                                               FontAttributes="Bold"
+                                               VerticalOptions="Center"
+                                               HorizontalOptions="Center"/>
+                                    </Frame>
+                                </SwipeItemView>
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+                        <Frame Padding="5" BorderColor="White" BackgroundColor="Transparent" CornerRadius="0">
+                            <Label Text="{Binding Name}" Padding="5" FontSize="16"/>
+                        </Frame>
+                    </SwipeView>-->
+                    <Label Text="{Binding Name}" Padding="5" FontSize="16"/>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

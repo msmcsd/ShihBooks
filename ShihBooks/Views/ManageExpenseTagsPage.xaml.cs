@@ -19,6 +19,6 @@ public partial class ManageExpenseTagsPage : ContentPage
     protected async override void OnAppearing()
     {
         base.OnAppearing();
-        await _manageExpenseTagsViewModel.GetExpenseEntitiesAsync();
+        await _manageExpenseTagsViewModel.GetEntitiesAsync();
     }
 }

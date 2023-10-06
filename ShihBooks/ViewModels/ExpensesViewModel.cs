@@ -35,7 +35,7 @@ namespace ShihBooks.ViewModels
             _deleteExpenseUseCase = deleteExpenseUseCase;
         }
 
-        public async Task LoadExpensesByMonthAsync(int year, int month)
+        public override async Task GetEntitiesAsync()
         {
             if (IsBusy) return;
 
@@ -48,7 +48,7 @@ namespace ShihBooks.ViewModels
             {
                 IsBusy = true;
 
-                _cachedExpenses = await _viewExpensesByMonthUseCase.ExecuteAsync(year, month);
+                _cachedExpenses = await _viewExpensesByMonthUseCase.ExecuteAsync(Year, Month);
 
                 if (_cachedExpenses?.Count > 0)
                 {
@@ -95,8 +95,7 @@ namespace ShihBooks.ViewModels
             }
         }
 
-        [RelayCommand]
-        public async Task SearchExpenseAsync()
+        public override async Task SearchEntityAsync()
         {
             var list = SearchText?.Length <= 0 ?
                             _cachedExpenses :
@@ -110,8 +109,7 @@ namespace ShihBooks.ViewModels
             }
         }
 
-        [RelayCommand]
-        public async Task AddExpenseAsync()
+        public override async Task AddEntityAsync()
         {
 
         }

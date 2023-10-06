@@ -3,7 +3,7 @@
 namespace ShihBooks.Core
 {
     [Table("ExpenseEvents")]
-    public class ExpenseEvent : ExpenseEntity
+    public class ExpenseEvent : CoreEntity
     {
     }
 }

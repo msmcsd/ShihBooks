@@ -3,7 +3,7 @@
 namespace ShihBooks.Core
 {
     [Table("IncomeSources")]
-    public class IncomeSource : ExpenseEntity
+    public class IncomeSource : CoreEntity
     {
     }
 }

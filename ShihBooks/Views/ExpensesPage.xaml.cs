@@ -16,6 +16,6 @@ public partial class ExpensesPage : ContentPage
     protected async override void OnAppearing()
     {
         base.OnAppearing();
-        await _expensesViewModel.LoadExpensesByMonthAsync(_expensesViewModel.Year, _expensesViewModel.Month);
+        await _expensesViewModel.GetEntitiesAsync();
     }
 }

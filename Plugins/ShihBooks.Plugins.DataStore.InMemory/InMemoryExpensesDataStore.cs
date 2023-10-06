@@ -19,7 +19,7 @@ namespace ShihBooks.Plugins.DataStore.InMemory
             new ExpenseType { Id = 2, Name = "Electronics"}
         };
 
-        private List<Merchant> _merchants =>new List<Merchant>()
+        private List<Merchant> _merchants => new List<Merchant>()
         {
             new Merchant { Id = 1, Name = "Costco", ImageUrl = "https://play-lh.googleusercontent.com/gqOziTbVWioRJtHh7OvfOq07NCTcAHKWBYPQKJOZqNcczpOz5hdrnQNY7i2OatJxmuY=w240-h480-rw"},
             new Merchant { Id = 2, Name = "Amazon", ImageUrl = "https://www.amazon.com/favicon.ico"}
@@ -107,11 +107,6 @@ namespace ShihBooks.Plugins.DataStore.InMemory
         public async Task<List<ExpenseType>> GetExpenseTypesAsync()
         {
             return await Task.FromResult(_expenseTypes.OrderBy(t => t.Name).ToList());
-        }
-
-        public Task<List<Merchant>> GetMerchantsAsync()
-        {
-            return Task.FromResult(_merchants.OrderBy(t => t.Name).ToList());
         }
 
         public async Task<bool> AddExpenseTagAsync(string tagName)
@@ -293,9 +288,52 @@ namespace ShihBooks.Plugins.DataStore.InMemory
             return true;
         }
 
-        public async Task<List<IncomeSource>> GetIncomeSourcesAsync()
+        public Task<List<IncomeSource>> GetIncomeSourcesAsync()
         {
-            return _incomeSources;
+            return Task.FromResult(_incomeSources.OrderBy(t => t.Name).ToList());
+        }
+
+        public Task<List<Merchant>> GetMerchantsAsync()
+        {
+            return Task.FromResult(_merchants.OrderBy(t => t.Name).ToList());
+        }
+
+        public async Task<bool> AddMerchantAsync(string merchantName, string imageUrl)
+        {
+            var m = _merchants.FirstOrDefault(t => t.Name.Equals(merchantName, StringComparison.InvariantCultureIgnoreCase));
+            if (m != null) return false;
+
+            _merchants.Add(new Merchant
+            {
+                Id = _merchants.Count + 1,
+                Name = merchantName,
+                ImageUrl = imageUrl,
+            });
+
+            return true;
+        }
+
+        public async Task<bool> UpdateMerchantAsync(int id, string name, string imageUrl)
+        {
+            var m = _merchants.FirstOrDefault(t => t.Id == id);
+            if (m == null) return false;
+
+            m.Name = name;
+            m.ImageUrl = imageUrl;
+
+            return true;
+        }
+
+        public async Task<int> DeleteMerchantAsync(int id)
+        {
+            var m = _merchants.FirstOrDefault(t => t.Id == id);
+            if (m != null)
+            {
+                _merchants.Remove(m);
+                return 0;
+            }
+
+            return id;
         }
     }
 }

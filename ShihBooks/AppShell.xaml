@@ -36,6 +36,11 @@
         ContentTemplate="{DataTemplate views:ManageIncomeSourcesPage}"
         Route="ManageIncomeSourcesPage" />
 
+    <ShellContent
+        Title="Merchants"
+        ContentTemplate="{DataTemplate views:ManageMerchantsPage}"
+        Route="ManageMerchantsPage" />
+
     <Shell.FlyoutFooter>
         <Label Text="Copyright (c)" HorizontalOptions="Center" />
     </Shell.FlyoutFooter>

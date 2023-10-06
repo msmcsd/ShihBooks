@@ -16,6 +16,6 @@ public partial class ManageIncomeSourcesPage : ContentPage
     protected async override void OnAppearing()
     {
         base.OnAppearing();
-        await _manageIncomeSourcesViewModel.GetExpenseEntitiesAsync();
+        await _manageIncomeSourcesViewModel.GetEntitiesAsync();
     }
 }

@@ -13,10 +13,10 @@ namespace ShihBooks.UseCases.UseCases.ExpenseEvents
             _expensesDataStore = expensesDataStore;
         }
 
-        public async Task<List<ExpenseEntity>> ExecuteAsync()
+        public async Task<List<CoreEntity>> ExecuteAsync()
         {
             var events = await _expensesDataStore.GetExpenseEventsAsync();
-            return events.ConvertAll(e => new ExpenseEntity
+            return events.ConvertAll(e => new CoreEntity
             {
                 Id = e.Id,
                 Name = e.Name

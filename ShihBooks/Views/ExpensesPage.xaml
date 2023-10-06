@@ -16,7 +16,7 @@
     </ContentPage.Title>
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="+" Command="{Binding AddExpenseCommand}" />
+        <ToolbarItem Text="+" Command="{Binding AddEntityCommand}" />
     </ContentPage.ToolbarItems>
     
     <VerticalStackLayout>
@@ -28,7 +28,7 @@
                 <SearchBar.Behaviors>
                     <toolkit:EventToCommandBehavior 
                             EventName="TextChanged"
-                            Command="{Binding Source={x:Reference this}, Path=BindingContext.SearchExpenseCommand}" />
+                            Command="{Binding Source={x:Reference this}, Path=BindingContext.SearchEntityCommand}" />
                 </SearchBar.Behaviors>
             </SearchBar>
         </Border>

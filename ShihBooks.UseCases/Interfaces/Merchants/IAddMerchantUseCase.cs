@@ -1,11 +1,9 @@
 ﻿using ShihBooks.UseCases.Interfaces.Entities;
-using ShihBooks.Core;
-
 
 namespace ShihBooks.UseCases.Interfaces.Merchants
 {
-    public interface IViewMerchantsUseCase
+    public interface IAddMerchantUseCase
     {
-        Task<List<Merchant>> ExecuteAsync();
+        Task<bool> ExecuteAsync(string name, string imageUrl);
     }
 }

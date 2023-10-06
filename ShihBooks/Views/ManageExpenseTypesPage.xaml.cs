@@ -18,6 +18,6 @@ public partial class ManageExpenseTypesPage : ContentPage
     protected async override void OnAppearing()
     {
         base.OnAppearing();
-        await _manageExpenseTypesViewModel.GetExpenseEntitiesAsync();
+        await _manageExpenseTypesViewModel.GetEntitiesAsync();
     }
 }

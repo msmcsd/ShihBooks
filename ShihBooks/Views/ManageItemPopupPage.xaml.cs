@@ -14,7 +14,7 @@ public partial class ManageItemPopupPage : Popup
         InitializeComponent();
         instructionLabel.Text = instruction;
         itemName.Text = defaultItemName;
-        addButton.Text = isAdd ? "Add" : "Change";
+        addButton.Text = isAdd ? "Add" : "Update";
         if (!isAdd)
         {
             itemName.CursorPosition = 0;

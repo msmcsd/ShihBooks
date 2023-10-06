@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ShihBooks.WebApi.Models;
-using System.Xml.Linq;
 
 namespace ShihBooks.WebApi.Controllers
 {
@@ -23,32 +22,35 @@ namespace ShihBooks.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task AddMerchant(ApplicationDbContext db, string name)
+        public async Task AddMerchant(ApplicationDbContext db, string name, string imageUrl)
         {
             var t = await db.Merchants.FirstOrDefaultAsync(e => e.Name.ToLower() == name.ToLower());
             if (t != null)
             {
-                if (t.Name != name)
-                {
-                    await UpdateMerchant(db, t.Id, name);
-                }
+                //if (t.Name != name)
+                //{
+                //    await UpdateMerchant(db, t.Id, name, imageUrl);
+                //}
                 return;
             }
 
-            db.Merchants.Add(new Merchant { Name = name });
+            db.Merchants.Add(new Merchant { Name = name, ImageUrl = imageUrl });
             await db.SaveChangesAsync();
         }
 
         [HttpPut]
-        public async Task UpdateMerchant(ApplicationDbContext db, int id, string name)
+        public async Task UpdateMerchant(ApplicationDbContext db, int id, string name, string imageUrl)
         {
             var ev = await db.Merchants.FindAsync(id);
             if (ev != null)
             {
-                ev.Name = name;
-                if (ev.Name != name)
+                if (ev.Name != name ||
+                    string.IsNullOrWhiteSpace(ev.Name) && !string.IsNullOrWhiteSpace(name) ||
+                    !string.IsNullOrWhiteSpace(ev.Name) && string.IsNullOrWhiteSpace(name) ||
+                    ev.Name.ToLower().Trim() != name.ToLower().Trim())
                 {
                     ev.Name = name;
+                    ev.ImageUrl = imageUrl;
                     await db.SaveChangesAsync();
                 }
             }

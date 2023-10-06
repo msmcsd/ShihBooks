@@ -1,7 +1,9 @@
 ﻿using ShihBooks.Core;
 using ShihBooks.UseCases.PluginInterfaces;
+using System;
 using System.Text;
 using System.Text.Json;
+using System.Xml.Linq;
 
 namespace ShihBooks.Plugins.DataStore.WebApi
 {
@@ -41,9 +43,40 @@ namespace ShihBooks.Plugins.DataStore.WebApi
 
         #region Merchant
 
-        public Task<List<Merchant>> GetMerchantsAsync()
+        public async Task<List<Merchant>> GetMerchantsAsync()
         {
-            throw new NotImplementedException();
+            Uri uri = new($"{Constants.WebApiMerchantUrl}");
+            var response = _client.GetAsync(uri);
+
+            try
+            {
+                string content = await response.Result.Content.ReadAsStringAsync();
+
+                var entities = JsonSerializer.Deserialize<List<Merchant>>(content, _serializerOptions);
+                return entities ?? new List<Merchant>();
+            }
+            catch (Exception ex)
+            {
+                // TODO: Pass the exception to client.
+                Console.WriteLine(ex.ToString());
+            }
+
+            return new List<Merchant>();
+        }
+
+        public async Task<bool> AddMerchantAsync(string merchantName, string imageUrl)
+        {
+            return await AddEntityAsync(new($"{Constants.WebApiMerchantUrl}?name={merchantName}&imageUrl={imageUrl}"));
+        }
+
+        public async Task<bool> UpdateMerchantAsync(int id, string name, string imageUrl)
+        {
+            return await UpdateEntityAsync(new($"{Constants.WebApiMerchantUrl}?id={id}&name={name}&imageUrl={imageUrl}"));
+        }
+
+        public async Task<int> DeleteMerchantAsync(int id)
+        {
+            return await DeleteEntitysync(new($"{Constants.WebApiMerchantUrl}?id={id}"), id);
         }
 
         #endregion
@@ -146,7 +179,7 @@ namespace ShihBooks.Plugins.DataStore.WebApi
 
         #region Generic Methods
 
-        private async Task<List<T>> GetEntitiesAsync<T>(Uri uri) where T : ExpenseEntity
+        private async Task<List<T>> GetEntitiesAsync<T>(Uri uri) where T : CoreEntity
         {
             var response = _client.GetAsync(uri);
 

@@ -14,18 +14,19 @@ namespace ShihBooks.Plugins.DataStore.Sqlite
             var dbExists = File.Exists(Constants.DatabasePath);
             if (dbExists)
             {
-                File.Delete(Constants.DatabasePath);
+                //File.Delete(Constants.DatabasePath);
             }
 
             _db = new SQLiteAsyncConnection(Constants.DatabasePath);
 
+            _db.CreateTableAsync<Expense>();
             _db.CreateTableAsync<ExpenseTag>();
             _db.CreateTableAsync<Merchant>();
             _db.CreateTableAsync<ExpenseType>();
-            _db.CreateTableAsync<Expense>();
             _db.CreateTableAsync<ExpenseEvent>();
+            _db.CreateTableAsync<IncomeSource>();
 
-            // InsertSampleExpenses();
+            //InsertSampleExpenses();
         }
 
         private void InsertSampleExpenses()
@@ -138,7 +139,40 @@ namespace ShihBooks.Plugins.DataStore.Sqlite
 
         public async Task<List<Merchant>> GetMerchantsAsync()
         {
-            return await _db.Table<Merchant>().ToListAsync();
+            return await _db.Table<Merchant>().OrderBy(m => m.Name).ToListAsync();
+        }
+
+        public async Task<bool> AddMerchantAsync(string merchantName, string imageUrl)
+        {
+            await _db.InsertAsync(new Merchant
+            {
+                Name = merchantName,
+                ImageUrl = imageUrl
+            });
+
+            return true;
+        }
+
+        public async Task<bool> UpdateMerchantAsync(int id, string merchantName, string imageUrl)
+        {
+            await _db.UpdateAsync(new Merchant
+            {
+                Id = id,
+                Name = merchantName,
+                ImageUrl = imageUrl
+            });
+
+            return true;
+        }
+
+        public async Task<int> DeleteMerchantAsync(int id)
+        {
+            await _db.DeleteAsync(new Merchant
+            {
+                Id = id,
+            });
+
+            return id;
         }
 
         #endregion
@@ -147,7 +181,7 @@ namespace ShihBooks.Plugins.DataStore.Sqlite
 
         public async Task<List<ExpenseTag>> GetExpenseTagsAsync()
         {
-            return await _db.Table<ExpenseTag>().ToListAsync();
+            return await _db.Table<ExpenseTag>().OrderBy(t => t.Name).ToListAsync();
         }
 
         public async Task<bool> AddExpenseTagAsync(string tagName)
@@ -187,7 +221,7 @@ namespace ShihBooks.Plugins.DataStore.Sqlite
 
         public async Task<List<ExpenseType>> GetExpenseTypesAsync()
         {
-            return await _db.Table<ExpenseType>().ToListAsync();
+            return await _db.Table<ExpenseType>().OrderBy(t => t.Name).ToListAsync();
         }
 
         public async Task<bool> AddExpenseTypeAsync(string name)
@@ -227,7 +261,7 @@ namespace ShihBooks.Plugins.DataStore.Sqlite
 
         public async Task<List<ExpenseEvent>> GetExpenseEventsAsync()
         {
-            return await _db.Table<ExpenseEvent>().ToListAsync();
+            return await _db.Table<ExpenseEvent>().OrderBy(e => e.Name).ToListAsync();
         }
 
         public async Task<bool> AddExpenseEventAsync(string eventName)
@@ -265,9 +299,9 @@ namespace ShihBooks.Plugins.DataStore.Sqlite
 
         #region Income Source
 
-        public Task<List<IncomeSource>> GetIncomeSourcesAsync()
+        public async Task<List<IncomeSource>> GetIncomeSourcesAsync()
         {
-            throw new NotImplementedException();
+            return await _db.Table<IncomeSource>().OrderBy(i => i.Name).ToListAsync();
         }
 
         public async Task<bool> AddIncomeSourceAsync(string sourceName)

@@ -14,8 +14,17 @@ namespace ShihBooks.UseCases.PluginInterfaces
 
         #endregion
 
+        #region Merchant
+
         Task<List<Merchant>> GetMerchantsAsync();
 
+        Task<bool> AddMerchantAsync(string merchantName, string imageUrl);
+
+        Task<bool> UpdateMerchantAsync(int id, string merchantName, string imageUrl);
+
+        Task<int> DeleteMerchantAsync(int id);
+
+        #endregion
 
         #region Expense Tag
 

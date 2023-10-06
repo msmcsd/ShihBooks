@@ -1,11 +1,8 @@
 ﻿using ShihBooks.UseCases.Interfaces.Entities;
-using ShihBooks.Core;
-
 
 namespace ShihBooks.UseCases.Interfaces.Merchants
 {
-    public interface IViewMerchantsUseCase
+    public interface IDeleteMerchantUseCase : IDeleteEntityUseCase
     {
-        Task<List<Merchant>> ExecuteAsync();
     }
 }

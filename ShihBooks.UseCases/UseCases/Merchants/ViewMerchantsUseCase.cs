@@ -12,6 +12,7 @@ namespace ShihBooks.UseCases.UseCases.Merchants
         {
             _expenseSource = expenseSource;
         }
+
         public async Task<List<Merchant>> ExecuteAsync()
         {
             return await _expenseSource.GetMerchantsAsync();

@@ -53,12 +53,14 @@ namespace ShihBooks.ViewModels
             _viewExpenseTagsUseCase = viewExpenseTagsUseCase;
             _updateExpenseUseCase = updateExpenseUseCase;
             _viewExpenseEventsUseCase = viewExpenseEventsUseCase;
-            Task.Run(LoadSelectionList);
+
+            Task.Run(GetEntitiesAsync);
         }
 
-        private async Task LoadSelectionList()
+        public override async Task GetEntitiesAsync()
         {
             Merchants = await _viewMerchantsUseCase.ExecuteAsync();
+
             var ret = await _viewExpenseTypesUseCase.ExecuteAsync();
             ExpenseTypes = ret.ConvertAll(t => new ExpenseType
             {
@@ -80,12 +82,21 @@ namespace ShihBooks.ViewModels
             });
         }
 
-        [RelayCommand]
-        public async Task UpdateExpense()
+        public override async Task UpdateEntityAsync()
         {
             var ret = await _updateExpenseUseCase.ExecuteAsync(Expense);
             if (ret)
                 await Shell.Current.GoToAsync("..");
+        }
+
+        public override async Task AddEntityAsync()
+        {
+
+        }
+
+        public override async Task SearchEntityAsync()
+        {
+
         }
 
         [RelayCommand]

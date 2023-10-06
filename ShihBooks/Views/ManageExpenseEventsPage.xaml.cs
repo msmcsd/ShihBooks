@@ -16,6 +16,6 @@ public partial class ManageExpenseEventsPage : ContentPage
     protected async override void OnAppearing()
     {
         base.OnAppearing();
-        await _manageExpenseEventsViewModel.GetExpenseEntitiesAsync();
+        await _manageExpenseEventsViewModel.GetEntitiesAsync();
     }
 }
