@@ -8,34 +8,45 @@
     <ScrollView>
         <VerticalStackLayout
             Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
+            Padding="30,30"
+            VerticalOptions="Start">
 
-            <Image
-                Source="dotnet_bot.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
-
-            <Label
-                Text="Hello, World!"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center" />
-
-            <Label
-                Text="Welcome to .NET Multi-platform App UI"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                FontSize="18"
-                HorizontalOptions="Center" />
-
-            <Button
-                x:Name="CounterBtn"
-                Text="Click Me"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Command="{Binding ShowCurrentMonthExpensesCommand}"
-                HorizontalOptions="Center" />
+            <Frame Padding="10">
+                <VerticalStackLayout>
+                    <Label Text="Expense" FontSize="Medium"/>
+                    <Grid ColumnDefinitions="*,*"
+                          ColumnSpacing="5"
+                          RowDefinitions="100"
+                          Padding="0, 10">
+                        <Button Text="Current"
+                                Command="{Binding ShowCurrentMonthExpensesCommand}"
+                                FontSize="Medium"/>
+                        <Button Text="Add" 
+                                Command="{Binding AddExpenseCommand}"
+                                Grid.Column="1"
+                                FontSize="Medium"/>
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+            
+            <Frame Padding="10">
+                <VerticalStackLayout>
+                    <Label Text="Income" FontSize="Medium"/>
+                    <Grid ColumnDefinitions="*,*"
+                          ColumnSpacing="5"
+                          RowDefinitions="100"
+                          Padding="0, 10">
+                        <Button Text="Current"
+                                Command="{Binding ShowCurrentMonthIncomesCommand}"
+                                FontSize="Medium"/>
+                        <Button Text="Add" 
+                                Command="{Binding AddIncomeCommand}"
+                                Grid.Column="1"
+                                FontSize="Medium"/>
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+ 
         </VerticalStackLayout>
     </ScrollView>
 
