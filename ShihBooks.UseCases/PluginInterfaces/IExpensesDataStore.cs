@@ -8,6 +8,8 @@ namespace ShihBooks.UseCases.PluginInterfaces
 
         Task<List<ExpenseView>> GetExpensesAsync(int year, int month);
 
+        Task <bool>AddExpenseAsync(Expense expense);
+
         Task<bool> UpdateExpenseAsync(Expense expense);
 
         Task<bool> DeleteExpenseAsync(int expenseId);

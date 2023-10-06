@@ -46,6 +46,7 @@ public static class MauiProgram
 
         // Expense
         builder.Services.AddTransient<IViewExpenseEventsUseCase, ViewExpenseEventsUseCase>();
+        builder.Services.AddTransient<IAddExpenseUseCase, AddExpenseUseCase>();
         builder.Services.AddTransient<IUpdateExpenseUseCase, UpdateExpenseUseCase>();
         builder.Services.AddTransient<IDeleteExpenseUseCase, DeleteExpenseUseCase>();
 
@@ -79,8 +80,8 @@ public static class MauiProgram
         builder.Services.AddTransient<IUpdateMerchantUseCase, UpdateMerchantUseCase>();
         builder.Services.AddTransient<IDeleteMerchantUseCase, DeleteMerchantUseCase>();
 
-		builder.Services.AddSingleton<IExpensesDataStore, InMemoryExpensesDataStore>();
-		//builder.Services.AddSingleton<IExpensesDataStore, SqliteExpensesDataStore>();
+		//builder.Services.AddSingleton<IExpensesDataStore, InMemoryExpensesDataStore>();
+		builder.Services.AddSingleton<IExpensesDataStore, SqliteExpensesDataStore>();
 		//builder.Services.AddSingleton<IExpensesDataStore, WebApiExpensesDataStore>();
 
 		builder.Services.AddSingleton<MainPageViewModel>();

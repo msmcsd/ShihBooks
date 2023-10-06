@@ -19,14 +19,21 @@ public partial class ExpenseDetailsPage : ContentPage
     {
         base.OnAppearing();
 
+        if (_expenseDetailsViewModel.Expense == null)
+        {
+            _expenseDetailsViewModel.Expense = new() { ExpenseDate = DateTime.Today};
+            _expenseDetailsViewModel.IsNewExpense = true;
+            return;
+        }
+
         _expenseDetailsViewModel.SelectedMerchant = _expenseDetailsViewModel.Merchants.FirstOrDefault(m => m.Id == _expenseDetailsViewModel.Expense.MerchantId);
         _expenseDetailsViewModel.SelectedType = _expenseDetailsViewModel.ExpenseTypes.FirstOrDefault(m => m.Id == _expenseDetailsViewModel.Expense.ExpenseTypeId);
         if (_expenseDetailsViewModel.Expense.TagId != null)
             _expenseDetailsViewModel.SelectedTag = _expenseDetailsViewModel.ExpenseTags.FirstOrDefault(m => m.Id == _expenseDetailsViewModel.Expense.TagId);
-        
+
         if (_expenseDetailsViewModel.Expense.EventId != null)
             _expenseDetailsViewModel.SelectedEvent = _expenseDetailsViewModel.ExpenseEvents.FirstOrDefault(m => m.Id == _expenseDetailsViewModel.Expense.EventId);
-
+        
     }
 
     private void MerchantPicker_SelectedIndexChanged(object sender, EventArgs e)

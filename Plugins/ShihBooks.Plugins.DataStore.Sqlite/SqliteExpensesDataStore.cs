@@ -111,9 +111,18 @@ namespace ShihBooks.Plugins.DataStore.Sqlite
                                 TagId = e.TagId,
                                 EventId = e.EventId,
                                 Note = e.Note
-                            }).ToList();
+                            }).OrderByDescending(e => e.ExpenseDate).ToList();
             
             return expenses;
+        }
+
+        public async Task<bool> AddExpenseAsync(Expense expense)
+        {
+            if (expense == null) return false;
+
+            await _db.InsertAsync(expense);
+
+            return true;
         }
 
         public async Task<bool> UpdateExpenseAsync(Expense expense)

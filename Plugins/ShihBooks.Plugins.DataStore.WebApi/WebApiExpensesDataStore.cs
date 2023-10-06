@@ -29,6 +29,11 @@ namespace ShihBooks.Plugins.DataStore.WebApi
             throw new NotImplementedException();
         }
 
+        public Task<bool> AddExpenseAsync(Expense expense)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<bool> UpdateExpenseAsync(Expense expense)
         {
             throw new NotImplementedException();

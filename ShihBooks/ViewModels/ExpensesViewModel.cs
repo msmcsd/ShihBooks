@@ -89,7 +89,11 @@ namespace ShihBooks.ViewModels
             if (expense != null)
             {
                 var ret = await _deleteExpenseUseCase.ExecuteAsync(expense.Id);
-                if (ret) _cachedExpenses.Remove(expense);
+                if (ret)
+                {
+                    _cachedExpenses.Remove(expense);
+                    FilteredExpenses.Remove(expense);
+                }
 
                 SearchText = "";
             }
@@ -111,7 +115,13 @@ namespace ShihBooks.ViewModels
 
         public override async Task AddEntityAsync()
         {
+            await Shell.Current.GoToAsync($"{nameof(ExpenseDetailsPage)}", true,
+                new Dictionary<string, object>() 
+                {
+                    { "Expense", null }
+                });
 
+            SearchText = "";
         }
     }
 }

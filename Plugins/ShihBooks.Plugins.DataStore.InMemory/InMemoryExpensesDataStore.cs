@@ -93,10 +93,18 @@ namespace ShihBooks.Plugins.DataStore.InMemory
                             TagId = e.TagId,
                             EventId = e.EventId,
                             Note = e.Note
-                         }).ToList();
+                         }).OrderByDescending(e => e.ExpenseDate).ToList();
                        
 
             return Task.FromResult(expenses);
+        }
+
+        public Task<bool> AddExpenseAsync(Expense expense)
+        {
+            expense.Id = _expenses.Count + 1;
+            _expenses.Add(expense);
+
+            return Task.FromResult(true);
         }
 
         public async Task<List<ExpenseTag>> GetExpenseTagsAsync()
