@@ -19,6 +19,7 @@ using ShihBooks.UseCases.UseCases.Merchants;
 using ShihBooks.ViewModels;
 using ShihBooks.Views;
 using ShihBooks.Views.Controls;
+using ShihBooks.Views.Incomes;
 
 namespace ShihBooks;
 
@@ -40,12 +41,9 @@ public static class MauiProgram
 		builder.Logging.AddDebug();
 #endif
 
-		builder.Services.AddTransient<IViewExpensesByMonthUseCase, ViewExpensesByMonthUseCase>();
-		builder.Services.AddTransient<IViewExpenseTypesUseCase, ViewExpenseTypesUseCase>();
-		builder.Services.AddTransient<IViewMerchantsUseCase, ViewMerchantsUseCase>();
 
         // Expense
-        builder.Services.AddTransient<IViewExpenseEventsUseCase, ViewExpenseEventsUseCase>();
+        builder.Services.AddTransient<IViewExpensesByMonthUseCase, ViewExpensesByMonthUseCase>();
         builder.Services.AddTransient<IAddExpenseUseCase, AddExpenseUseCase>();
         builder.Services.AddTransient<IUpdateExpenseUseCase, UpdateExpenseUseCase>();
         builder.Services.AddTransient<IDeleteExpenseUseCase, DeleteExpenseUseCase>();
@@ -80,8 +78,8 @@ public static class MauiProgram
         builder.Services.AddTransient<IUpdateMerchantUseCase, UpdateMerchantUseCase>();
         builder.Services.AddTransient<IDeleteMerchantUseCase, DeleteMerchantUseCase>();
 
-		//builder.Services.AddSingleton<IExpensesDataStore, InMemoryExpensesDataStore>();
-		builder.Services.AddSingleton<IExpensesDataStore, SqliteExpensesDataStore>();
+		builder.Services.AddSingleton<IExpensesDataStore, InMemoryExpensesDataStore>();
+		//builder.Services.AddSingleton<IExpensesDataStore, SqliteExpensesDataStore>();
 		//builder.Services.AddSingleton<IExpensesDataStore, WebApiExpensesDataStore>();
 
 		builder.Services.AddSingleton<MainPageViewModel>();
@@ -102,6 +100,10 @@ public static class MauiProgram
 		builder.Services.AddTransient<ManageExpenseEventsPage>();
 		builder.Services.AddTransient<ManageIncomeSourcesPage>();
 		builder.Services.AddTransient<ManageMerchantsPage>();
+
+		builder.Services.AddTransient<IncomesPage>();
+		builder.Services.AddTransient<IncomeDetailsPage>();
+
 		builder.Services.AddTransient<ExpenseDatePicker>();
 
 		return builder.Build();
