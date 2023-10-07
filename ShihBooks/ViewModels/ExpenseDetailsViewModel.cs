@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ShihBooks.Core;
+using ShihBooks.Core.Expenses;
 using ShihBooks.UseCases.Interfaces.ExpenseEvents;
 using ShihBooks.UseCases.Interfaces.Expenses;
 using ShihBooks.UseCases.Interfaces.ExpenseTags;
@@ -98,7 +99,7 @@ namespace ShihBooks.ViewModels
                 return;
             }
 
-            var ret = await _updateExpenseUseCase.ExecuteAsync(new Core.Expense
+            var ret = await _updateExpenseUseCase.ExecuteAsync(new Expense
             {
                 Id = Expense.Id,
                 Amount = Expense.Amount,
@@ -117,7 +118,7 @@ namespace ShihBooks.ViewModels
 
         public override async Task AddEntityAsync()
         {
-            var ret = await _addExpenseUseCase.ExecuteAsync(new Core.Expense
+            var ret = await _addExpenseUseCase.ExecuteAsync(new Expense
             {
                 Amount = Expense.Amount,
                 Description = Expense.Description,

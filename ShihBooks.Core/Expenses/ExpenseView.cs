@@ -1,4 +1,6 @@
-﻿namespace ShihBooks.Core
+﻿using ShihBooks.Core.Expenses;
+
+namespace ShihBooks.Core
 {
     /// <summary>
     /// This class contains all columns from Expense plus additional columns from

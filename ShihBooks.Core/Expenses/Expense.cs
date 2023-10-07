@@ -1,7 +1,7 @@
 ﻿using SQLite;
 using System.ComponentModel.DataAnnotations;
 
-namespace ShihBooks.Core
+namespace ShihBooks.Core.Expenses
 {
     // All the code in this file is included in all platforms.
     [Table("Expenses")]

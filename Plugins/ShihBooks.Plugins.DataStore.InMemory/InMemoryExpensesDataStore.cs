@@ -1,4 +1,5 @@
 ﻿using ShihBooks.Core;
+using ShihBooks.Core.Expenses;
 using ShihBooks.UseCases.PluginInterfaces;
 using System.Xml.Linq;
 
