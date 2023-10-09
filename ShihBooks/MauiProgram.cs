@@ -7,6 +7,7 @@ using ShihBooks.UseCases.Interfaces.ExpenseEvents;
 using ShihBooks.UseCases.Interfaces.Expenses;
 using ShihBooks.UseCases.Interfaces.ExpenseTags;
 using ShihBooks.UseCases.Interfaces.ExpenseTypes;
+using ShihBooks.UseCases.Interfaces.Incomes;
 using ShihBooks.UseCases.Interfaces.IncomeSources;
 using ShihBooks.UseCases.Interfaces.Merchants;
 using ShihBooks.UseCases.PluginInterfaces;
@@ -16,6 +17,7 @@ using ShihBooks.UseCases.UseCases.ExpenseTags;
 using ShihBooks.UseCases.UseCases.ExpenseTypes;
 using ShihBooks.UseCases.UseCases.IncomeSources;
 using ShihBooks.UseCases.UseCases.Merchants;
+using ShihBooks.UseCases.UseCases.Incomes;
 using ShihBooks.ViewModels;
 using ShihBooks.Views;
 using ShihBooks.Views.Controls;
@@ -72,7 +74,11 @@ public static class MauiProgram
         builder.Services.AddTransient<IUpdateIncomeSourceUseCase, UpdateIncomeSourceUseCase>();
         builder.Services.AddTransient<IDeleteIncomeSourceUseCase, DeleteIncomeSourceUseCase>();
 
-		// Merchant
+        // Income
+        builder.Services.AddTransient<IViewIncomesByMonthUseCase, ViewIncomesByMonthUseCase>();
+        builder.Services.AddTransient<IDeleteIncomeUseCase, DeleteIncomeUseCase>();
+
+        // Merchant
         builder.Services.AddTransient<IViewMerchantsUseCase, ViewMerchantsUseCase>();
         builder.Services.AddTransient<IAddMerchantUseCase, AddMerchantUseCase>();
         builder.Services.AddTransient<IUpdateMerchantUseCase, UpdateMerchantUseCase>();
@@ -90,6 +96,8 @@ public static class MauiProgram
 		builder.Services.AddTransient<ManageExpenseEventsViewModel>();
 		builder.Services.AddTransient<ManageIncomeSourcesViewModel>();
 		builder.Services.AddTransient<ManageMerchantsViewModel>();
+
+		builder.Services.AddTransient<IncomesViewModel>();
 		//builder.Services.AddTransient<ExpenseDatePickerViewModel>();
 
 		builder.Services.AddSingleton<MainPage>();

@@ -1,5 +1,6 @@
 ﻿using ShihBooks.Core;
 using ShihBooks.Core.Expenses;
+using ShihBooks.Core.Incomes;
 using ShihBooks.UseCases.PluginInterfaces;
 using SQLite;
 
@@ -343,6 +344,20 @@ namespace ShihBooks.Plugins.DataStore.Sqlite
             });
 
             return id;
+        }
+
+        #endregion
+
+        #region Income
+
+        public Task<List<Income>> GetIncomesAsync(int year, int month)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> DeleteIncomeAsync(int id)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion

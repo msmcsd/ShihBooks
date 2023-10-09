@@ -1,5 +1,6 @@
 ﻿using ShihBooks.Core;
 using ShihBooks.Core.Expenses;
+using ShihBooks.Core.Incomes;
 using ShihBooks.UseCases.PluginInterfaces;
 using System.Xml.Linq;
 
@@ -36,6 +37,12 @@ namespace ShihBooks.Plugins.DataStore.InMemory
         {
             new IncomeSource {Id = 1, Name = "Interest"},
             new IncomeSource {Id = 2, Name = "Lottery"}
+        };
+
+        private List<Income> _incomes = new List<Income>
+        {
+            new Income {Id = 1, Description = "Band of Americas", Amount=100, IncomeDate=new DateTime(2023, DateTime.Now.Month, 4), SourceId = 1},
+            new Income {Id = 1, Description = "Won lottery", Amount=123.45, IncomeDate=new DateTime(2023, DateTime.Now.Month, 18), SourceId = 2}
         };
                 
         private List<Expense> _expenses = new List<Expense>()
@@ -343,6 +350,24 @@ namespace ShihBooks.Plugins.DataStore.InMemory
             }
 
             return id;
+        }
+
+        public async Task<List<Income>> GetIncomesAsync(int year, int month)
+        {
+            return _incomes.Where(i => i.IncomeDate.Year == year && i.IncomeDate.Month == month)
+                .OrderByDescending(i => i.IncomeDate).ToList();
+        }
+
+        public async Task<bool> DeleteIncomeAsync(int id)
+        {
+            var income = _incomes.FirstOrDefault(i => i.Id == id);
+            if (income != null)
+            {
+                _incomes.Remove(income);
+                return true;
+            }
+
+            return false;
         }
     }
 }

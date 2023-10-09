@@ -1,10 +1,8 @@
 ﻿using ShihBooks.Core;
 using ShihBooks.Core.Expenses;
+using ShihBooks.Core.Incomes;
 using ShihBooks.UseCases.PluginInterfaces;
-using System;
-using System.Text;
 using System.Text.Json;
-using System.Xml.Linq;
 
 namespace ShihBooks.Plugins.DataStore.WebApi
 {
@@ -183,6 +181,20 @@ namespace ShihBooks.Plugins.DataStore.WebApi
 
         #endregion
 
+        #region Income
+
+        public Task<List<Income>> GetIncomesAsync(int year, int month)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> DeleteIncomeAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
+
         #region Generic Methods
 
         private async Task<List<T>> GetEntitiesAsync<T>(Uri uri) where T : CoreEntity
@@ -229,5 +241,6 @@ namespace ShihBooks.Plugins.DataStore.WebApi
         }
 
         #endregion
+
     }
 }

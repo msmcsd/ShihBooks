@@ -1,5 +1,6 @@
 ﻿using ShihBooks.Core;
 using ShihBooks.Core.Expenses;
+using ShihBooks.Core.Incomes;
 
 namespace ShihBooks.UseCases.PluginInterfaces
 {
@@ -74,6 +75,14 @@ namespace ShihBooks.UseCases.PluginInterfaces
         Task<bool> UpdateIncomeSourceAsync(int id, string newSourceName);
 
         Task<List<IncomeSource>> GetIncomeSourcesAsync();
+
+        #endregion
+
+        #region Income
+
+        Task<List<Income>> GetIncomesAsync(int year, int month);
+
+        Task<bool> DeleteIncomeAsync(int id);
 
         #endregion
     }
