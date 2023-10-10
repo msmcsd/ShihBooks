@@ -2,6 +2,6 @@
 {
     public interface IDeleteIncomeUseCase
     {
-        Task<bool> ExecuteAsync(int id);
+        Task<int> ExecuteAsync(int id);
     }
 }

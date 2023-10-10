@@ -13,7 +13,7 @@ namespace ShihBooks.UseCases.UseCases.Incomes
             _expensesDataStore = expensesDataStore;
         }
 
-        public async Task<List<Income>> ExecuteAsync(int year, int month)
+        public async Task<List<IncomeDetails>> ExecuteAsync(int year, int month)
         {
             return await _expensesDataStore.GetIncomesAsync(year, month);
         }

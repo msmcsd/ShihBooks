@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:ShihBooks"
     xmlns:views="clr-namespace:ShihBooks.Views"
+    xmlns:incomeviews="clr-namespace:ShihBooks.Views.Incomes"
     Shell.FlyoutBehavior="Flyout">
 
     <Shell.FlyoutHeader>
@@ -35,6 +36,11 @@
         Title="Income Sources"
         ContentTemplate="{DataTemplate views:ManageIncomeSourcesPage}"
         Route="ManageIncomeSourcesPage" />
+
+    <ShellContent
+        Title="Income Recipients"
+        ContentTemplate="{DataTemplate incomeviews:ManageIncomeRecipientsPage}"
+        Route="ManageIncomeRecipientsPage" />
 
     <ShellContent
         Title="Merchants"

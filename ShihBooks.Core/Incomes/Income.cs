@@ -13,6 +13,10 @@ namespace ShihBooks.Core.Incomes
         [Required]
         public string Description { get; set; }
 
+        [Required]
+        public int RecipientId { get; set; }
+
+        [Required]
         public int SourceId { get; set; }
 
         [Required]
@@ -20,5 +24,8 @@ namespace ShihBooks.Core.Incomes
 
         [Required]
         public DateTime IncomeDate { get; set; }
+
+        [Required]
+        public string Note { get; set; }
     }
 }

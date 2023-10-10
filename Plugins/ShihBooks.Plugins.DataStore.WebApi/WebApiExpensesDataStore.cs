@@ -183,17 +183,52 @@ namespace ShihBooks.Plugins.DataStore.WebApi
 
         #region Income
 
-        public Task<List<Income>> GetIncomesAsync(int year, int month)
+        public Task<List<IncomeDetails>> GetIncomesAsync(int year, int month)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> DeleteIncomeAsync(int id)
+        public Task<bool> AddIncomeAsync(Income income)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> UpdateIncomeAsync(Income income)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<int> DeleteIncomeAsync(int id)
         {
             throw new NotImplementedException();
         }
 
         #endregion
+
+        #region Income Recipient
+
+
+        #endregion
+
+        public Task<List<IncomeRecipient>> GetIncomeRecipients()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> AddIncomeRecipientAsync(string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> UpdateIncomeRecipientAsync(int id, string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<int> DeleteIncomeRecipientAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
 
         #region Generic Methods
 

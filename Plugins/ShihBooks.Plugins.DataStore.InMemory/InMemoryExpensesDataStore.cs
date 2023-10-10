@@ -41,8 +41,30 @@ namespace ShihBooks.Plugins.DataStore.InMemory
 
         private List<Income> _incomes = new List<Income>
         {
-            new Income {Id = 1, Description = "Band of Americas", Amount=100, IncomeDate=new DateTime(2023, DateTime.Now.Month, 4), SourceId = 1},
-            new Income {Id = 1, Description = "Won lottery", Amount=123.45, IncomeDate=new DateTime(2023, DateTime.Now.Month, 18), SourceId = 2}
+            new Income 
+            {
+                Id = 1, 
+                Description = "Band of Americas", 
+                Amount=100, 
+                IncomeDate=new DateTime(2023, DateTime.Now.Month, 4), 
+                SourceId = 1,
+                RecipientId = 1
+            },
+            new Income
+            {
+                Id = 2, 
+                Description = "Won lottery", 
+                Amount=123.45, 
+                IncomeDate=new DateTime(2023, DateTime.Now.Month, 18), 
+                SourceId = 2,
+                RecipientId = 2
+            }
+        };
+
+        private List<IncomeRecipient> _incomeRecipients = new List<IncomeRecipient>()
+        {
+            new IncomeRecipient {Id = 1, Name = "John1"},
+            new IncomeRecipient {Id = 2, Name = "Adam2"}
         };
                 
         private List<Expense> _expenses = new List<Expense>()
@@ -352,22 +374,114 @@ namespace ShihBooks.Plugins.DataStore.InMemory
             return id;
         }
 
-        public async Task<List<Income>> GetIncomesAsync(int year, int month)
+        public async Task<List<IncomeDetails>> GetIncomesAsync(int year, int month)
         {
-            return _incomes.Where(i => i.IncomeDate.Year == year && i.IncomeDate.Month == month)
-                .OrderByDescending(i => i.IncomeDate).ToList();
+            var incomes = new List<IncomeDetails>();
+
+            if (year < 0 || year > 9999) return incomes;
+            if (month <= 0 || month > 12) return incomes;
+
+            incomes = (from i in _incomes
+                       join r in _incomeRecipients on i.RecipientId equals r.Id
+                       join s in _incomeSources on i.SourceId equals s.Id
+                       where i.IncomeDate.Year == year && i.IncomeDate.Month == month
+                       select new IncomeDetails
+                       {
+                           Id = i.Id,
+                           Description = i.Description,
+                           Amount = i.Amount,
+                           SourceId = i.SourceId,
+                           RecipientId = i.RecipientId,
+                           IncomeDate = i.IncomeDate,
+                           Recipient = r.Name,
+                           IncomeSourceImageUrl = s.ImageUrl,
+                           Note = i.Note
+                       }).OrderByDescending(d => d.IncomeDate).ToList();
+
+            return incomes;
         }
 
-        public async Task<bool> DeleteIncomeAsync(int id)
+        public async Task<bool> AddIncomeAsync(Income income)
+        {
+            if (income == null) return false;
+
+            income.Id = _incomes.Count + 1;
+            _incomes.Add(income);
+
+            return true;
+        }
+
+        public async Task<bool> UpdateIncomeAsync(Income income)
+        {
+            if (income == null) return false;
+
+            var i = _incomes.FirstOrDefault(a => a.Id == income.Id);
+            if (i != null)
+            {
+                i.Amount = income.Amount;
+                i.IncomeDate = income.IncomeDate;
+                i.SourceId = income.SourceId;
+                i.RecipientId = income.RecipientId;
+                i.Description = income.Description;
+                i.Note = income.Note;
+            }
+
+            return true;
+        }
+
+        public async Task<int> DeleteIncomeAsync(int id)
         {
             var income = _incomes.FirstOrDefault(i => i.Id == id);
             if (income != null)
             {
                 _incomes.Remove(income);
-                return true;
+                return id;
             }
 
-            return false;
+            return -1;
         }
+
+        #region Income Recipient
+
+        public async Task<List<IncomeRecipient>> GetIncomeRecipients()
+        {
+            return _incomeRecipients.OrderBy(r => r.Name).ToList();
+        }
+
+        public async Task<bool> AddIncomeRecipientAsync(string name)
+        {
+            var recipient = _incomeRecipients.FirstOrDefault(i => i.Name.ToLower() == name.ToLower());
+            if (recipient != null) return true;
+
+            _incomeRecipients.Add(new IncomeRecipient { Id = _incomeRecipients.Count + 1, Name = name });
+            return true;
+        }
+
+        public async Task<bool> UpdateIncomeRecipientAsync(int id, string name)
+        {
+            var recipient = _incomeRecipients.FirstOrDefault(i => i.Id == id);
+            if (recipient != null)
+            {
+                recipient.Name = name;
+            }
+
+            return true;
+        }
+
+        public async Task<int> DeleteIncomeRecipientAsync(int id)
+        {
+            var income = _incomes.FirstOrDefault(i => i.RecipientId == id);
+            if (income != null) return -1;
+
+            var recipient = _incomeRecipients.FirstOrDefault(i => i.Id == id);
+            if (recipient != null)
+            {
+                _incomeRecipients.Remove(recipient);
+            }
+
+            return id;
+        }
+
+        #endregion
     }
 }

@@ -12,7 +12,7 @@ namespace ShihBooks.UseCases.UseCases.Incomes
             _expensesDataStore = expensesDataStore;
         }
 
-        public async Task<bool> ExecuteAsync(int id)
+        public async Task<int> ExecuteAsync(int id)
         {
             return await _expensesDataStore.DeleteIncomeAsync(id);
         }

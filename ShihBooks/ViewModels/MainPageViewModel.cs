@@ -40,7 +40,11 @@ namespace ShihBooks.ViewModels
         {
             if (IsBusy) return;
 
-            await Shell.Current.GoToAsync($"{nameof(IncomesPage)}", true);
+            await Shell.Current.GoToAsync($"{nameof(IncomeDetailsPage)}", true,
+                new Dictionary<string, object>()
+                {
+                    { "Income", null}
+                });
         }
     }
 }

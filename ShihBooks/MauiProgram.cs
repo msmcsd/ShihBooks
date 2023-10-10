@@ -22,6 +22,8 @@ using ShihBooks.ViewModels;
 using ShihBooks.Views;
 using ShihBooks.Views.Controls;
 using ShihBooks.Views.Incomes;
+using ShihBooks.UseCases.Interfaces.IncomeRecipients;
+using ShihBooks.UseCases.UseCases.IncomeRecipients;
 
 namespace ShihBooks;
 
@@ -76,7 +78,15 @@ public static class MauiProgram
 
         // Income
         builder.Services.AddTransient<IViewIncomesByMonthUseCase, ViewIncomesByMonthUseCase>();
+        builder.Services.AddTransient<IAddIncomeUseCase, AddIncomeUseCase>();
+        builder.Services.AddTransient<IUpdateIncomeUseCase, UpdateIncomeUseCase>();
         builder.Services.AddTransient<IDeleteIncomeUseCase, DeleteIncomeUseCase>();
+
+        // Income Recipient
+        builder.Services.AddTransient<IViewIncomeRecipientsUseCase, ViewIncomeRecipientsUseCase>();
+        builder.Services.AddTransient<IAddIncomeRecipientUseCase, AddIncomeRecipientUseCase>();
+        builder.Services.AddTransient<IUpdateIncomeRecipientUseCase, UpdateIncomeRecipientUseCase>();
+        builder.Services.AddTransient<IDeleteIncomeRecipientUseCase, DeleteIncomeRecipientUseCase>();
 
         // Merchant
         builder.Services.AddTransient<IViewMerchantsUseCase, ViewMerchantsUseCase>();
@@ -88,18 +98,24 @@ public static class MauiProgram
 		//builder.Services.AddSingleton<IExpensesDataStore, SqliteExpensesDataStore>();
 		//builder.Services.AddSingleton<IExpensesDataStore, WebApiExpensesDataStore>();
 
+		// View Models
 		builder.Services.AddSingleton<MainPageViewModel>();
         builder.Services.AddTransient<ExpensesViewModel>();
 		builder.Services.AddTransient<ExpenseDetailsViewModel>();
 		builder.Services.AddTransient<ManageExpenseTagsViewModel>();
 		builder.Services.AddTransient<ManageExpenseTypesViewModel>();
 		builder.Services.AddTransient<ManageExpenseEventsViewModel>();
+
 		builder.Services.AddTransient<ManageIncomeSourcesViewModel>();
+		builder.Services.AddTransient<ManageIncomeRecipientsViewModel>();
+		builder.Services.AddTransient<IncomeDetailsViewModel>();
+
 		builder.Services.AddTransient<ManageMerchantsViewModel>();
 
 		builder.Services.AddTransient<IncomesViewModel>();
 		//builder.Services.AddTransient<ExpenseDatePickerViewModel>();
 
+		// Pages
 		builder.Services.AddSingleton<MainPage>();
         builder.Services.AddTransient<ExpensesPage>();
 		builder.Services.AddTransient<ExpenseDetailsPage>();
@@ -107,6 +123,8 @@ public static class MauiProgram
 		builder.Services.AddTransient<ManageExpenseTypesPage>();
 		builder.Services.AddTransient<ManageExpenseEventsPage>();
 		builder.Services.AddTransient<ManageIncomeSourcesPage>();
+		builder.Services.AddTransient<ManageIncomeRecipientsPage>();
+		builder.Services.AddTransient<IncomeDetailsPage>();
 		builder.Services.AddTransient<ManageMerchantsPage>();
 
 		builder.Services.AddTransient<IncomesPage>();

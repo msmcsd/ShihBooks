@@ -16,7 +16,7 @@ namespace ShihBooks.ViewModels
         private readonly IViewIncomesByMonthUseCase _viewIncomesByMonthUseCase;
         private readonly IDeleteIncomeUseCase _deleteIncomeUseCase;
 
-        private List<Income> _cachedIncomes { get; set; } = new();
+        private List<IncomeDetails> _cachedIncomes { get; set; } = new();
 
         [ObservableProperty]
         private int _year;
@@ -24,7 +24,7 @@ namespace ShihBooks.ViewModels
         [ObservableProperty]
         private int _month;
 
-        public ObservableCollection<Income> FilteredIncomes { get; set; } = new();
+        public ObservableCollection<IncomeDetails> FilteredIncomes { get; set; } = new();
 
         public IncomesViewModel(IViewIncomesByMonthUseCase viewIncomesyMonthUseCase,
                                 IDeleteIncomeUseCase deleteIncomeUseCase)
@@ -69,7 +69,7 @@ namespace ShihBooks.ViewModels
         }
 
         [RelayCommand]
-        public async Task GoToDetailsAsync(Income income)
+        public async Task GoToDetailsAsync(IncomeDetails income)
         {
             if (income is null) return;
 
@@ -82,12 +82,12 @@ namespace ShihBooks.ViewModels
         }
 
         [RelayCommand]
-        public async Task DeleteIncomeAsync(Income income)
+        public async Task DeleteIncomeAsync(IncomeDetails income)
         {
             if (income != null)
             {
                 var ret = await _deleteIncomeUseCase.ExecuteAsync(income.Id);
-                if (ret)
+                if (ret > 0)
                 {
                     _cachedIncomes.Remove(income);
                     FilteredIncomes.Remove(income);

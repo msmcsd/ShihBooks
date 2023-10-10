@@ -26,7 +26,10 @@ namespace ShihBooks.Plugins.DataStore.Sqlite
             _db.CreateTableAsync<Merchant>();
             _db.CreateTableAsync<ExpenseType>();
             _db.CreateTableAsync<ExpenseEvent>();
+
+            _db.CreateTableAsync<Income>();
             _db.CreateTableAsync<IncomeSource>();
+            _db.CreateTableAsync<IncomeRecipient>();
 
             //InsertSampleExpenses();
         }
@@ -350,14 +353,83 @@ namespace ShihBooks.Plugins.DataStore.Sqlite
 
         #region Income
 
-        public Task<List<Income>> GetIncomesAsync(int year, int month)
+        public async Task<List<IncomeDetails>> GetIncomesAsync(int year, int month)
         {
-            throw new NotImplementedException();
+            var incomes = new List<IncomeDetails>();
+
+            if (year < 0 || year > 9999) return incomes;
+            if (month <= 0 || month > 12) return incomes;
+
+            incomes = (from i in await _db.Table<Income>().ToListAsync()
+                       join r in await _db.Table<IncomeRecipient>().ToListAsync() on i.RecipientId equals r.Id
+                       join s in await _db.Table<IncomeSource>().ToListAsync() on i.SourceId equals s.Id
+                       where i.IncomeDate.Year == year && i.IncomeDate.Month == month
+                       select new IncomeDetails
+                       {
+                           Id = i.Id,
+                           Description = i.Description,
+                           Amount = i.Amount,
+                           SourceId = i.SourceId,
+                           RecipientId = i.RecipientId,
+                           IncomeDate = i.IncomeDate,
+                           Recipient = r.Name,
+                           IncomeSourceImageUrl = s.ImageUrl
+                       }).OrderByDescending(d => d.IncomeDate).ToList();
+
+            return incomes;
         }
 
-        public Task<bool> DeleteIncomeAsync(int id)
+
+        public async Task<bool> AddIncomeAsync(Income income)
         {
-            throw new NotImplementedException();
+            if (income == null) return false;
+
+            await _db.InsertAsync(income);
+
+            return true;
+        }
+
+        public async Task<bool> UpdateIncomeAsync(Income income)
+        {
+            if (income == null) return false;
+
+            await _db.UpdateAsync(income);
+
+            return true;
+        }
+
+        public async Task<int> DeleteIncomeAsync(int id)
+        {
+            await _db.DeleteAsync(new Income { Id = id });
+
+            return id;
+        }
+
+        #endregion
+
+        #region Income Recipient
+
+        public async Task<List<IncomeRecipient>> GetIncomeRecipients()
+        {
+            return await _db.Table<IncomeRecipient>().ToListAsync();
+        }
+
+        public async Task<bool> AddIncomeRecipientAsync(string name)
+        {
+            await  _db.InsertAsync(new IncomeRecipient { Name = name });
+            return true;
+        }
+
+        public async Task<bool> UpdateIncomeRecipientAsync(int id, string name)
+        {
+            await _db.UpdateAsync(new IncomeRecipient { Id = id, Name = name });
+            return true;
+        }
+
+        public async Task<int> DeleteIncomeRecipientAsync(int id)
+        {
+            await _db.DeleteAsync(new IncomeRecipient { Id = id });
+            return id;
         }
 
         #endregion

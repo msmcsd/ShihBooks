@@ -80,9 +80,26 @@ namespace ShihBooks.UseCases.PluginInterfaces
 
         #region Income
 
-        Task<List<Income>> GetIncomesAsync(int year, int month);
+        Task<List<IncomeDetails>> GetIncomesAsync(int year, int month);
 
-        Task<bool> DeleteIncomeAsync(int id);
+        Task<bool> AddIncomeAsync(Income income);
+
+        Task<bool> UpdateIncomeAsync(Income income);
+
+
+        Task<int> DeleteIncomeAsync(int id);
+
+        #endregion
+
+        #region Income Recipient
+
+        Task<List<IncomeRecipient>> GetIncomeRecipients();
+
+        Task<bool> AddIncomeRecipientAsync(string name);
+
+        Task<bool> UpdateIncomeRecipientAsync(int id, string name);
+
+        Task<int> DeleteIncomeRecipientAsync(int id);
 
         #endregion
     }
