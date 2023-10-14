@@ -41,11 +41,11 @@
                         SelectionMode="Single">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="m:ExpenseEvent">
-                    <!--<SwipeView>
+                    <SwipeView>
                         <SwipeView.RightItems>
                             <SwipeItems>
                                 <SwipeItemView CommandParameter="{Binding .}"
-                                        Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ManageExpenseTagsViewModel}}, Path=DeleteExpenseTagCommand}">
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ManageExpenseEventsViewModel}}, Path=DeleteEntityCommand}">
                                     <Frame BackgroundColor="OrangeRed"
                                            HeightRequest="50"
                                            WidthRequest="50"
@@ -65,8 +65,8 @@
                         <Frame Padding="5" BorderColor="White" BackgroundColor="Transparent" CornerRadius="0">
                             <Label Text="{Binding Name}" Padding="5" FontSize="16"/>
                         </Frame>
-                    </SwipeView>-->
-                    <Label Text="{Binding Name}" Padding="5" FontSize="16"/>
+                    </SwipeView>
+                    <!--<Label Text="{Binding Name}" Padding="5" FontSize="16"/>-->
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

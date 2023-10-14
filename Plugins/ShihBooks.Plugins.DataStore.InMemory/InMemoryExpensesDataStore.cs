@@ -246,14 +246,17 @@ namespace ShihBooks.Plugins.DataStore.InMemory
 
         public async Task<int> DeleteExpenseTypeAsync(int id)
         {
+            var e = _expenses.FirstOrDefault(e => e.ExpenseTypeId  == id);
+            if (e != null) return 0;
+
             var type = _expenseTypes.FirstOrDefault(t => t.Id == id);
             if (type != null)
             {
                 _expenseTypes.Remove(type);
-                return 0;
+                return id;
             }
 
-            return id;
+            return 0;
         }
 
         public async Task<bool> AddExpenseEventAsync(string eventName)
@@ -281,14 +284,17 @@ namespace ShihBooks.Plugins.DataStore.InMemory
 
         public async Task<int> DeleteExpenseEventAsync(int id)
         {
+            var e = _expenses.FirstOrDefault(e => e.EventId == id);
+            if (e != null) return 0;
+
             var ev = _expenseEvents.FirstOrDefault(t => t.Id == id);
             if (ev != null)
             {
                 _expenseEvents.Remove(ev);
-                return 0;
+                return id;
             }
 
-            return id;
+            return 0;
         }
 
         public async Task<bool> AddIncomeSourceAsync(string sourceName)
@@ -307,14 +313,17 @@ namespace ShihBooks.Plugins.DataStore.InMemory
 
         public async Task<int> DeleteIncomeSourceAsync(int id)
         {
+            var e = _incomes.FirstOrDefault(e => e.SourceId == id);
+            if (e != null) return 0;
+
             var source = _incomeSources.FirstOrDefault(t => t.Id == id);
             if (source != null)
             {
                 _incomeSources.Remove(source);
-                return 0;
+                return id;
             }
 
-            return id;
+            return 0;
         }
 
         public async Task<bool> UpdateIncomeSourceAsync(int id, string newSourceName)

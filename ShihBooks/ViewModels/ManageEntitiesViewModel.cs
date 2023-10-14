@@ -51,7 +51,7 @@ namespace ShihBooks.ViewModels
                 IsBusy = true;
 
                 _cachedEntities = await _viewEntitiesUseCase.ExecuteAsync();
-                if (_cachedEntities?.Count() > 0)
+                if (_cachedEntities?.Count > 0)
                 {
                     foreach (var tag in _cachedEntities)
                     {
@@ -73,8 +73,11 @@ namespace ShihBooks.ViewModels
         public async Task DeleteEntityAsync(CoreEntity expenseEntity)
         {
             var ret = await _deleteEntityUseCase.ExecuteAsync(expenseEntity.Id);
-            if (ret == 0)
+            if (ret > 0)
+            {
+                _cachedEntities?.Remove(expenseEntity);
                 FilteredEntities.Remove(expenseEntity);
+            }
         }
 
         public override async Task AddEntityAsync()
