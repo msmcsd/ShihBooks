@@ -14,13 +14,15 @@ namespace ShihBooks.Plugins.DataStore.InMemory
         private List<ExpenseTag> _expenseTags = new List<ExpenseTag>()
         {
             new ExpenseTag {Id = 1, Name = "Kids"},
-            new ExpenseTag {Id = 2, Name = "One Time"}
+            new ExpenseTag {Id = 2, Name = "One Time"},
+            new ExpenseTag {Id = 3, Name = "Not used"}
         };
 
         private List<ExpenseType> _expenseTypes = new List<ExpenseType>()
         {
             new ExpenseType { Id = 1, Name = "Grocery" },
-            new ExpenseType { Id = 2, Name = "Electronics"}
+            new ExpenseType { Id = 2, Name = "Electronics"},
+            new ExpenseType { Id = 3, Name = "Not used"}
         };
 
         private List<Merchant> _merchants => new List<Merchant>()
@@ -32,7 +34,8 @@ namespace ShihBooks.Plugins.DataStore.InMemory
         private List<ExpenseEvent> _expenseEvents = new List<ExpenseEvent>()
         {
             new ExpenseEvent {Id = 1, Name = "Travel"},
-            new ExpenseEvent {Id = 2, Name = "New semester"}
+            new ExpenseEvent {Id = 2, Name = "New semester"},
+            new ExpenseEvent {Id = 3, Name = "Not used"}
         };
 
         private List<IncomeSource> _incomeSources = new List<IncomeSource>()
@@ -79,6 +82,7 @@ namespace ShihBooks.Plugins.DataStore.InMemory
                 ExpenseDate = new DateTime(2023, 3, 4),
                 MerchantId = 1,
                 ExpenseTypeId = 1,
+                TagId = 1
             },
             new Expense()
             {
@@ -191,6 +195,9 @@ namespace ShihBooks.Plugins.DataStore.InMemory
                 return new StatusResponse(StatusCode.InvalidEntityName);
             }
 
+            var tag = _expenseTags.FirstOrDefault(e => e.Name.ToLower() == tagName.ToLower());
+            if (tag != null) return new StatusResponse(StatusCode.EntityExists);
+
             _expenseTags.Add(new ExpenseTag
             { 
                 Id = _expenseTags.Count() + 1, 
@@ -229,7 +236,7 @@ namespace ShihBooks.Plugins.DataStore.InMemory
                 return new StatusResponse(StatusCode.Success);
             }
 
-            return new StatusResponse(StatusCode.ExpenseNotFound);
+            return new StatusResponse(StatusCode.EntityInUse);
         }
 
         #endregion

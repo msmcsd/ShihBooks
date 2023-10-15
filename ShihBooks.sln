@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShihBooks.WebApi", "ShihBoo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShihBooks.Plugins.DataStore.WebApi", "Plugins\ShihBooks.Plugins.DataStore.WebApi\ShihBooks.Plugins.DataStore.WebApi.csproj", "{EF258990-6A22-4A99-AAE2-25426327AAAE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShihBooks.UnitTests", "ShihBooks.UnitTests\ShihBooks.UnitTests.csproj", "{F4CE2695-B7DC-4081-A0FB-E95DC11E1CD9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,10 @@ Global
 		{EF258990-6A22-4A99-AAE2-25426327AAAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF258990-6A22-4A99-AAE2-25426327AAAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF258990-6A22-4A99-AAE2-25426327AAAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4CE2695-B7DC-4081-A0FB-E95DC11E1CD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4CE2695-B7DC-4081-A0FB-E95DC11E1CD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4CE2695-B7DC-4081-A0FB-E95DC11E1CD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4CE2695-B7DC-4081-A0FB-E95DC11E1CD9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
