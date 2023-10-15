@@ -1,10 +1,6 @@
-﻿using ShihBooks.UseCases.Interfaces.Merchants;
+﻿using ShihBooks.Core.StatusResponses;
+using ShihBooks.UseCases.Interfaces.Merchants;
 using ShihBooks.UseCases.PluginInterfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ShihBooks.UseCases.UseCases.Merchants
 {
@@ -17,12 +13,12 @@ namespace ShihBooks.UseCases.UseCases.Merchants
             _expensesDataStore = expensesDataStore;
         }
 
-        public async Task<bool> ExecuteAsync(string merchantName)
+        public async Task<StatusResponse> ExecuteAsync(string merchantName)
         {
             return await _expensesDataStore.AddMerchantAsync(merchantName, null);
         }
 
-        public async Task<bool> ExecuteAsync(string merchantName, string imageUrl)
+        public async Task<StatusResponse> ExecuteAsync(string merchantName, string imageUrl)
         {
             return await _expensesDataStore.AddMerchantAsync(merchantName, imageUrl);
         }

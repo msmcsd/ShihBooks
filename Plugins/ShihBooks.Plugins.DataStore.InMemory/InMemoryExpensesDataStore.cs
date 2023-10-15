@@ -1,14 +1,16 @@
 ﻿using ShihBooks.Core;
 using ShihBooks.Core.Expenses;
 using ShihBooks.Core.Incomes;
+using ShihBooks.Core.StatusResponses;
 using ShihBooks.UseCases.PluginInterfaces;
-using System.Xml.Linq;
 
 namespace ShihBooks.Plugins.DataStore.InMemory
 {
     // All the code in this file is included in all platforms.
     public class InMemoryExpensesDataStore : IExpensesDataStore
     {
+        #region Sample Data
+
         private List<ExpenseTag> _expenseTags = new List<ExpenseTag>()
         {
             new ExpenseTag {Id = 1, Name = "Kids"},
@@ -100,6 +102,10 @@ namespace ShihBooks.Plugins.DataStore.InMemory
             },
         };
 
+        #endregion
+
+        #region Expense
+
         public Task<List<ExpenseView>> GetExpensesAsync(int year, int month)
         {
             var expenses = new List<ExpenseView>();
@@ -129,52 +135,15 @@ namespace ShihBooks.Plugins.DataStore.InMemory
             return Task.FromResult(expenses);
         }
 
-        public Task<bool> AddExpenseAsync(Expense expense)
+        public async Task<StatusResponse> AddExpenseAsync(Expense expense)
         {
             expense.Id = _expenses.Count + 1;
             _expenses.Add(expense);
 
-            return Task.FromResult(true);
+            return new StatusResponse(StatusCode.Success);
         }
 
-        public async Task<List<ExpenseTag>> GetExpenseTagsAsync()
-        {
-            return await Task.FromResult(_expenseTags.OrderBy(t => t.Name).ToList());
-        }
-
-        public async Task<List<ExpenseType>> GetExpenseTypesAsync()
-        {
-            return await Task.FromResult(_expenseTypes.OrderBy(t => t.Name).ToList());
-        }
-
-        public async Task<bool> AddExpenseTagAsync(string tagName)
-        {
-            if (string.IsNullOrWhiteSpace(tagName))
-            {
-                return false;
-            }
-
-            _expenseTags.Add(new ExpenseTag
-            { 
-                Id = _expenseTags.Count() + 1, 
-                Name = tagName 
-            });
-
-            return true;
-        }
-
-        public async Task<bool> UpdateExpenseTagAsync(int tagId, string tagName)
-        {
-            var tag = _expenseTags.FirstOrDefault(t => t.Id == tagId);
-            if (tag != null)
-            {
-                tag.Name = tagName;
-            }
-
-            return true;
-        }
-
-        public async Task<bool> UpdateExpenseAsync(Expense expense)
+        public async Task<StatusResponse> UpdateExpenseAsync(Expense expense)
         {
             var exp = _expenses.FirstOrDefault(e => e.Id == expense.Id);
             if (exp != null)
@@ -187,44 +156,98 @@ namespace ShihBooks.Plugins.DataStore.InMemory
                 exp.MerchantId = expense.MerchantId;
                 exp.TagId = expense.TagId;
                 exp.EventId = expense.EventId;
+
+                return new StatusResponse(StatusCode.Success);
             }
 
-            return true;
+            return new StatusResponse(StatusCode.ExpenseNotFound);
         }
 
-        public async Task<List<ExpenseEvent>> GetExpenseEventsAsync()
-        {
-            return _expenseEvents;
-        }
-
-        public Task<bool> DeleteExpenseAsync(int expenseId)
+        public async Task<StatusResponse> DeleteExpenseAsync(int expenseId)
         {
             var e = _expenses.FirstOrDefault(e => e.Id == expenseId);
-            if (e != null) _expenses.Remove(e);
+            if (e != null)
+            {
+                _expenses.Remove(e);
+                return new StatusResponse(StatusCode.Success);
+            }
 
-            return Task.FromResult(true);
+            return new StatusResponse(StatusCode.ExpenseNotFound);
         }
 
-        public Task<int> DeleteExpenseTagAsync(int tagId)
+        #endregion
+
+        #region Expense Tag
+
+        public async Task<List<ExpenseTag>> GetExpenseTagsAsync()
+        {
+            return _expenseTags.OrderBy(t => t.Name).ToList();
+        }
+
+        public async Task<StatusResponse> AddExpenseTagAsync(string tagName)
+        {
+            if (string.IsNullOrWhiteSpace(tagName))
+            {
+                return new StatusResponse(StatusCode.InvalidEntityName);
+            }
+
+            _expenseTags.Add(new ExpenseTag
+            { 
+                Id = _expenseTags.Count() + 1, 
+                Name = tagName 
+            });
+
+            return new StatusResponse(StatusCode.Success);
+        }
+
+        public async Task<StatusResponse> UpdateExpenseTagAsync(int tagId, string tagName)
+        {
+            if (string.IsNullOrWhiteSpace(tagName))
+            {
+                return new StatusResponse(StatusCode.InvalidEntityName);
+            }
+
+            var tag = _expenseTags.FirstOrDefault(t => t.Id == tagId);
+            if (tag != null)
+            {
+                tag.Name = tagName;
+                return new StatusResponse(StatusCode.Success);
+            }
+
+            return new StatusResponse(StatusCode.EntityNotFound);
+        }        
+        
+        public async Task<StatusResponse> DeleteExpenseTagAsync(int tagId)
         {
             var tag = _expenseTags.FirstOrDefault(e => e.Id == tagId);
-            if (tag == null) return Task.FromResult(-1);
+            if (tag == null) return new StatusResponse(StatusCode.EntityNotFound);
 
             var expense = _expenses.FirstOrDefault(e => e.TagId == tagId);
             if (expense == null)
             {
                 _expenseTags.Remove(tag);
-                return Task.FromResult(tagId);
+                return new StatusResponse(StatusCode.Success);
             }
 
-            // return Task.FromResult($"Expense on {expense.ExpenseDate.ToString("MM/dd/yyyy")} is using tag {tag.Name}.");
-            return Task.FromResult(0);
+            return new StatusResponse(StatusCode.ExpenseNotFound);
         }
 
-        public Task<bool> AddExpenseTypeAsync(string name)
+        #endregion
+
+        #region Expense Type
+
+        public async Task<List<ExpenseType>> GetExpenseTypesAsync()
         {
+            return await Task.FromResult(_expenseTypes.OrderBy(t => t.Name).ToList());
+        }
+
+        public async Task<StatusResponse> AddExpenseTypeAsync(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+                return new StatusResponse(StatusCode.InvalidEntityName);
+
             var type = _expenseTypes.FirstOrDefault(t => t.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase));
-            if (type != null) return Task.FromResult(false);
+            if (type != null) return new StatusResponse(StatusCode.EntityExists);
 
             _expenseTypes.Add(new ExpenseType() 
             { 
@@ -232,37 +255,54 @@ namespace ShihBooks.Plugins.DataStore.InMemory
                 Name = name 
             });
 
-            return Task.FromResult(true);
+            return new StatusResponse(StatusCode.Success);
         }
 
-        public async Task<bool> UpdateExpenseTypeAsync(int id, string newTypeName)
+        public async Task<StatusResponse> UpdateExpenseTypeAsync(int id, string name)
         {
-            var type = _expenseTypes.FirstOrDefault(t => t.Id == id);
-            if (type == null) return false;
+            if (string.IsNullOrWhiteSpace(name))
+                return new StatusResponse(StatusCode.InvalidEntityName);
 
-            type.Name = newTypeName;
-            return true;
+            var type = _expenseTypes.FirstOrDefault(t => t.Id == id);
+            if (type == null) 
+                return new StatusResponse(StatusCode.EntityNotFound);
+
+            type.Name = name;
+            return new StatusResponse(StatusCode.Success);
         }
 
-        public async Task<int> DeleteExpenseTypeAsync(int id)
+        public async Task<StatusResponse> DeleteExpenseTypeAsync(int id)
         {
             var e = _expenses.FirstOrDefault(e => e.ExpenseTypeId  == id);
-            if (e != null) return 0;
+            if (e != null) return new StatusResponse(StatusCode.EntityInUse);
 
             var type = _expenseTypes.FirstOrDefault(t => t.Id == id);
             if (type != null)
             {
                 _expenseTypes.Remove(type);
-                return id;
+                return new StatusResponse(StatusCode.Success);
             }
 
-            return 0;
+            return new StatusResponse(StatusCode.EntityNotFound);
         }
 
-        public async Task<bool> AddExpenseEventAsync(string eventName)
+        #endregion
+
+        #region Expense Event
+
+        public async Task<List<ExpenseEvent>> GetExpenseEventsAsync()
         {
+            return _expenseEvents.OrderBy(e => e.Name).ToList();
+        }
+
+        public async Task<StatusResponse> AddExpenseEventAsync(string eventName)
+        {
+            if (string.IsNullOrWhiteSpace(eventName))
+                return new StatusResponse(StatusCode.InvalidEntityName);
+
             var ev = _expenseEvents.FirstOrDefault(t => t.Name.Equals(eventName, StringComparison.InvariantCultureIgnoreCase));
-            if (ev != null) return false;
+            if (ev != null) 
+                return new StatusResponse(StatusCode.EntityExists);
 
             _expenseEvents.Add(new ExpenseEvent
             {
@@ -270,37 +310,53 @@ namespace ShihBooks.Plugins.DataStore.InMemory
                 Name = eventName
             });
 
-            return true;
+            return new StatusResponse(StatusCode.Success);
         }
 
-        public async Task<bool> UpdateExpenseEventAsync(int id, string newEventName)
+        public async Task<StatusResponse> UpdateExpenseEventAsync(int id, string newEventName)
         {
+            if (string.IsNullOrWhiteSpace(newEventName))
+                return new StatusResponse(StatusCode.InvalidEntityName);
+
             var ev = _expenseEvents.FirstOrDefault(t => t.Id == id);
-            if (ev == null) return false;
+            if (ev == null) 
+                return new StatusResponse(StatusCode.EntityNotFound);
 
             ev.Name = newEventName;
-            return true;
+            return new StatusResponse(StatusCode.Success);
         }
 
-        public async Task<int> DeleteExpenseEventAsync(int id)
+        public async Task<StatusResponse> DeleteExpenseEventAsync(int id)
         {
             var e = _expenses.FirstOrDefault(e => e.EventId == id);
-            if (e != null) return 0;
+            if (e != null) return new StatusResponse(StatusCode.EntityInUse);
 
             var ev = _expenseEvents.FirstOrDefault(t => t.Id == id);
             if (ev != null)
             {
                 _expenseEvents.Remove(ev);
-                return id;
+                return new StatusResponse(StatusCode.Success);
             }
 
-            return 0;
+            return new StatusResponse(StatusCode.EntityNotFound);
         }
 
-        public async Task<bool> AddIncomeSourceAsync(string sourceName)
+        #endregion
+
+        #region Income Source
+
+        public async Task<List<IncomeSource>> GetIncomeSourcesAsync()
         {
+            return _incomeSources.OrderBy(t => t.Name).ToList();
+        }
+
+        public async Task<StatusResponse> AddIncomeSourceAsync(string sourceName)
+        {
+            if (string.IsNullOrWhiteSpace(sourceName)) 
+                return new StatusResponse(StatusCode.InvalidEntityName);
+
             var source = _incomeSources.FirstOrDefault(t => t.Name.Equals(sourceName, StringComparison.InvariantCultureIgnoreCase));
-            if (source != null) return false;
+            if (source != null) return new StatusResponse(StatusCode.EntityExists);
 
             _incomeSources.Add(new IncomeSource
             {
@@ -308,47 +364,53 @@ namespace ShihBooks.Plugins.DataStore.InMemory
                 Name = sourceName
             });
 
-            return true;
+            return new StatusResponse(StatusCode.Success);
         }
 
-        public async Task<int> DeleteIncomeSourceAsync(int id)
+        public async Task<StatusResponse> UpdateIncomeSourceAsync(int id, string newSourceName)
+        {
+            if (string.IsNullOrEmpty(newSourceName))
+                return new StatusResponse(StatusCode.InvalidEntityName);
+
+            var source = _incomeSources.FirstOrDefault(t => t.Id == id);
+            if (source == null) return new StatusResponse(StatusCode.EntityNotFound);
+
+            source.Name = newSourceName;
+            return new StatusResponse(StatusCode.Success);
+        }        
+        
+        public async Task<StatusResponse> DeleteIncomeSourceAsync(int id)
         {
             var e = _incomes.FirstOrDefault(e => e.SourceId == id);
-            if (e != null) return 0;
+            if (e != null)
+                return new StatusResponse(StatusCode.EntityInUse);
 
             var source = _incomeSources.FirstOrDefault(t => t.Id == id);
             if (source != null)
             {
                 _incomeSources.Remove(source);
-                return id;
+                return new StatusResponse(StatusCode.Success);
             }
 
-            return 0;
+            return new StatusResponse(StatusCode.EntityNotFound);
         }
 
-        public async Task<bool> UpdateIncomeSourceAsync(int id, string newSourceName)
-        {
-            var source = _incomeSources.FirstOrDefault(t => t.Id == id);
-            if (source == null) return false;
+        #endregion
 
-            source.Name = newSourceName;
-            return true;
+        #region Merchant
+
+        public async Task<List<Merchant>> GetMerchantsAsync()
+        {
+            return _merchants.OrderBy(t => t.Name).ToList();
         }
 
-        public Task<List<IncomeSource>> GetIncomeSourcesAsync()
+        public async Task<StatusResponse> AddMerchantAsync(string merchantName, string imageUrl)
         {
-            return Task.FromResult(_incomeSources.OrderBy(t => t.Name).ToList());
-        }
+            if (string.IsNullOrEmpty(merchantName))
+                return new StatusResponse(StatusCode.InvalidEntityName);
 
-        public Task<List<Merchant>> GetMerchantsAsync()
-        {
-            return Task.FromResult(_merchants.OrderBy(t => t.Name).ToList());
-        }
-
-        public async Task<bool> AddMerchantAsync(string merchantName, string imageUrl)
-        {
             var m = _merchants.FirstOrDefault(t => t.Name.Equals(merchantName, StringComparison.InvariantCultureIgnoreCase));
-            if (m != null) return false;
+            if (m != null) return new StatusResponse(StatusCode.EntityExists);
 
             _merchants.Add(new Merchant
             {
@@ -357,31 +419,42 @@ namespace ShihBooks.Plugins.DataStore.InMemory
                 ImageUrl = imageUrl,
             });
 
-            return true;
+            return new StatusResponse(StatusCode.Success);
         }
 
-        public async Task<bool> UpdateMerchantAsync(int id, string name, string imageUrl)
+        public async Task<StatusResponse> UpdateMerchantAsync(int id, string name, string imageUrl)
         {
+            if (string.IsNullOrEmpty(name))
+                return new StatusResponse(StatusCode.InvalidEntityName);
+
             var m = _merchants.FirstOrDefault(t => t.Id == id);
-            if (m == null) return false;
+            if (m == null) return new StatusResponse(StatusCode.EntityNotFound);
 
             m.Name = name;
             m.ImageUrl = imageUrl;
 
-            return true;
+            return new StatusResponse(StatusCode.Success);
         }
 
-        public async Task<int> DeleteMerchantAsync(int id)
+        public async Task<StatusResponse> DeleteMerchantAsync(int id)
         {
+            var e = _expenses.FirstOrDefault(t => t.MerchantId == id);
+            if (e != null)
+                return new StatusResponse(StatusCode.EntityInUse);
+
             var m = _merchants.FirstOrDefault(t => t.Id == id);
             if (m != null)
             {
                 _merchants.Remove(m);
-                return 0;
+                return new StatusResponse(StatusCode.Success);
             }
 
-            return id;
+            return new StatusResponse(StatusCode.EntityNotFound);
         }
+
+        #endregion
+
+        #region Income
 
         public async Task<List<IncomeDetails>> GetIncomesAsync(int year, int month)
         {
@@ -410,19 +483,21 @@ namespace ShihBooks.Plugins.DataStore.InMemory
             return incomes;
         }
 
-        public async Task<bool> AddIncomeAsync(Income income)
+        public async Task<StatusResponse> AddIncomeAsync(Income income)
         {
-            if (income == null) return false;
+            if (income == null) 
+                return new StatusResponse(StatusCode.InvalidEntity);
 
             income.Id = _incomes.Count + 1;
             _incomes.Add(income);
 
-            return true;
+            return new StatusResponse(StatusCode.Success);
         }
 
-        public async Task<bool> UpdateIncomeAsync(Income income)
+        public async Task<StatusResponse> UpdateIncomeAsync(Income income)
         {
-            if (income == null) return false;
+            if (income == null) 
+                return new StatusResponse(StatusCode.InvalidEntity);
 
             var i = _incomes.FirstOrDefault(a => a.Id == income.Id);
             if (i != null)
@@ -433,22 +508,26 @@ namespace ShihBooks.Plugins.DataStore.InMemory
                 i.RecipientId = income.RecipientId;
                 i.Description = income.Description;
                 i.Note = income.Note;
+
+                return new StatusResponse(StatusCode.Success);
             }
 
-            return true;
+            return new StatusResponse(StatusCode.IncomeNotFound);
         }
 
-        public async Task<int> DeleteIncomeAsync(int id)
+        public async Task<StatusResponse> DeleteIncomeAsync(int id)
         {
             var income = _incomes.FirstOrDefault(i => i.Id == id);
             if (income != null)
             {
                 _incomes.Remove(income);
-                return id;
+                return new StatusResponse(StatusCode.Success);
             }
 
-            return -1;
+            return new StatusResponse(StatusCode.IncomeNotFound);
         }
+
+        #endregion
 
         #region Income Recipient
 
@@ -457,38 +536,53 @@ namespace ShihBooks.Plugins.DataStore.InMemory
             return _incomeRecipients.OrderBy(r => r.Name).ToList();
         }
 
-        public async Task<bool> AddIncomeRecipientAsync(string name)
+        public async Task<StatusResponse> AddIncomeRecipientAsync(string name)
         {
-            var recipient = _incomeRecipients.FirstOrDefault(i => i.Name.ToLower() == name.ToLower());
-            if (recipient != null) return true;
+            if (string.IsNullOrWhiteSpace(name))
+                return new StatusResponse(StatusCode.InvalidEntityName);
 
-            _incomeRecipients.Add(new IncomeRecipient { Id = _incomeRecipients.Count + 1, Name = name });
-            return true;
+            var recipient = _incomeRecipients.FirstOrDefault(i => i.Name.ToLower() == name.ToLower());
+            if (recipient != null) 
+                return new StatusResponse(StatusCode.EntityExists);
+
+            _incomeRecipients.Add(new IncomeRecipient 
+            { 
+                Id = _incomeRecipients.Count + 1, 
+                Name = name 
+            });
+
+            return new StatusResponse(StatusCode.Success);
         }
 
-        public async Task<bool> UpdateIncomeRecipientAsync(int id, string name)
+        public async Task<StatusResponse> UpdateIncomeRecipientAsync(int id, string name)
         {
+            if (string.IsNullOrWhiteSpace(name))
+                return new StatusResponse(StatusCode.InvalidEntityName);
+
             var recipient = _incomeRecipients.FirstOrDefault(i => i.Id == id);
             if (recipient != null)
             {
                 recipient.Name = name;
+                return new StatusResponse(StatusCode.Success);
             }
 
-            return true;
+            return new StatusResponse(StatusCode.EntityNotFound);
         }
 
-        public async Task<int> DeleteIncomeRecipientAsync(int id)
+        public async Task<StatusResponse> DeleteIncomeRecipientAsync(int id)
         {
             var income = _incomes.FirstOrDefault(i => i.RecipientId == id);
-            if (income != null) return -1;
+            if (income != null) 
+                return new StatusResponse(StatusCode.EntityInUse);
 
             var recipient = _incomeRecipients.FirstOrDefault(i => i.Id == id);
             if (recipient != null)
             {
                 _incomeRecipients.Remove(recipient);
+                return new StatusResponse(StatusCode.Success);
             }
 
-            return id;
+            return new StatusResponse(StatusCode.EntityNotFound);
         }
 
         #endregion

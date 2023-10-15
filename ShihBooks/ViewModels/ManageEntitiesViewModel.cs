@@ -73,7 +73,7 @@ namespace ShihBooks.ViewModels
         public async Task DeleteEntityAsync(CoreEntity expenseEntity)
         {
             var ret = await _deleteEntityUseCase.ExecuteAsync(expenseEntity.Id);
-            if (ret > 0)
+            if (ret.IsSuccess)
             {
                 _cachedEntities?.Remove(expenseEntity);
                 FilteredEntities.Remove(expenseEntity);
@@ -89,7 +89,7 @@ namespace ShihBooks.ViewModels
             }
 
             var ret = await _addEntityUseCase.ExecuteAsync(name as string);
-            if (ret)
+            if (ret.IsSuccess)
             {
                 await GetEntitiesAsync();
                 SelectedEntity = null;
@@ -114,7 +114,7 @@ namespace ShihBooks.ViewModels
                 var origSearchText = SearchText;
 
                 var ret = await _updateEntityUseCase.ExecuteAsync(SelectedEntity.Id, newEntityName);
-                if (ret)
+                if (ret.IsSuccess)
                 {
                     await GetEntitiesAsync();
                 }

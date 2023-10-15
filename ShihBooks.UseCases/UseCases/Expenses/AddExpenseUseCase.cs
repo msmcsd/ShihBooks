@@ -1,4 +1,5 @@
 ﻿using ShihBooks.Core.Expenses;
+using ShihBooks.Core.StatusResponses;
 using ShihBooks.UseCases.Interfaces.Expenses;
 using ShihBooks.UseCases.PluginInterfaces;
 
@@ -13,7 +14,7 @@ namespace ShihBooks.UseCases.UseCases.Expenses
             _expensesDataStore = expensesDataStore;
         }
 
-        public async Task<bool> ExecuteAsync(Expense expense)
+        public async Task<StatusResponse> ExecuteAsync(Expense expense)
         {
             return await _expensesDataStore.AddExpenseAsync(expense);
         }

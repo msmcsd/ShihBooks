@@ -1,7 +1,9 @@
-﻿namespace ShihBooks.UseCases.Interfaces.Incomes
+﻿using ShihBooks.Core.StatusResponses;
+
+namespace ShihBooks.UseCases.Interfaces.Incomes
 {
     public interface IDeleteIncomeUseCase
     {
-        Task<int> ExecuteAsync(int id);
+        Task<StatusResponse> ExecuteAsync(int id);
     }
 }

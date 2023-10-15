@@ -70,7 +70,7 @@ namespace ShihBooks.ViewModels
         public async Task DeleteEntityAsync(Merchant merchant)
         {
             var ret = await _deleteMerchantUseCase.ExecuteAsync(merchant.Id);
-            if (ret == 0)
+            if (ret.IsSuccess)
                 FilteredEntities.Remove(merchant);
         }
 
@@ -83,7 +83,7 @@ namespace ShihBooks.ViewModels
             }
 
             var ret = await _addMerchantUseCase.ExecuteAsync(m.Name, m.ImageUrl);
-            if (ret)
+            if (ret.IsSuccess)
             {
                 await GetEntitiesAsync();
                 SelectedMerchant = null;
@@ -111,7 +111,7 @@ namespace ShihBooks.ViewModels
                 var origSearchText = SearchText;
 
                 var ret = await _updateMerchantUseCase.ExecuteAsync(SelectedMerchant.Id, newMerchant.Name, newMerchant.ImageUrl);
-                if (ret)
+                if (ret.IsSuccess)
                 {
                     await GetEntitiesAsync();
                 }

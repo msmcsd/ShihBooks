@@ -1,5 +1,6 @@
 ﻿using ShihBooks.UseCases.Interfaces.ExpenseEvents;
 using ShihBooks.UseCases.PluginInterfaces;
+using ShihBooks.Core.StatusResponses;
 
 namespace ShihBooks.UseCases.UseCases.ExpenseEvents
 {
@@ -12,7 +13,7 @@ namespace ShihBooks.UseCases.UseCases.ExpenseEvents
             _expensesDataStore = expensesDataStore;
         }
 
-        public async Task<bool> ExecuteAsync(int id, string newEventName)
+        public async Task<StatusResponse> ExecuteAsync(int id, string newEventName)
         {
             return await _expensesDataStore.UpdateExpenseEventAsync(id, newEventName);
         }

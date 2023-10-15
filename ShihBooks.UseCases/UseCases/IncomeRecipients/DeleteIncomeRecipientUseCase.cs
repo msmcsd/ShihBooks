@@ -1,5 +1,6 @@
 ﻿using ShihBooks.UseCases.Interfaces.IncomeRecipients;
 using ShihBooks.UseCases.PluginInterfaces;
+using ShihBooks.Core.StatusResponses;
 
 namespace ShihBooks.UseCases.UseCases.IncomeRecipients
 {
@@ -12,7 +13,7 @@ namespace ShihBooks.UseCases.UseCases.IncomeRecipients
             _expensesDataStore = expensesDataStore;
         }
 
-        public async Task<int> ExecuteAsync(int id)
+        public async Task<StatusResponse> ExecuteAsync(int id)
         {
             return await _expensesDataStore.DeleteIncomeRecipientAsync(id);
         }

@@ -1,5 +1,6 @@
 ﻿using ShihBooks.UseCases.Interfaces.ExpenseTags;
 using ShihBooks.UseCases.PluginInterfaces;
+using ShihBooks.Core.StatusResponses;
 
 namespace ShihBooks.UseCases.UseCases.ExpenseTags
 {
@@ -12,7 +13,7 @@ namespace ShihBooks.UseCases.UseCases.ExpenseTags
             _expensesDataStore = expensesDataStore;
         }
 
-        public async Task<bool> ExecuteAsync(int tagId, string tagName)
+        public async Task<StatusResponse> ExecuteAsync(int tagId, string tagName)
         {
             return await _expensesDataStore.UpdateExpenseTagAsync(tagId, tagName);
         }

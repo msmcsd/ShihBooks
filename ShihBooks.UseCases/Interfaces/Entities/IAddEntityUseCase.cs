@@ -1,7 +1,9 @@
-﻿namespace ShihBooks.UseCases.Interfaces.Entities
+﻿using ShihBooks.Core.StatusResponses;
+
+namespace ShihBooks.UseCases.Interfaces.Entities
 {
     public interface IAddEntityUseCase
     {
-        Task<bool> ExecuteAsync(string entityName);
+        Task<StatusResponse> ExecuteAsync(string entityName);
     }
 }

@@ -111,7 +111,7 @@ namespace ShihBooks.ViewModels
                 MerchantId = Expense.MerchantId
             });
 
-            if (ret)
+            if (ret.IsSuccess)
                 await Shell.Current.GoToAsync("..");
         }
 
@@ -129,7 +129,7 @@ namespace ShihBooks.ViewModels
                 MerchantId = Expense.MerchantId
             });
 
-            if (ret)
+            if (ret.IsSuccess)
                 await Shell.Current.GoToAsync("..");
         }
 

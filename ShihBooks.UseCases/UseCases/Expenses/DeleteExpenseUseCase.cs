@@ -1,4 +1,5 @@
-﻿using ShihBooks.UseCases.Interfaces.Expenses;
+﻿using ShihBooks.Core.StatusResponses;
+using ShihBooks.UseCases.Interfaces.Expenses;
 using ShihBooks.UseCases.PluginInterfaces;
 
 namespace ShihBooks.UseCases.UseCases.Expenses
@@ -12,7 +13,7 @@ namespace ShihBooks.UseCases.UseCases.Expenses
             _expensesDataStore = expensesDataStore;
         }
 
-        public async Task<bool> ExecuteAsync(int expenseId)
+        public async Task<StatusResponse> ExecuteAsync(int expenseId)
         {
             return await _expensesDataStore.DeleteExpenseAsync(expenseId);
         }

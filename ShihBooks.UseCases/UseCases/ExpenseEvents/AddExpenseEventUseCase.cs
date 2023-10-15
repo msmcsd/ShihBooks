@@ -1,10 +1,6 @@
-﻿using ShihBooks.UseCases.Interfaces.ExpenseEvents;
+﻿using ShihBooks.Core.StatusResponses;
+using ShihBooks.UseCases.Interfaces.ExpenseEvents;
 using ShihBooks.UseCases.PluginInterfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ShihBooks.UseCases.UseCases.ExpenseEvents
 {
@@ -17,7 +13,7 @@ namespace ShihBooks.UseCases.UseCases.ExpenseEvents
             _expensesDataStore = expensesDataStore;
         }
 
-        public Task<bool> ExecuteAsync(string eventName)
+        public Task<StatusResponse> ExecuteAsync(string eventName)
         {
             return _expensesDataStore.AddExpenseEventAsync(eventName);
         }

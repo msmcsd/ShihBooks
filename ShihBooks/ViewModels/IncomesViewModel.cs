@@ -87,7 +87,7 @@ namespace ShihBooks.ViewModels
             if (income != null)
             {
                 var ret = await _deleteIncomeUseCase.ExecuteAsync(income.Id);
-                if (ret > 0)
+                if (ret.IsSuccess)
                 {
                     _cachedIncomes.Remove(income);
                     FilteredIncomes.Remove(income);

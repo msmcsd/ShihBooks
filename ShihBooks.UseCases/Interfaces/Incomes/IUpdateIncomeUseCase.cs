@@ -1,9 +1,10 @@
 ﻿using ShihBooks.Core.Incomes;
+using ShihBooks.Core.StatusResponses;
 
 namespace ShihBooks.UseCases.Interfaces.Incomes
 {
     public interface IUpdateIncomeUseCase
     {
-        Task<bool> ExecuteAsync(Income income);
+        Task<StatusResponse> ExecuteAsync(Income income);
     }
 }

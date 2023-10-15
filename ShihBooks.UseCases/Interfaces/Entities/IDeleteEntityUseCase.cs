@@ -1,7 +1,9 @@
-﻿namespace ShihBooks.UseCases.Interfaces.Entities
+﻿using ShihBooks.Core.StatusResponses;
+
+namespace ShihBooks.UseCases.Interfaces.Entities
 {
     public interface IDeleteEntityUseCase
     {
-        Task<int> ExecuteAsync(int id);
+        Task<StatusResponse> ExecuteAsync(int id);
     }
 }

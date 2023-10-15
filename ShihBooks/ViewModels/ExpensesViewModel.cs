@@ -89,7 +89,7 @@ namespace ShihBooks.ViewModels
             if (expense != null)
             {
                 var ret = await _deleteExpenseUseCase.ExecuteAsync(expense.Id);
-                if (ret)
+                if (ret.IsSuccess)
                 {
                     _cachedExpenses.Remove(expense);
                     FilteredExpenses.Remove(expense);

@@ -1,6 +1,7 @@
 ﻿using ShihBooks.Core;
 using ShihBooks.Core.Expenses;
 using ShihBooks.Core.Incomes;
+using ShihBooks.Core.StatusResponses;
 using ShihBooks.UseCases.PluginInterfaces;
 using SQLite;
 
@@ -121,30 +122,34 @@ namespace ShihBooks.Plugins.DataStore.Sqlite
             return expenses;
         }
 
-        public async Task<bool> AddExpenseAsync(Expense expense)
+        public async Task<StatusResponse> AddExpenseAsync(Expense expense)
         {
-            if (expense == null) return false;
+            if (expense == null) 
+                return new StatusResponse(StatusCode.InvalidEntity);
 
             await _db.InsertAsync(expense);
 
-            return true;
+            return new StatusResponse(StatusCode.Success);
         }
 
-        public async Task<bool> UpdateExpenseAsync(Expense expense)
+        public async Task<StatusResponse> UpdateExpenseAsync(Expense expense)
         {
+            if (expense == null)
+                return new StatusResponse(StatusCode.InvalidEntity);
+
             await _db.UpdateAsync(expense);
 
-            return true;
+            return new StatusResponse(StatusCode.Success);
         }
 
-        public async Task<bool> DeleteExpenseAsync(int expenseId)
+        public async Task<StatusResponse> DeleteExpenseAsync(int expenseId)
         {
             await _db.DeleteAsync(new Expense
             {
                 Id = expenseId,
             });
 
-            return true;
+            return new StatusResponse(StatusCode.Success);
         }
 
         #endregion
@@ -156,19 +161,25 @@ namespace ShihBooks.Plugins.DataStore.Sqlite
             return await _db.Table<Merchant>().OrderBy(m => m.Name).ToListAsync();
         }
 
-        public async Task<bool> AddMerchantAsync(string merchantName, string imageUrl)
+        public async Task<StatusResponse> AddMerchantAsync(string merchantName, string imageUrl)
         {
+            if (string.IsNullOrWhiteSpace(merchantName))
+                return new StatusResponse(StatusCode.InvalidEntityName);
+
             await _db.InsertAsync(new Merchant
             {
                 Name = merchantName,
                 ImageUrl = imageUrl
             });
 
-            return true;
+            return new StatusResponse(StatusCode.Success);
         }
 
-        public async Task<bool> UpdateMerchantAsync(int id, string merchantName, string imageUrl)
+        public async Task<StatusResponse> UpdateMerchantAsync(int id, string merchantName, string imageUrl)
         {
+            if (string.IsNullOrWhiteSpace(merchantName))
+                return new StatusResponse(StatusCode.InvalidEntityName);
+
             await _db.UpdateAsync(new Merchant
             {
                 Id = id,
@@ -176,17 +187,17 @@ namespace ShihBooks.Plugins.DataStore.Sqlite
                 ImageUrl = imageUrl
             });
 
-            return true;
+            return new StatusResponse(StatusCode.Success);
         }
 
-        public async Task<int> DeleteMerchantAsync(int id)
+        public async Task<StatusResponse> DeleteMerchantAsync(int id)
         {
             await _db.DeleteAsync(new Merchant
             {
                 Id = id,
             });
 
-            return id;
+            return new StatusResponse(StatusCode.Success);
         }
 
         #endregion
@@ -198,35 +209,41 @@ namespace ShihBooks.Plugins.DataStore.Sqlite
             return await _db.Table<ExpenseTag>().OrderBy(t => t.Name).ToListAsync();
         }
 
-        public async Task<bool> AddExpenseTagAsync(string tagName)
+        public async Task<StatusResponse> AddExpenseTagAsync(string tagName)
         {
+            if (string.IsNullOrWhiteSpace(tagName))
+                return new StatusResponse(StatusCode.InvalidEntityName);
+
             await _db.InsertAsync(new ExpenseTag
             {
                 Name = tagName,
             });
 
-            return true;
+            return new StatusResponse(StatusCode.Success);
         }
 
-        public async Task<bool> UpdateExpenseTagAsync(int tagId, string tagName)
+        public async Task<StatusResponse> UpdateExpenseTagAsync(int tagId, string tagName)
         {
+            if (string.IsNullOrWhiteSpace(tagName))
+                return new StatusResponse(StatusCode.InvalidEntityName);
+
             await _db.UpdateAsync(new ExpenseTag
             {
                 Id = tagId,
                 Name = tagName,
             });
 
-            return true;
+            return new StatusResponse(StatusCode.Success);
         }
 
-        public async Task<int> DeleteExpenseTagAsync(int tagId)
+        public async Task<StatusResponse> DeleteExpenseTagAsync(int tagId)
         {
             await _db.DeleteAsync(new ExpenseTag
             {
                 Id = tagId,
             });
 
-            return tagId;
+            return new StatusResponse(StatusCode.Success);
         }
 
         #endregion
@@ -238,35 +255,41 @@ namespace ShihBooks.Plugins.DataStore.Sqlite
             return await _db.Table<ExpenseType>().OrderBy(t => t.Name).ToListAsync();
         }
 
-        public async Task<bool> AddExpenseTypeAsync(string name)
+        public async Task<StatusResponse> AddExpenseTypeAsync(string name)
         {
+            if (string.IsNullOrWhiteSpace(name))
+                return new StatusResponse(StatusCode.InvalidEntityName);
+
             await _db.InsertAsync(new ExpenseType
             {
                 Name = name,
             });
 
-            return true;
+            return new StatusResponse(StatusCode.Success);
         }
 
-        public async Task<bool> UpdateExpenseTypeAsync(int id, string name)
+        public async Task<StatusResponse> UpdateExpenseTypeAsync(int id, string name)
         {
+            if (string.IsNullOrWhiteSpace(name))
+                return new StatusResponse(StatusCode.InvalidEntityName);
+
             await _db.UpdateAsync(new ExpenseType
             {
                 Id = id,
                 Name = name,
             });
 
-            return true;
+            return new StatusResponse(StatusCode.Success);
         }
 
-        public async Task<int> DeleteExpenseTypeAsync(int id)
+        public async Task<StatusResponse> DeleteExpenseTypeAsync(int id)
         {
             await _db.DeleteAsync(new ExpenseType
             {
                 Id = id,
             });
 
-            return id;
+            return new StatusResponse(StatusCode.Success);
         }
 
         #endregion
@@ -278,35 +301,41 @@ namespace ShihBooks.Plugins.DataStore.Sqlite
             return await _db.Table<ExpenseEvent>().OrderBy(e => e.Name).ToListAsync();
         }
 
-        public async Task<bool> AddExpenseEventAsync(string eventName)
+        public async Task<StatusResponse> AddExpenseEventAsync(string eventName)
         {
+            if (string.IsNullOrWhiteSpace(eventName))
+                return new StatusResponse(StatusCode.InvalidEntityName);
+
             await _db.InsertAsync(new ExpenseEvent
             {
                 Name = eventName,
             });
 
-            return true;
+            return new StatusResponse(StatusCode.Success);
         }
 
-        public async Task<bool> UpdateExpenseEventAsync(int id, string newEventName)
+        public async Task<StatusResponse> UpdateExpenseEventAsync(int id, string newEventName)
         {
+            if (string.IsNullOrWhiteSpace(newEventName))
+                return new StatusResponse(StatusCode.InvalidEntityName);
+
             await _db.UpdateAsync(new ExpenseEvent
             {
                 Id = id,
                 Name = newEventName,
             });
 
-            return true;
+            return new StatusResponse(StatusCode.Success);
         }
 
-        public async Task<int> DeleteExpenseEventAsync(int id)
+        public async Task<StatusResponse> DeleteExpenseEventAsync(int id)
         {
             await _db.DeleteAsync(new ExpenseEvent
             {
                 Id = id,
             });
 
-            return id;
+            return new StatusResponse(StatusCode.Success);
         }
 
         #endregion
@@ -318,35 +347,41 @@ namespace ShihBooks.Plugins.DataStore.Sqlite
             return await _db.Table<IncomeSource>().OrderBy(i => i.Name).ToListAsync();
         }
 
-        public async Task<bool> AddIncomeSourceAsync(string sourceName)
+        public async Task<StatusResponse> AddIncomeSourceAsync(string sourceName)
         {
+            if (string.IsNullOrWhiteSpace(sourceName))
+                return new StatusResponse(StatusCode.InvalidEntityName);
+
             await _db.InsertAsync(new IncomeSource
             {
                 Name = sourceName,
             });
 
-            return true;
+            return new StatusResponse(StatusCode.Success);
         }
 
-        public async Task<bool> UpdateIncomeSourceAsync(int id, string newSourceName)
+        public async Task<StatusResponse> UpdateIncomeSourceAsync(int id, string newSourceName)
         {
+            if (string.IsNullOrWhiteSpace(newSourceName))
+                return new StatusResponse(StatusCode.InvalidEntityName);
+
             await _db.UpdateAsync(new IncomeSource
             {
                 Id = id,
                 Name = newSourceName,
             });
 
-            return true;
+            return new StatusResponse(StatusCode.Success);
         }
  
-        public async Task<int> DeleteIncomeSourceAsync(int id)
+        public async Task<StatusResponse> DeleteIncomeSourceAsync(int id)
         {
             await _db.DeleteAsync(new IncomeSource
             {
                 Id = id,
             });
 
-            return id;
+            return new StatusResponse(StatusCode.Success);
         }
 
         #endregion
@@ -380,29 +415,31 @@ namespace ShihBooks.Plugins.DataStore.Sqlite
         }
 
 
-        public async Task<bool> AddIncomeAsync(Income income)
+        public async Task<StatusResponse> AddIncomeAsync(Income income)
         {
-            if (income == null) return false;
+            if (income == null)
+                return new StatusResponse(StatusCode.InvalidEntity);
 
             await _db.InsertAsync(income);
 
-            return true;
+            return new StatusResponse(StatusCode.Success);
         }
 
-        public async Task<bool> UpdateIncomeAsync(Income income)
+        public async Task<StatusResponse> UpdateIncomeAsync(Income income)
         {
-            if (income == null) return false;
+            if (income == null)
+                return new StatusResponse(StatusCode.InvalidEntity);
 
             await _db.UpdateAsync(income);
 
-            return true;
+            return new StatusResponse(StatusCode.Success);
         }
 
-        public async Task<int> DeleteIncomeAsync(int id)
+        public async Task<StatusResponse> DeleteIncomeAsync(int id)
         {
             await _db.DeleteAsync(new Income { Id = id });
 
-            return id;
+            return new StatusResponse(StatusCode.Success);
         }
 
         #endregion
@@ -414,22 +451,31 @@ namespace ShihBooks.Plugins.DataStore.Sqlite
             return await _db.Table<IncomeRecipient>().ToListAsync();
         }
 
-        public async Task<bool> AddIncomeRecipientAsync(string name)
+        public async Task<StatusResponse> AddIncomeRecipientAsync(string name)
         {
-            await  _db.InsertAsync(new IncomeRecipient { Name = name });
-            return true;
+            if (string.IsNullOrWhiteSpace(name))
+                return new StatusResponse(StatusCode.InvalidEntityName);
+
+            await _db.InsertAsync(new IncomeRecipient { Name = name });
+
+            return new StatusResponse(StatusCode.Success);
         }
 
-        public async Task<bool> UpdateIncomeRecipientAsync(int id, string name)
+        public async Task<StatusResponse> UpdateIncomeRecipientAsync(int id, string name)
         {
+            if (string.IsNullOrWhiteSpace(name))
+                return new StatusResponse(StatusCode.InvalidEntityName);
+
             await _db.UpdateAsync(new IncomeRecipient { Id = id, Name = name });
-            return true;
+
+            return new StatusResponse(StatusCode.Success);
         }
 
-        public async Task<int> DeleteIncomeRecipientAsync(int id)
+        public async Task<StatusResponse> DeleteIncomeRecipientAsync(int id)
         {
             await _db.DeleteAsync(new IncomeRecipient { Id = id });
-            return id;
+
+            return new StatusResponse(StatusCode.Success);
         }
 
         #endregion

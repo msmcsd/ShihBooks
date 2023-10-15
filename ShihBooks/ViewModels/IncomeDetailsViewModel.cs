@@ -75,7 +75,7 @@ namespace ShihBooks.ViewModels
                 Note = Income.Note,
             });
 
-            if (ret)
+            if (ret.IsSuccess)
                 await Shell.Current.GoToAsync("..");
         }
 
@@ -89,7 +89,7 @@ namespace ShihBooks.ViewModels
           
             var ret = await _updateIncomeUseCase.ExecuteAsync(Income);
 
-            if (ret)
+            if (ret.IsSuccess)
                 await Shell.Current.GoToAsync("..");
         }
     }

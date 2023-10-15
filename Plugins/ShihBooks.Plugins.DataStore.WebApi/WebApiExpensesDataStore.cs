@@ -1,6 +1,7 @@
 ﻿using ShihBooks.Core;
 using ShihBooks.Core.Expenses;
 using ShihBooks.Core.Incomes;
+using ShihBooks.Core.StatusResponses;
 using ShihBooks.UseCases.PluginInterfaces;
 using System.Text.Json;
 
@@ -28,17 +29,17 @@ namespace ShihBooks.Plugins.DataStore.WebApi
             throw new NotImplementedException();
         }
 
-        public Task<bool> AddExpenseAsync(Expense expense)
+        public Task<StatusResponse> AddExpenseAsync(Expense expense)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> UpdateExpenseAsync(Expense expense)
+        public Task<StatusResponse> UpdateExpenseAsync(Expense expense)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> DeleteExpenseAsync(int expenseId)
+        public Task<StatusResponse> DeleteExpenseAsync(int expenseId)
         {
             throw new NotImplementedException();
         }
@@ -68,19 +69,19 @@ namespace ShihBooks.Plugins.DataStore.WebApi
             return new List<Merchant>();
         }
 
-        public async Task<bool> AddMerchantAsync(string merchantName, string imageUrl)
+        public async Task<StatusResponse> AddMerchantAsync(string merchantName, string imageUrl)
         {
             return await AddEntityAsync(new($"{Constants.WebApiMerchantUrl}?name={merchantName}&imageUrl={imageUrl}"));
         }
 
-        public async Task<bool> UpdateMerchantAsync(int id, string name, string imageUrl)
+        public async Task<StatusResponse> UpdateMerchantAsync(int id, string name, string imageUrl)
         {
             return await UpdateEntityAsync(new($"{Constants.WebApiMerchantUrl}?id={id}&name={name}&imageUrl={imageUrl}"));
         }
 
-        public async Task<int> DeleteMerchantAsync(int id)
+        public async Task<StatusResponse> DeleteMerchantAsync(int id)
         {
-            return await DeleteEntitysync(new($"{Constants.WebApiMerchantUrl}?id={id}"), id);
+            return await DeleteEntityAsync(new($"{Constants.WebApiMerchantUrl}?id={id}"));
         }
 
         #endregion
@@ -92,19 +93,19 @@ namespace ShihBooks.Plugins.DataStore.WebApi
             return await GetEntitiesAsync<ExpenseTag>(new($"{Constants.WebApiExpenseTagUrl}"));
         }
 
-        public async Task<bool> AddExpenseTagAsync(string name)
+        public async Task<StatusResponse> AddExpenseTagAsync(string name)
         {
             return await AddEntityAsync(new($"{Constants.WebApiExpenseTagUrl}?name={name}"));
         }
 
-        public async Task<bool> UpdateExpenseTagAsync(int id, string name)
+        public async Task<StatusResponse> UpdateExpenseTagAsync(int id, string name)
         {
             return await UpdateEntityAsync(new($"{Constants.WebApiExpenseTagUrl}?id={id}&name={name}"));
         }
 
-        public async Task<int> DeleteExpenseTagAsync(int tagId)
+        public async Task<StatusResponse> DeleteExpenseTagAsync(int tagId)
         {
-            return await DeleteEntitysync(new($"{Constants.WebApiExpenseTagUrl}?id={tagId}"), tagId);
+            return await DeleteEntityAsync(new($"{Constants.WebApiExpenseTagUrl}?id={tagId}"));
         }
 
         #endregion
@@ -116,19 +117,19 @@ namespace ShihBooks.Plugins.DataStore.WebApi
             return await GetEntitiesAsync<ExpenseType>(new($"{Constants.WebApiExpenseTypeUrl}"));
         }
 
-        public async Task<bool> AddExpenseTypeAsync(string name)
+        public async Task<StatusResponse> AddExpenseTypeAsync(string name)
         {
             return await AddEntityAsync(new($"{Constants.WebApiExpenseTypeUrl}?name={name}"));
         }
 
-        public async Task<bool> UpdateExpenseTypeAsync(int id, string name)
+        public async Task<StatusResponse> UpdateExpenseTypeAsync(int id, string name)
         {
             return await UpdateEntityAsync(new($"{Constants.WebApiExpenseTypeUrl}?id={id}&name={name}"));
         }
 
-        public async Task<int> DeleteExpenseTypeAsync(int id)
+        public async Task<StatusResponse> DeleteExpenseTypeAsync(int id)
         {
-            return await DeleteEntitysync(new($"{Constants.WebApiExpenseTypeUrl}?id={id}"), id);
+            return await DeleteEntityAsync(new($"{Constants.WebApiExpenseTypeUrl}?id={id}"));
         }
 
         #endregion
@@ -140,19 +141,19 @@ namespace ShihBooks.Plugins.DataStore.WebApi
             return await GetEntitiesAsync<ExpenseEvent>(new($"{Constants.WebApiExpenseEventUrl}"));
         }
 
-        public async Task<bool> AddExpenseEventAsync(string name)
+        public async Task<StatusResponse> AddExpenseEventAsync(string name)
         {
             return await AddEntityAsync(new($"{Constants.WebApiExpenseEventUrl}?name={name}"));
         }
 
-        public async Task<bool> UpdateExpenseEventAsync(int id, string name)
+        public async Task<StatusResponse> UpdateExpenseEventAsync(int id, string name)
         {
             return await UpdateEntityAsync(new($"{Constants.WebApiExpenseEventUrl}?id={id}&name={name}"));
         }
 
-        public async Task<int> DeleteExpenseEventAsync(int id)
+        public async Task<StatusResponse> DeleteExpenseEventAsync(int id)
         {
-            return await DeleteEntitysync(new($"{Constants.WebApiExpenseEventUrl}?id={id}"), id);
+            return await DeleteEntityAsync(new($"{Constants.WebApiExpenseEventUrl}?id={id}"));
         }
 
         #endregion
@@ -164,19 +165,19 @@ namespace ShihBooks.Plugins.DataStore.WebApi
             return await GetEntitiesAsync<IncomeSource>(new($"{Constants.WebApiIncomeSourceUrl}"));
         }
 
-        public async Task<bool> AddIncomeSourceAsync(string name)
+        public async Task<StatusResponse> AddIncomeSourceAsync(string name)
         {
             return await AddEntityAsync(new($"{Constants.WebApiIncomeSourceUrl}?name={name}"));
         }
 
-        public async Task<bool> UpdateIncomeSourceAsync(int id, string name)
+        public async Task<StatusResponse> UpdateIncomeSourceAsync(int id, string name)
         {
             return await UpdateEntityAsync(new($"{Constants.WebApiIncomeSourceUrl}?id={id}&name={name}"));
         }
 
-        public async Task<int> DeleteIncomeSourceAsync(int id)
+        public async Task<StatusResponse> DeleteIncomeSourceAsync(int id)
         {
-            return await DeleteEntitysync(new($"{Constants.WebApiIncomeSourceUrl}?id={id}"), id);
+            return await DeleteEntityAsync(new($"{Constants.WebApiIncomeSourceUrl}?id={id}"));
         }
 
         #endregion
@@ -188,17 +189,17 @@ namespace ShihBooks.Plugins.DataStore.WebApi
             throw new NotImplementedException();
         }
 
-        public Task<bool> AddIncomeAsync(Income income)
+        public Task<StatusResponse> AddIncomeAsync(Income income)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> UpdateIncomeAsync(Income income)
+        public Task<StatusResponse> UpdateIncomeAsync(Income income)
         {
             throw new NotImplementedException();
         }
 
-        public Task<int> DeleteIncomeAsync(int id)
+        public Task<StatusResponse> DeleteIncomeAsync(int id)
         {
             throw new NotImplementedException();
         }
@@ -207,28 +208,27 @@ namespace ShihBooks.Plugins.DataStore.WebApi
 
         #region Income Recipient
 
-
-        #endregion
-
         public Task<List<IncomeRecipient>> GetIncomeRecipients()
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> AddIncomeRecipientAsync(string name)
+        public Task<StatusResponse> AddIncomeRecipientAsync(string name)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> UpdateIncomeRecipientAsync(int id, string name)
+        public Task<StatusResponse> UpdateIncomeRecipientAsync(int id, string name)
         {
             throw new NotImplementedException();
         }
 
-        public Task<int> DeleteIncomeRecipientAsync(int id)
+        public Task<StatusResponse> DeleteIncomeRecipientAsync(int id)
         {
             throw new NotImplementedException();
         }
+
+        #endregion
 
         #region Generic Methods
 
@@ -252,27 +252,31 @@ namespace ShihBooks.Plugins.DataStore.WebApi
             return new List<T>();
         }
 
-        private async Task<bool> AddEntityAsync(Uri uri)
+        private async Task<StatusResponse> AddEntityAsync(Uri uri)
         {
             var response = await _client.PostAsync(uri, null);
-            return response.IsSuccessStatusCode;
+
+            return response.IsSuccessStatusCode ? 
+                new StatusResponse(StatusCode.Success) : 
+                new StatusResponse(StatusCode.Error, response.StatusCode.ToString());
         }
 
-        private async Task<bool> UpdateEntityAsync(Uri uri)
+        private async Task<StatusResponse> UpdateEntityAsync(Uri uri)
         {
             var response = await _client.PutAsync(uri, null);
-            return response.IsSuccessStatusCode;
+
+            return response.IsSuccessStatusCode ?
+                new StatusResponse(StatusCode.Success) :
+                new StatusResponse(StatusCode.Error, response.StatusCode.ToString());
         }
 
-        private async Task<int> DeleteEntitysync(Uri uri, int id)
+        private async Task<StatusResponse> DeleteEntityAsync(Uri uri)
         {
             var response = await _client.DeleteAsync(uri);
-            if (response.IsSuccessStatusCode)
-            {
-                return id;
-            }
 
-            return -1;
+            return response.IsSuccessStatusCode ?
+                new StatusResponse(StatusCode.Success) :
+                new StatusResponse(StatusCode.Error, response.StatusCode.ToString());
         }
 
         #endregion

@@ -1,7 +1,9 @@
-﻿namespace ShihBooks.UseCases.Interfaces.Expenses
+﻿using ShihBooks.Core.StatusResponses;
+
+namespace ShihBooks.UseCases.Interfaces.Expenses
 {
     public interface IDeleteExpenseUseCase
     {
-        Task<bool> ExecuteAsync(int expenseId);
+        Task<StatusResponse> ExecuteAsync(int expenseId);
     }
 }
