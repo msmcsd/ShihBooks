@@ -71,7 +71,8 @@ namespace ShihBooks.Plugins.DataStore.InMemory
         private List<IncomeRecipient> _incomeRecipients = new List<IncomeRecipient>()
         {
             new IncomeRecipient {Id = 1, Name = "John1"},
-            new IncomeRecipient {Id = 2, Name = "Adam2"}
+            new IncomeRecipient {Id = 2, Name = "Adam2"},
+            new IncomeRecipient {Id = 3, Name = "Not used"}
         };
                 
         private List<Expense> _expenses = new List<Expense>()
@@ -143,6 +144,9 @@ namespace ShihBooks.Plugins.DataStore.InMemory
 
         public async Task<StatusResponse> AddExpenseAsync(Expense expense)
         {
+            if (expense == null)
+                return new StatusResponse(StatusCode.InvalidEntity);
+
             expense.Id = _expenses.Count + 1;
             _expenses.Add(expense);
 
