@@ -71,11 +71,11 @@ namespace ShihBooks.UseCases.PluginInterfaces
 
         Task<List<IncomeSource>> GetIncomeSourcesAsync();
 
-        Task<StatusResponse> AddIncomeSourceAsync(string sourceName);
+        Task<StatusResponse> AddIncomeSourceAsync(string sourceName, string imageUrl);
 
         Task<StatusResponse> DeleteIncomeSourceAsync(int id);
 
-        Task<StatusResponse> UpdateIncomeSourceAsync(int id, string newSourceName);
+        Task<StatusResponse> UpdateIncomeSourceAsync(int id, string newSourceName, string imageUrl);
 
         #endregion
 

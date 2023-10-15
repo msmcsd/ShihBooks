@@ -1,8 +1,9 @@
-﻿using ShihBooks.UseCases.Interfaces.Entities;
+﻿using ShihBooks.Core.StatusResponses;
 
 namespace ShihBooks.UseCases.Interfaces.IncomeSources
 {
-    public interface IUpdateIncomeSourceUseCase : IUpdateEntityUseCase
+    public interface IUpdateIncomeSourceUseCase
     {
+        Task<StatusResponse> ExecuteAsync(int id, string name, string imageurl);
     }
 }

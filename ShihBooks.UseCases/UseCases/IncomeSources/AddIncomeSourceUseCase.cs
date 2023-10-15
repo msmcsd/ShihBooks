@@ -12,9 +12,15 @@ namespace ShihBooks.UseCases.UseCases.IncomeSources
         {
             _expensesDataStore = expensesDataStore;
         }
+
         public async Task<StatusResponse> ExecuteAsync(string sourceName)
         {
-            return await _expensesDataStore.AddIncomeSourceAsync(sourceName);
+            return await _expensesDataStore.AddIncomeSourceAsync(sourceName, null);
+        }
+
+        public async Task<StatusResponse> ExecuteAsync(string sourceName, string imageUrl)
+        {
+            return await _expensesDataStore.AddIncomeSourceAsync(sourceName, imageUrl);
         }
     }
 }

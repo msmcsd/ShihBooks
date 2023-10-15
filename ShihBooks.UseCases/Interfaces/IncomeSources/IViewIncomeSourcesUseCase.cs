@@ -1,8 +1,9 @@
-﻿using ShihBooks.UseCases.Interfaces.Entities;
+﻿using ShihBooks.Core;
 
 namespace ShihBooks.UseCases.Interfaces.IncomeSources
 {
-    public interface IViewIncomeSourcesUseCase : IViewEntitiesUseCase
+    public interface IViewIncomeSourcesUseCase 
     {
+        Task<List<IncomeSource>> ExecuteAsync();
     }
 }

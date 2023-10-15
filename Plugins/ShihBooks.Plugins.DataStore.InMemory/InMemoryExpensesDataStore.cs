@@ -42,7 +42,8 @@ namespace ShihBooks.Plugins.DataStore.InMemory
         private List<IncomeSource> _incomeSources = new List<IncomeSource>()
         {
             new IncomeSource {Id = 1, Name = "Interest"},
-            new IncomeSource {Id = 2, Name = "Lottery"}
+            new IncomeSource {Id = 2, Name = "Lottery"},
+            new IncomeSource {Id = 3, Name = "Not used"}
         };
 
         private List<Income> _incomes = new List<Income>
@@ -358,7 +359,7 @@ namespace ShihBooks.Plugins.DataStore.InMemory
             return _incomeSources.OrderBy(t => t.Name).ToList();
         }
 
-        public async Task<StatusResponse> AddIncomeSourceAsync(string sourceName)
+        public async Task<StatusResponse> AddIncomeSourceAsync(string sourceName, string imageUrl)
         {
             if (string.IsNullOrWhiteSpace(sourceName)) 
                 return new StatusResponse(StatusCode.InvalidEntityName);
@@ -369,13 +370,14 @@ namespace ShihBooks.Plugins.DataStore.InMemory
             _incomeSources.Add(new IncomeSource
             {
                 Id = _expenseTypes.Count() + 1,
-                Name = sourceName
+                Name = sourceName,
+                ImageUrl = imageUrl
             });
 
             return new StatusResponse(StatusCode.Success);
         }
 
-        public async Task<StatusResponse> UpdateIncomeSourceAsync(int id, string newSourceName)
+        public async Task<StatusResponse> UpdateIncomeSourceAsync(int id, string newSourceName, string imageUrl)
         {
             if (string.IsNullOrEmpty(newSourceName))
                 return new StatusResponse(StatusCode.InvalidEntityName);
@@ -384,6 +386,8 @@ namespace ShihBooks.Plugins.DataStore.InMemory
             if (source == null) return new StatusResponse(StatusCode.EntityNotFound);
 
             source.Name = newSourceName;
+            source.ImageUrl = imageUrl;
+
             return new StatusResponse(StatusCode.Success);
         }        
         

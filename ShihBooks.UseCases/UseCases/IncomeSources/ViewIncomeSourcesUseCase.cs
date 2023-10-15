@@ -13,14 +13,9 @@ namespace ShihBooks.UseCases.UseCases.IncomeSources
             _expensesDataStore = expensesDataStore;
         }
 
-        public async Task<List<CoreEntity>> ExecuteAsync()
+        public async Task<List<IncomeSource>> ExecuteAsync()
         {
-            var ret = await _expensesDataStore.GetIncomeSourcesAsync();
-            return ret.ConvertAll(i => new CoreEntity
-            {
-                Id = i.Id,
-                Name = i.Name
-            });
+            return await _expensesDataStore.GetIncomeSourcesAsync();
         }
     }
 }
