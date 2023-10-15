@@ -7,7 +7,7 @@ namespace ShihBooks.UnitTests.UseCases
     [TestFixture]
     public class ExpenseTagTests
     {
-        public InMemoryExpensesDataStore _dataStore { get; set; }
+        private InMemoryExpensesDataStore _dataStore { get; set; }
 
         [SetUp]
         public void Setup()
