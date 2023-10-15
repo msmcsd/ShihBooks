@@ -373,7 +373,7 @@ namespace ShihBooks.Plugins.DataStore.InMemory
 
             _incomeSources.Add(new IncomeSource
             {
-                Id = _expenseTypes.Count() + 1,
+                Id = _expenseTypes.Count + 1,
                 Name = sourceName,
                 ImageUrl = imageUrl
             });
@@ -432,7 +432,7 @@ namespace ShihBooks.Plugins.DataStore.InMemory
             {
                 Id = _merchants.Count + 1,
                 Name = merchantName,
-                ImageUrl = imageUrl,
+                ImageUrl = imageUrl
             });
 
             return new StatusResponse(StatusCode.Success);

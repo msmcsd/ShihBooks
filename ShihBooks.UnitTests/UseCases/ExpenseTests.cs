@@ -51,8 +51,10 @@ namespace ShihBooks.UnitTests.UseCases
                 MerchantId = 1
             };
             var response = await useCase.ExecuteAsync(newExpense);
-
             Assert.That(response.IsSuccess, Is.EqualTo(true));
+
+            var expenses = await new ViewExpensesByMonthUseCase(_dataStore).ExecuteAsync(DateTime.Now.Year, DateTime.Now.Month);
+            Assert.That(expenses.Count, Is.EqualTo(3));
         }
 
         [Test]
