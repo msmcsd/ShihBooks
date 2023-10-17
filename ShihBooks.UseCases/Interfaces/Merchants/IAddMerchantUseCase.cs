@@ -1,9 +1,9 @@
 ﻿using ShihBooks.Core.StatusResponses;
+using ShihBooks.UseCases.Interfaces.EntityWithUrls;
 
 namespace ShihBooks.UseCases.Interfaces.Merchants
 {
-    public interface IAddMerchantUseCase
+    public interface IAddMerchantUseCase : IAddEntityWithUrlUseCase
     {
-        Task<StatusResponse> ExecuteAsync(string name, string imageUrl);
     }
 }

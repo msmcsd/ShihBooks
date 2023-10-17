@@ -1,9 +1,10 @@
 ﻿using ShihBooks.Core.StatusResponses;
+using ShihBooks.UseCases.Interfaces.Entities;
+using ShihBooks.UseCases.Interfaces.EntityWithUrls;
 
 namespace ShihBooks.UseCases.Interfaces.Merchants
 {
-    public interface IUpdateMerchantUseCase 
+    public interface IUpdateMerchantUseCase : IUpdateEntityWithUrlUseCase
     {
-        Task<StatusResponse> ExecuteAsync(int id, string merchantName, string imageUrl);
     }
 }

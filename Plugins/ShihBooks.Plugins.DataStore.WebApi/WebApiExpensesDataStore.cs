@@ -165,12 +165,12 @@ namespace ShihBooks.Plugins.DataStore.WebApi
             return await GetEntitiesAsync<IncomeSource>(new($"{Constants.WebApiIncomeSourceUrl}"));
         }
 
-        public async Task<StatusResponse> AddIncomeSourceAsync(string name)
+        public async Task<StatusResponse> AddIncomeSourceAsync(string name, string imageUrl)
         {
             return await AddEntityAsync(new($"{Constants.WebApiIncomeSourceUrl}?name={name}"));
         }
 
-        public async Task<StatusResponse> UpdateIncomeSourceAsync(int id, string name)
+        public async Task<StatusResponse> UpdateIncomeSourceAsync(int id, string name, string imageUrl)
         {
             return await UpdateEntityAsync(new($"{Constants.WebApiIncomeSourceUrl}?id={id}&name={name}"));
         }

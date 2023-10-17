@@ -347,7 +347,7 @@ namespace ShihBooks.Plugins.DataStore.Sqlite
             return await _db.Table<IncomeSource>().OrderBy(i => i.Name).ToListAsync();
         }
 
-        public async Task<StatusResponse> AddIncomeSourceAsync(string sourceName)
+        public async Task<StatusResponse> AddIncomeSourceAsync(string sourceName, string imageUrl)
         {
             if (string.IsNullOrWhiteSpace(sourceName))
                 return new StatusResponse(StatusCode.InvalidEntityName);
@@ -355,12 +355,13 @@ namespace ShihBooks.Plugins.DataStore.Sqlite
             await _db.InsertAsync(new IncomeSource
             {
                 Name = sourceName,
+                ImageUrl = imageUrl
             });
 
             return new StatusResponse(StatusCode.Success);
         }
 
-        public async Task<StatusResponse> UpdateIncomeSourceAsync(int id, string newSourceName)
+        public async Task<StatusResponse> UpdateIncomeSourceAsync(int id, string newSourceName, string imageUrl)
         {
             if (string.IsNullOrWhiteSpace(newSourceName))
                 return new StatusResponse(StatusCode.InvalidEntityName);
@@ -369,6 +370,7 @@ namespace ShihBooks.Plugins.DataStore.Sqlite
             {
                 Id = id,
                 Name = newSourceName,
+                ImageUrl = imageUrl
             });
 
             return new StatusResponse(StatusCode.Success);

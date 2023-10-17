@@ -25,7 +25,7 @@ namespace ShihBooks.Plugins.DataStore.InMemory
             new ExpenseType { Id = 3, Name = "Not used"}
         };
 
-        private List<Merchant> _merchants => new List<Merchant>()
+        private List<Merchant> _merchants = new List<Merchant>()
         {
             new Merchant { Id = 1, Name = "Costco", ImageUrl = "https://play-lh.googleusercontent.com/gqOziTbVWioRJtHh7OvfOq07NCTcAHKWBYPQKJOZqNcczpOz5hdrnQNY7i2OatJxmuY=w240-h480-rw"},
             new Merchant { Id = 2, Name = "Amazon", ImageUrl = "https://www.amazon.com/favicon.ico"},

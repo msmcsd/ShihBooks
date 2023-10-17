@@ -7,6 +7,7 @@
              x:Class="ShihBooks.Views.ManageMerchantsPage"
              Title="Merchants"
              x:Name="this">
+
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add" Command="{Binding AddEntityCommand}" />
         <ToolbarItem Text="Edit" Command="{Binding UpdateEntityCommand}" />
@@ -36,7 +37,7 @@
                         Margin="0,10"
                         x:Name="itemList"
                         ItemsSource="{Binding FilteredEntities}" 
-                        SelectedItem="{Binding SelectedMerchant}"
+                        SelectedItem="{Binding SelectedEntity}"
                         SelectionMode="Single">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="m:Merchant">

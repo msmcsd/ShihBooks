@@ -3,14 +3,14 @@ using ShihBooks.Core;
 
 namespace ShihBooks.Views;
 
-public partial class ManageMerchantPopupPage : Popup
+public partial class ManageEntityWithUrlPopupPage : Popup
 {
-    public ManageMerchantPopupPage()
+    public ManageEntityWithUrlPopupPage()
     {
         InitializeComponent();
     }
 
-    public ManageMerchantPopupPage(string defaultMerchantName, string defaultImageUrl)
+    public ManageEntityWithUrlPopupPage(string defaultMerchantName, string defaultImageUrl)
 	{
 		InitializeComponent();
 
@@ -28,7 +28,7 @@ public partial class ManageMerchantPopupPage : Popup
             return;
         }
 
-        Close(new Merchant { Name = nameEntry.Text.Trim(), ImageUrl=urlEntry.Text?.Trim()});
+        Close(new CoreEntityWithUrl { Name = nameEntry.Text.Trim(), ImageUrl = urlEntry.Text?.Trim() });
     }
 
     private void RemoveName_Clicked(object sender, EventArgs e)

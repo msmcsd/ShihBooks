@@ -1,22 +1,21 @@
 ﻿using SQLite;
-using System.ComponentModel.DataAnnotations;
 
 namespace ShihBooks.Core
 {
     [Table("Merchants")]
-    public class Merchant //: CoreEntity
+    public class Merchant : CoreEntityWithUrl
     {
-        [Required]
-        [PrimaryKey, AutoIncrement]
-        public int Id { get; set; }
+        //[Required]
+        //[PrimaryKey, AutoIncrement]
+        //public int Id { get; set; }
 
-        [Required]
-        [Unique]
-        public string Name { get; set; }
+        //[Required]
+        //[Unique]
+        //public string Name { get; set; }
 
-        [Required]
-        public DateTime DateAdded { get; set; }
+        //[Required]
+        //public DateTime DateAdded { get; set; }
 
-        public string ImageUrl { get; set; }
+        //public string ImageUrl { get; set; }
     }
 }

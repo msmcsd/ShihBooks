@@ -20,8 +20,6 @@ namespace ShihBooks.ViewModels
 
         public ObservableCollection<CoreEntity> FilteredEntities { get; set; } = new();
 
-        //[ObservableProperty]
-        //private string _searchText;
 
         [ObservableProperty]
         private CoreEntity _selectedEntity;
@@ -53,9 +51,9 @@ namespace ShihBooks.ViewModels
                 _cachedEntities = await _viewEntitiesUseCase.ExecuteAsync();
                 if (_cachedEntities?.Count > 0)
                 {
-                    foreach (var tag in _cachedEntities)
+                    foreach (var entity in _cachedEntities)
                     {
-                        FilteredEntities.Add(tag);
+                        FilteredEntities.Add(entity);
                     }
                 }
             }
@@ -72,6 +70,9 @@ namespace ShihBooks.ViewModels
         [RelayCommand]
         public async Task DeleteEntityAsync(CoreEntity expenseEntity)
         {
+            if (expenseEntity == null)
+                return;
+
             var ret = await _deleteEntityUseCase.ExecuteAsync(expenseEntity.Id);
             if (ret.IsSuccess)
             {

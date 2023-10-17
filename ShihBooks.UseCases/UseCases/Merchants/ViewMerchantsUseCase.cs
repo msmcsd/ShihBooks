@@ -13,9 +13,15 @@ namespace ShihBooks.UseCases.UseCases.Merchants
             _expenseSource = expenseSource;
         }
 
-        public async Task<List<Merchant>> ExecuteAsync()
+        public async Task<List<CoreEntityWithUrl>> ExecuteAsync()
         {
-            return await _expenseSource.GetMerchantsAsync();
+            var ret = await _expenseSource.GetMerchantsAsync();
+            return ret.ConvertAll(s => new CoreEntityWithUrl
+            {
+                Id = s.Id,
+                Name = s.Name,
+                ImageUrl = s.ImageUrl
+            });
         }
     }
 }

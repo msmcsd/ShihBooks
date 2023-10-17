@@ -48,14 +48,15 @@ namespace ShihBooks.ViewModels
 
         public async override Task GetEntitiesAsync()
         {
-            var ret = await _viewIncomeSourcesUseCase.ExecuteAsync();
-            IncomeSources = ret.ConvertAll(s => new IncomeSource
+            var sources = await _viewIncomeSourcesUseCase.ExecuteAsync();
+            IncomeSources = sources.ConvertAll(s => new IncomeSource
             {
                 Id = s.Id,
-                Name = s.Name
+                Name = s.Name,
+                ImageUrl = s.ImageUrl
             });
             
-            ret = await _viewIncomeRecipientsUseCase.ExecuteAsync();
+            var ret = await _viewIncomeRecipientsUseCase.ExecuteAsync();
             IncomeRecipients = ret.ConvertAll(s => new IncomeRecipient
             {
                 Id = s.Id,

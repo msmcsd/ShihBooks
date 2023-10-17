@@ -67,7 +67,13 @@ namespace ShihBooks.ViewModels
 
         public override async Task GetEntitiesAsync()
         {
-            Merchants = await _viewMerchantsUseCase.ExecuteAsync();
+            var merchants = await _viewMerchantsUseCase.ExecuteAsync();
+            Merchants = merchants.ConvertAll(t => new Merchant
+            {
+                Id = t.Id,
+                Name = t.Name,
+                ImageUrl = t.ImageUrl
+            });
 
             var ret = await _viewExpenseTypesUseCase.ExecuteAsync();
             ExpenseTypes = ret.ConvertAll(t => new ExpenseType

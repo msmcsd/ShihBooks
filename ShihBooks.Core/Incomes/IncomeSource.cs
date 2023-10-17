@@ -3,8 +3,7 @@
 namespace ShihBooks.Core
 {
     [Table("IncomeSources")]
-    public class IncomeSource : CoreEntity
+    public class IncomeSource : CoreEntityWithUrl
     {
-        public string ImageUrl { get; set; }
     }
 }

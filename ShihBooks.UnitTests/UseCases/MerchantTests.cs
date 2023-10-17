@@ -65,7 +65,7 @@ namespace ShihBooks.UnitTests.UseCases
             var newMerchant = "abc";
             var url = "def";
             var response = await useCase.ExecuteAsync(newMerchant, url);
-            Assert.That(response.Status, Is.EqualTo(StatusCode.EntityExists));
+            Assert.That(response.IsSuccess, Is.EqualTo(true));
 
             var merchants = await new ViewMerchantsUseCase(_dataStore).ExecuteAsync();
             Assert.That(merchants.Count, Is.EqualTo(4));
