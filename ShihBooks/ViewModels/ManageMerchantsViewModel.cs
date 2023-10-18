@@ -8,7 +8,7 @@ namespace ShihBooks.ViewModels
                                         IAddMerchantUseCase addMerchantUseCase,
                                         IUpdateMerchantUseCase updateMerchantUseCase,
                                         IDeleteMerchantUseCase deleteMerchantUseCase) :
-            base(viewMerchantsUseCase, addMerchantUseCase, updateMerchantUseCase, deleteMerchantUseCase)
+            base(viewMerchantsUseCase, addMerchantUseCase, updateMerchantUseCase, deleteMerchantUseCase, "Merchant")
         {
         }
     }

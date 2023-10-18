@@ -8,7 +8,7 @@ namespace ShihBooks.ViewModels
                                             IAddIncomeSourceUseCase addIncomeSourceUseCase,
                                             IUpdateIncomeSourceUseCase updateIncomeSourceUseCase,
                                             IDeleteIncomeSourceUseCase deleteIncomeSourceUseCase) : 
-            base (viewIncomeSourcesUseCase, addIncomeSourceUseCase, updateIncomeSourceUseCase, deleteIncomeSourceUseCase)
+            base (viewIncomeSourcesUseCase, addIncomeSourceUseCase, updateIncomeSourceUseCase, deleteIncomeSourceUseCase, "Income Source")
         {
         }
     }

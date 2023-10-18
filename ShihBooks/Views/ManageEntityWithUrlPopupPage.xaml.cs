@@ -1,3 +1,5 @@
+using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Maui.Views;
 using ShihBooks.Core;
 
@@ -5,39 +7,39 @@ namespace ShihBooks.Views;
 
 public partial class ManageEntityWithUrlPopupPage : Popup
 {
-    public ManageEntityWithUrlPopupPage()
+    public ManageEntityWithUrlPopupPage(string entityInfo)
     {
         InitializeComponent();
+        EntityInfo.Text = $"{entityInfo} Info";
     }
 
-    public ManageEntityWithUrlPopupPage(string defaultMerchantName, string defaultImageUrl)
+    public ManageEntityWithUrlPopupPage(string entityInfo, string defaultEntityName, string defaultImageUrl) : this(entityInfo)
 	{
-		InitializeComponent();
-
-		nameEntry.Text = defaultMerchantName;
-		urlEntry.Text = defaultImageUrl;
-		addButton.Text = "Update";
-        MerchantImageUrl.Source = defaultImageUrl;
+        NameEntry.Text = defaultEntityName;
+		UrlEntry.Text = defaultImageUrl;
+		AddButton.Text = "Update";
+        ImageUrl.Source = defaultImageUrl;
 	}
 
     private void Add_Clicked(object sender, EventArgs e)
     {
-        if (string.IsNullOrWhiteSpace(nameEntry.Text))
+        if (string.IsNullOrWhiteSpace(NameEntry.Text))
         {
-            Close();
+            var toast = Toast.Make("Name is required.", ToastDuration.Short);
+            toast.Show();
             return;
         }
 
-        Close(new CoreEntityWithUrl { Name = nameEntry.Text.Trim(), ImageUrl = urlEntry.Text?.Trim() });
+        Close(new CoreEntityWithUrl { Name = NameEntry.Text.Trim(), ImageUrl = UrlEntry.Text?.Trim() });
     }
 
     private void RemoveName_Clicked(object sender, EventArgs e)
     {
-        nameEntry.Text = "";
+        NameEntry.Text = "";
     }
 
     private void RemoveUrl_Clicked(object sender, EventArgs e)
     {
-        urlEntry.Text = "";
+        UrlEntry.Text = "";
     }
 }

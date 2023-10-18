@@ -1,3 +1,5 @@
+using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Maui.Views;
 
 namespace ShihBooks.Views;
@@ -31,7 +33,8 @@ public partial class ManageItemPopupPage : Popup
     {
         if (string.IsNullOrWhiteSpace(itemName.Text))
         {
-            Close();
+            var toast = Toast.Make("Name is required.", ToastDuration.Short);
+            toast.Show();
             return;
         }
 
