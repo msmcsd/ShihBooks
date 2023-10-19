@@ -1,6 +1,3 @@
-using CommunityToolkit.Maui.Views;
-using CommunityToolkit.Mvvm.Input;
-using ShihBooks.Core;
 using ShihBooks.ViewModels;
 
 namespace ShihBooks.Views;

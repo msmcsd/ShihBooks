@@ -94,6 +94,7 @@ namespace ShihBooks.ViewModels
             {
                 await GetEntitiesAsync();
                 SelectedEntity = null;
+                SearchText = "";
             }
         }
 

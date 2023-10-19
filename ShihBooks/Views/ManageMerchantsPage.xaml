@@ -4,6 +4,7 @@
              xmlns:m="clr-namespace:ShihBooks.Core;assembly=ShihBooks.Core"
              xmlns:vm="clr-namespace:ShihBooks.ViewModels"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:controls="clr-namespace:ShihBooks.Views.Controls"
              x:Class="ShihBooks.Views.ManageMerchantsPage"
              Title="Merchants"
              x:Name="this">
@@ -18,7 +19,10 @@
           ColumnSpacing="5"
           Padding="10">
 
-        <VerticalStackLayout Grid.ColumnSpan="2">
+        <controls:EntitySearchBar Grid.ColumnSpan="2" 
+                                  Text="{Binding SearchText}"
+                                  x:DataType="vm:ManageMerchantsViewModel"/>
+        <!--<VerticalStackLayout Grid.ColumnSpan="2">
             <Border HeightRequest="50" Margin="0, 0, 0, 0">
                 <Border.StrokeShape>
                     <RoundRectangle CornerRadius="22" />
@@ -31,7 +35,7 @@
                     </SearchBar.Behaviors>
                 </SearchBar>
             </Border>
-        </VerticalStackLayout>
+        </VerticalStackLayout>-->
         <CollectionView Grid.Row="1" 
                         Grid.ColumnSpan="2"
                         Margin="0,10"
