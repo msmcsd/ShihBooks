@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Grid xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+      x:Class="ShihBooks.Views.Controls.IncomeCard"
+      Padding="3" 
+      ColumnSpacing="5" 
+      ColumnDefinitions="55,*,100">
+
+    <Label Grid.Column="0"
+           Text="{Binding IncomeDate, StringFormat='{0:MM/dd}'}" 
+           HorizontalOptions="Start"
+           VerticalOptions="Center" />
+    <!--<Image Grid.Column="1"
+            Aspect="AspectFill"
+            Source="{Binding MerchantImageUrl}"                           
+            WidthRequest="32" 
+            HeightRequest="32"
+        />-->
+    <Label Grid.Column="1" 
+           Text="{Binding Description}" 
+           Padding="5,0"
+           LineBreakMode="WordWrap"
+           VerticalOptions="Center"
+           VerticalTextAlignment="Center"/>
+    <Label Grid.Column="2"
+           Text="{Binding Amount, StringFormat='${0:N2}'}" 
+           HorizontalOptions="FillAndExpand"
+           HorizontalTextAlignment="End"
+           VerticalOptions="Center"/>
+</Grid>

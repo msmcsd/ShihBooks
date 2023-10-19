@@ -4,6 +4,7 @@
              xmlns:m="clr-namespace:ShihBooks.Core.Incomes;assembly=ShihBooks.Core"
              xmlns:vm="clr-namespace:ShihBooks.ViewModels"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:controls="clr-namespace:ShihBooks.Views.Controls"
              x:DataType="vm:IncomesViewModel"             
              x:Class="ShihBooks.Views.Incomes.IncomesPage"
              Title="Income"
@@ -65,17 +66,18 @@
                                     CommandParameter="{Binding .}"
                                     Command="{Binding Source={RelativeSource AncestorType={x:Type vm:IncomesViewModel} }, Path=GoToDetailsCommand}" />
                                 </Frame.GestureRecognizers>
-                                <Grid Padding="3" ColumnSpacing="5" ColumnDefinitions="55,*,100">
+                                <controls:IncomeCard x:DataType="m:IncomeDetails" />
+                                <!--<Grid Padding="3" ColumnSpacing="5" ColumnDefinitions="55,*,100">
                                     <Label Grid.Column="0"
                                        Text="{Binding IncomeDate, StringFormat='{0:MM/dd}'}" 
                                        HorizontalOptions="Start"
                                        VerticalOptions="Center" />
-                                    <!--<Image Grid.Column="1"
+                                    --><!--<Image Grid.Column="1"
                                        Aspect="AspectFill"
                                        Source="{Binding MerchantImageUrl}"                           
                                        WidthRequest="32" 
                                        HeightRequest="32"
-                                    />-->
+                                    />--><!--
                                     <Label Grid.Column="1" 
                                        Text="{Binding Description}" 
                                            Padding="5,0"
@@ -87,7 +89,7 @@
                                        HorizontalOptions="FillAndExpand"
                                        HorizontalTextAlignment="End"
                                        VerticalOptions="Center"/>
-                                </Grid>
+                                </Grid>-->
                             </Frame>
                         </Grid>
                     </SwipeView>
