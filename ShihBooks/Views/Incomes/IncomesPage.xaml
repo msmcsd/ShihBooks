@@ -22,7 +22,10 @@
     </ContentPage.ToolbarItems>
 
     <VerticalStackLayout>
-        <Border HeightRequest="50" Margin="0, 0, 0, 0">
+        <controls:EntitySearchBar Grid.ColumnSpan="2" 
+                                  Text="{Binding SearchText}"
+                                  x:DataType="vm:IncomesViewModel"/>
+        <!--<Border HeightRequest="50" Margin="0, 0, 0, 0">
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="22" />
             </Border.StrokeShape>
@@ -33,7 +36,7 @@
                             Command="{Binding Source={x:Reference this}, Path=BindingContext.SearchEntityCommand}" />
                 </SearchBar.Behaviors>
             </SearchBar>
-        </Border>
+        </Border>-->
         <CollectionView
             ItemsSource="{Binding FilteredIncomes}">
             <CollectionView.ItemTemplate>
