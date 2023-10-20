@@ -5,8 +5,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:ShihBooks"
     xmlns:views="clr-namespace:ShihBooks.Views"
+    xmlns:iviews="clr-namespace:ShihBooks.Views.Incomes"
+    xmlns:eviews="clr-namespace:ShihBooks.Views.Expenses"
     xmlns:incomeviews="clr-namespace:ShihBooks.Views.Incomes"
-    Shell.FlyoutBehavior="Flyout">
+    Shell.FlyoutBehavior="Flyout"
+    Shell.TabBarIsVisible="False">
 
     <Shell.FlyoutHeader>
         <Image Source="dotnet_bot.png" />
@@ -17,35 +20,50 @@
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
 
-    <ShellContent
-        Title="Expense Types"
-        ContentTemplate="{DataTemplate views:ManageExpenseTypesPage}"
-        Route="ManageExpenseTypesPage" />
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent
+            Title="Expense"
+            ContentTemplate="{DataTemplate eviews:ExpenseDashboardPage}"
+            Route="ExpenseDashboardPage" />  
+        
+        <ShellContent
+            Title="       Types"
+            ContentTemplate="{DataTemplate views:ManageExpenseTypesPage}"
+            Route="ManageExpenseTypesPage" />
     
-    <ShellContent
-        Title="Expense Events"
-        ContentTemplate="{DataTemplate views:ManageExpenseEventsPage}"
-        Route="ManageExpenseEventsPage" />
+        <ShellContent
+            Title="       Events"
+            ContentTemplate="{DataTemplate views:ManageExpenseEventsPage}"
+            Route="ManageExpenseEventsPage" />
     
-    <ShellContent
-        Title="Tags"
-        ContentTemplate="{DataTemplate views:ManageExpenseTagsPage}"
-        Route="ManageExpenseTagsPage" />
+        <ShellContent
+            Title="       Tags"
+            ContentTemplate="{DataTemplate views:ManageExpenseTagsPage}"
+            Route="ManageExpenseTagsPage" />
 
-    <ShellContent
-        Title="Income Sources"
-        ContentTemplate="{DataTemplate views:ManageIncomeSourcesPage}"
-        Route="ManageIncomeSourcesPage" />
+        <ShellContent
+            Title="       Merchants"
+            ContentTemplate="{DataTemplate views:ManageMerchantsPage}"
+            Route="ManageMerchantsPage" />
+    </FlyoutItem>
 
-    <ShellContent
-        Title="Income Recipients"
-        ContentTemplate="{DataTemplate incomeviews:ManageIncomeRecipientsPage}"
-        Route="ManageIncomeRecipientsPage" />
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent
+                Title="Income"
+                ContentTemplate="{DataTemplate iviews:IncomeDashboardPage}"
+                Route="IncomeDashboardPage" />
+        
+        <ShellContent
+                Title="       Sources"
+                ContentTemplate="{DataTemplate views:ManageIncomeSourcesPage}"
+                Route="ManageIncomeSourcesPage" />
+    
+        <ShellContent
+            Title="       Recipients"
+            ContentTemplate="{DataTemplate incomeviews:ManageIncomeRecipientsPage}"
+            Route="ManageIncomeRecipientsPage" />
+    </FlyoutItem>
 
-    <ShellContent
-        Title="Merchants"
-        ContentTemplate="{DataTemplate views:ManageMerchantsPage}"
-        Route="ManageMerchantsPage" />
 
     <Shell.FlyoutFooter>
         <Label Text="Copyright (c)" HorizontalOptions="Center" />
