@@ -23,6 +23,9 @@
         <controls:EntitySearchBar Grid.ColumnSpan="2" 
                                   Text="{Binding SearchText}"
                                   x:DataType="vm:ManageExpenseEventsViewModel"/>
+        <controls:CoreEntityCollectionView Grid.Row="1"
+                                           Grid.ColumnSpan="2"
+                                           Margin="0,10"/>
         <!--<VerticalStackLayout Grid.ColumnSpan="2">
             <Border HeightRequest="50" Margin="0, 0, 0, 0">
                 <Border.StrokeShape>
@@ -37,7 +40,7 @@
                 </SearchBar>
             </Border>
         </VerticalStackLayout>-->
-        <CollectionView Grid.Row="1" 
+        <!--<CollectionView Grid.Row="1" 
                         Grid.ColumnSpan="2"
                         Margin="0,10"
                         x:Name="itemList"
@@ -71,9 +74,9 @@
                             <Label Text="{Binding Name}" Padding="5" FontSize="16"/>
                         </Frame>
                     </SwipeView>
-                    <!--<Label Text="{Binding Name}" Padding="5" FontSize="16"/>-->
+                    --><!--<Label Text="{Binding Name}" Padding="5" FontSize="16"/>--><!--
                 </DataTemplate>
             </CollectionView.ItemTemplate>
-        </CollectionView>
+        </CollectionView>-->
     </Grid>
 </ContentPage>
