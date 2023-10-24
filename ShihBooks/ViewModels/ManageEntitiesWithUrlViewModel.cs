@@ -1,4 +1,6 @@
-﻿using CommunityToolkit.Maui.Views;
+﻿using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Core;
+using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ShihBooks.Core;
@@ -79,6 +81,12 @@ namespace ShihBooks.ViewModels
             var ret = await _deleteEntityUseCase.ExecuteAsync(entity.Id);
             if (ret.IsSuccess)
             {
+                if (ret.Status == Core.StatusResponses.StatusCode.EntityInUse)
+                {
+                    await Toast.Make($"{entity.Name} is in use and cannot be deleted.", ToastDuration.Short).Show();
+                    return;
+                }
+
                 _cachedEntities?.Remove(entity);
                 FilteredEntities.Remove(entity);
             }
