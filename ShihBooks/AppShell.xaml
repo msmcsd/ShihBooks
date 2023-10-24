@@ -7,7 +7,6 @@
     xmlns:views="clr-namespace:ShihBooks.Views"
     xmlns:iviews="clr-namespace:ShihBooks.Views.Incomes"
     xmlns:eviews="clr-namespace:ShihBooks.Views.Expenses"
-    xmlns:incomeviews="clr-namespace:ShihBooks.Views.Incomes"
     Shell.FlyoutBehavior="Flyout"
     Shell.TabBarIsVisible="False">
 
@@ -28,22 +27,22 @@
         
         <ShellContent
             Title="       Types"
-            ContentTemplate="{DataTemplate views:ManageExpenseTypesPage}"
+            ContentTemplate="{DataTemplate eviews:ManageExpenseTypesPage}"
             Route="ManageExpenseTypesPage" />
     
         <ShellContent
             Title="       Events"
-            ContentTemplate="{DataTemplate views:ManageExpenseEventsPage}"
+            ContentTemplate="{DataTemplate eviews:ManageExpenseEventsPage}"
             Route="ManageExpenseEventsPage" />
     
         <ShellContent
             Title="       Tags"
-            ContentTemplate="{DataTemplate views:ManageExpenseTagsPage}"
+            ContentTemplate="{DataTemplate eviews:ManageExpenseTagsPage}"
             Route="ManageExpenseTagsPage" />
 
         <ShellContent
             Title="       Merchants"
-            ContentTemplate="{DataTemplate views:ManageMerchantsPage}"
+            ContentTemplate="{DataTemplate eviews:ManageMerchantsPage}"
             Route="ManageMerchantsPage" />
     </FlyoutItem>
 
@@ -55,12 +54,12 @@
         
         <ShellContent
                 Title="       Sources"
-                ContentTemplate="{DataTemplate views:ManageIncomeSourcesPage}"
+                ContentTemplate="{DataTemplate iviews:ManageIncomeSourcesPage}"
                 Route="ManageIncomeSourcesPage" />
     
         <ShellContent
             Title="       Recipients"
-            ContentTemplate="{DataTemplate incomeviews:ManageIncomeRecipientsPage}"
+            ContentTemplate="{DataTemplate iviews:ManageIncomeRecipientsPage}"
             Route="ManageIncomeRecipientsPage" />
     </FlyoutItem>
 

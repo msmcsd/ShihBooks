@@ -5,11 +5,10 @@
              xmlns:vm="clr-namespace:ShihBooks.ViewModels"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:controls="clr-namespace:ShihBooks.Views.Controls"
-             x:DataType="vm:ManageExpenseEventsViewModel"
-             x:Class="ShihBooks.Views.ManageExpenseEventsPage"
-             Title="Expense Events"
+             x:Class="ShihBooks.Views.Incomes.ManageIncomeSourcesPage"
+             Title="Income Sources"
              x:Name="this">
-
+    
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add" Command="{Binding AddEntityCommand}" />
         <ToolbarItem Text="Edit" Command="{Binding UpdateEntityCommand}" />
@@ -22,7 +21,7 @@
 
         <controls:EntitySearchBar Grid.ColumnSpan="2" 
                                   Text="{Binding SearchText}"
-                                  x:DataType="vm:ManageExpenseEventsViewModel"/>
+                                  x:DataType="vm:ManageIncomeSourcesViewModel"/>
         <!--<VerticalStackLayout Grid.ColumnSpan="2">
             <Border HeightRequest="50" Margin="0, 0, 0, 0">
                 <Border.StrokeShape>
@@ -45,12 +44,12 @@
                         SelectedItem="{Binding SelectedEntity}"
                         SelectionMode="Single">
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="m:ExpenseEvent">
+                <DataTemplate x:DataType="m:IncomeSource">
                     <SwipeView>
                         <SwipeView.RightItems>
                             <SwipeItems>
                                 <SwipeItemView CommandParameter="{Binding .}"
-                                        Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ManageExpenseEventsViewModel}}, Path=DeleteEntityCommand}">
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ManageIncomeSourcesViewModel}}, Path=DeleteEntityCommand}">
                                     <Frame BackgroundColor="OrangeRed"
                                            HeightRequest="50"
                                            WidthRequest="50"

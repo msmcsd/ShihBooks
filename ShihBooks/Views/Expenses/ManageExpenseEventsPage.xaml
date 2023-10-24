@@ -5,10 +5,11 @@
              xmlns:vm="clr-namespace:ShihBooks.ViewModels"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:controls="clr-namespace:ShihBooks.Views.Controls"
-             x:Class="ShihBooks.Views.ManageIncomeSourcesPage"
-             Title="Income Sources"
+             x:DataType="vm:ManageExpenseEventsViewModel"
+             x:Class="ShihBooks.Views.Expenses.ManageExpenseEventsPage"
+             Title="Expense Events"
              x:Name="this">
-    
+
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add" Command="{Binding AddEntityCommand}" />
         <ToolbarItem Text="Edit" Command="{Binding UpdateEntityCommand}" />
@@ -21,7 +22,7 @@
 
         <controls:EntitySearchBar Grid.ColumnSpan="2" 
                                   Text="{Binding SearchText}"
-                                  x:DataType="vm:ManageIncomeSourcesViewModel"/>
+                                  x:DataType="vm:ManageExpenseEventsViewModel"/>
         <!--<VerticalStackLayout Grid.ColumnSpan="2">
             <Border HeightRequest="50" Margin="0, 0, 0, 0">
                 <Border.StrokeShape>
@@ -44,12 +45,12 @@
                         SelectedItem="{Binding SelectedEntity}"
                         SelectionMode="Single">
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="m:IncomeSource">
+                <DataTemplate x:DataType="m:ExpenseEvent">
                     <SwipeView>
                         <SwipeView.RightItems>
                             <SwipeItems>
                                 <SwipeItemView CommandParameter="{Binding .}"
-                                        Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ManageIncomeSourcesViewModel}}, Path=DeleteEntityCommand}">
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ManageExpenseEventsViewModel}}, Path=DeleteEntityCommand}">
                                     <Frame BackgroundColor="OrangeRed"
                                            HeightRequest="50"
                                            WidthRequest="50"

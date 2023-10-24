@@ -1,8 +1,7 @@
 using ShihBooks.Core;
 using ShihBooks.ViewModels;
-using System.Reflection.Metadata;
 
-namespace ShihBooks.Views;
+namespace ShihBooks.Views.Expenses;
 
 public partial class ExpenseDetailsPage : ContentPage
 {

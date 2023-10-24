@@ -1,6 +1,6 @@
 using ShihBooks.ViewModels;
 
-namespace ShihBooks.Views;
+namespace ShihBooks.Views.Expenses;
 
 public partial class ExpensesPage : ContentPage
 {

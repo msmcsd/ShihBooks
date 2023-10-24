@@ -1,8 +1,6 @@
-using CommunityToolkit.Maui.Views;
 using ShihBooks.ViewModels;
-using ShihBooks.Core;
 
-namespace ShihBooks.Views;
+namespace ShihBooks.Views.Expenses;
 
 public partial class ManageExpenseTypesPage : ContentPage
 {

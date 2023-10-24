@@ -22,6 +22,7 @@ using ShihBooks.ViewModels;
 using ShihBooks.Views;
 using ShihBooks.Views.Controls;
 using ShihBooks.Views.Incomes;
+using ShihBooks.Views.Expenses;
 using ShihBooks.UseCases.Interfaces.IncomeRecipients;
 using ShihBooks.UseCases.UseCases.IncomeRecipients;
 

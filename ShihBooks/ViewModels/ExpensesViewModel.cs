@@ -2,7 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using ShihBooks.Core;
 using ShihBooks.UseCases.Interfaces.Expenses;
-using ShihBooks.Views;
+using ShihBooks.Views.Expenses;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 

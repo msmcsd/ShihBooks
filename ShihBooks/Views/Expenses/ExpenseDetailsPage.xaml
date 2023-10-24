@@ -4,7 +4,7 @@
              xmlns:vm="clr-namespace:ShihBooks.ViewModels"
              xmlns:controls="clr-namespace:ShihBooks.Views.Controls"
              x:DataType="vm:ExpenseDetailsViewModel"
-             x:Class="ShihBooks.Views.ExpenseDetailsPage"
+             x:Class="ShihBooks.Views.Expenses.ExpenseDetailsPage"
              Title="Expense Details">
 
     <ContentPage.ToolbarItems>

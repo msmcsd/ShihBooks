@@ -64,13 +64,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Views\ExpenseDetailsPage.xaml.cs">
+	  <Compile Update="Views\Expenses\ExpenseDetailsPage.xaml.cs">
 	    <DependentUpon>ExpenseDetailsPage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\ExpensesPage.xaml.cs">
+	  <Compile Update="Views\Expenses\ExpensesPage.xaml.cs">
 	    <DependentUpon>ExpensesPage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\ManageExpenseTagsPage.xaml.cs">
+	  <Compile Update="Views\Expenses\ManageExpenseTagsPage.xaml.cs">
 	    <DependentUpon>ManageExpenseTagsPage.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Views\ManageEntityWithUrlPopupPage.xaml.cs">
@@ -91,10 +91,10 @@
 	  <MauiXaml Update="Views\Controls\IncomeCard.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\ExpenseDetailsPage.xaml">
+	  <MauiXaml Update="Views\Expenses\ExpenseDetailsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\ExpensesPage.xaml">
+	  <MauiXaml Update="Views\Expenses\ExpensesPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Expenses\ExpenseDashboardPage.xaml">
@@ -112,16 +112,16 @@
 	  <MauiXaml Update="Views\Incomes\ManageIncomeRecipientsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\ManageExpenseEventsPage.xaml">
+	  <MauiXaml Update="Views\Expenses\ManageExpenseEventsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\ManageExpenseTagsPage.xaml">
+	  <MauiXaml Update="Views\Expenses\ManageExpenseTagsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\ManageExpenseTypesPage.xaml">
+	  <MauiXaml Update="Views\Expenses\ManageExpenseTypesPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\ManageIncomeSourcesPage.xaml">
+	  <MauiXaml Update="Views\Incomes\ManageIncomeSourcesPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ManageItemPopupPage.xaml">
@@ -130,7 +130,7 @@
 	  <MauiXaml Update="Views\ManageEntityWithUrlPopupPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\ManageMerchantsPage.xaml">
+	  <MauiXaml Update="Views\Expenses\ManageMerchantsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

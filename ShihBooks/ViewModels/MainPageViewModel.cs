@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using ShihBooks.Views;
 using ShihBooks.Views.Incomes;
+using ShihBooks.Views.Expenses;
 
 namespace ShihBooks.ViewModels
 {
