@@ -73,6 +73,9 @@
 	  <Compile Update="Views\Expenses\ManageExpenseTagsPage.xaml.cs">
 	    <DependentUpon>ManageExpenseTagsPage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\ManageEntitiesBasePage.xaml.cs">
+	    <DependentUpon>ManageEntitiesBasePage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\ManageEntityWithUrlPopupPage.xaml.cs">
 	    <DependentUpon>ManageEntityWithUrlPopupPage.xaml</DependentUpon>
 	  </Compile>
@@ -125,6 +128,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Incomes\ManageIncomeSourcesPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ManageEntitiesBasePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ManageItemPopupPage.xaml">

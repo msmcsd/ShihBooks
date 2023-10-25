@@ -2,7 +2,7 @@ using ShihBooks.ViewModels;
 
 namespace ShihBooks.Views.Expenses;
 
-public partial class ManageMerchantsPage : ContentPage
+public partial class ManageMerchantsPage : ManageEntitiesBasePage
 {
     private readonly ManageMerchantsViewModel _manageMerchantsViewModel;
 

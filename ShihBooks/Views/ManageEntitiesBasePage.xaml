@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ShihBooks.Views.ManageEntitiesBasePage"
+             xmlns:vm="clr-namespace:ShihBooks.ViewModels"
+             xmlns:controls="clr-namespace:ShihBooks.Views.Controls"
+             x:DataType="vm:ManageEntitiesViewModel"
+             Title="ManageEntitiesPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Command="{Binding AddEntityCommand}" />
+        <ToolbarItem Text="Edit" Command="{Binding UpdateEntityCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.ControlTemplate>
+        <ControlTemplate>
+            <Grid ColumnDefinitions="*,*"
+                  RowDefinitions="Auto, *"
+                  ColumnSpacing="5"
+                  Padding="10">
+
+                <!--<controls:EntitySearchBar Grid.ColumnSpan="2" 
+                                  Text="{Binding SearchText}"
+                                  x:DataType="vm:ManageEntitiesViewModel"/>-->
+
+                <ContentPresenter Grid.Row="1"
+                                  Grid.ColumnSpan="2"
+                                  Margin="0,10"/>
+            </Grid>
+        </ControlTemplate>
+    </ContentPage.ControlTemplate>
+    
+</ContentPage>

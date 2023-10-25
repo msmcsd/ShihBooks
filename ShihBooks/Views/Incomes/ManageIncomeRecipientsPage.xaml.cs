@@ -2,7 +2,7 @@ using ShihBooks.ViewModels;
 
 namespace ShihBooks.Views.Incomes;
 
-public partial class ManageIncomeRecipientsPage : ContentPage
+public partial class ManageIncomeRecipientsPage : ManageEntitiesBasePage
 {
     private readonly ManageIncomeRecipientsViewModel _manageIncomeRecipientsViewModel;
 
