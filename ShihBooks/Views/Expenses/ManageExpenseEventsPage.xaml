@@ -13,7 +13,7 @@
 
     <VerticalStackLayout>
 
-        <controls:EntitySearchBar Grid.ColumnSpan="2" Text="{Binding SearchText}" />
+        <controls:EntitySearchBar Text="{Binding SearchText}" />
         <controls:CoreEntityCollectionView />
         <!--<VerticalStackLayout Grid.ColumnSpan="2">
             <Border HeightRequest="50" Margin="0, 0, 0, 0">

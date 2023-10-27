@@ -11,8 +11,7 @@
              Title="Merchants">
 
     <VerticalStackLayout>
-
-        <controls:EntitySearchBar Grid.ColumnSpan="2" Text="{Binding SearchText}"/>
+        <controls:EntitySearchBar Text="{Binding SearchText}"/>
         <controls:CoreEntityCollectionView />
     </VerticalStackLayout>
     

@@ -22,7 +22,7 @@
     </ContentPage.ToolbarItems>
 
     <VerticalStackLayout>
-        <controls:EntitySearchBar Grid.ColumnSpan="2" 
+        <controls:EntitySearchBar Padding="10" 
                                   Text="{Binding SearchText}"
                                   x:DataType="vm:IncomesViewModel"/>
 

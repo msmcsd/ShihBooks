@@ -14,19 +14,14 @@
 
     <ContentPage.ControlTemplate>
         <ControlTemplate>
-            <Grid ColumnDefinitions="*,*"
-                  RowDefinitions="Auto, *"
-                  ColumnSpacing="5"
-                  Padding="10">
+            <VerticalStackLayout Padding="5">
 
                 <!--<controls:EntitySearchBar Grid.ColumnSpan="2" 
                                   Text="{Binding SearchText}"
                                   x:DataType="vm:ManageEntitiesViewModel"/>-->
 
-                <ContentPresenter Grid.Row="1"
-                                  Grid.ColumnSpan="2"
-                                  Margin="0,10"/>
-            </Grid>
+                <ContentPresenter Margin="0,5"/>
+            </VerticalStackLayout>
         </ControlTemplate>
     </ContentPage.ControlTemplate>
     

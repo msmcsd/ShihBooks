@@ -19,8 +19,7 @@
           ColumnSpacing="5"
           Padding="10">
 
-        <controls:EntitySearchBar Grid.ColumnSpan="2" 
-                                  Text="{Binding SearchText}"
+        <controls:EntitySearchBar Text="{Binding SearchText}"
                                   x:DataType="vm:ManageIncomeSourcesViewModel"/>
         <!--<VerticalStackLayout Grid.ColumnSpan="2">
             <Border HeightRequest="50" Margin="0, 0, 0, 0">
