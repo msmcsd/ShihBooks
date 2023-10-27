@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ShihBooks.Views.BaseDetailsPage"
+             Title="BaseDetailsPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="UpdateExpense" IconImageSource="save" Command="{Binding UpdateEntityCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.ControlTemplate>
+        <ControlTemplate>
+            <ContentPresenter/>
+        </ControlTemplate>
+    </ContentPage.ControlTemplate>
+</ContentPage>

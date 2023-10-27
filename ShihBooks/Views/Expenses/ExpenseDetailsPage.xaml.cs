@@ -3,7 +3,7 @@ using ShihBooks.ViewModels;
 
 namespace ShihBooks.Views.Expenses;
 
-public partial class ExpenseDetailsPage : ContentPage
+public partial class ExpenseDetailsPage : BaseDetailsPage
 {
     private readonly ExpenseDetailsViewModel _expenseDetailsViewModel;
 

@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<views:BaseDetailsPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:ShihBooks.ViewModels"
+             xmlns:views="clr-namespace:ShihBooks.Views"
              xmlns:controls="clr-namespace:ShihBooks.Views.Controls"
              x:DataType="vm:ExpenseDetailsViewModel"
              x:Class="ShihBooks.Views.Expenses.ExpenseDetailsPage"
              Title="Expense Details">
-
-    <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="UpdateExpense" IconImageSource="save" Command="{Binding UpdateEntityCommand}" />
-    </ContentPage.ToolbarItems>
-    
+   
     <ScrollView>
         <VerticalStackLayout Padding="10">
             <Grid ColumnDefinitions="Auto, Auto, Auto">
@@ -129,4 +126,4 @@
             </Border>
         </VerticalStackLayout>
     </ScrollView>
-</ContentPage>
+</views:BaseDetailsPage>

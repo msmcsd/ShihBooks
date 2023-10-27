@@ -4,7 +4,7 @@ using ShihBooks.Core;
 
 namespace ShihBooks.Views.Incomes;
 
-public partial class IncomeDetailsPage : ContentPage
+public partial class IncomeDetailsPage : BaseDetailsPage
 {
     private readonly IncomeDetailsViewModel _incomeDetailsViewModel;
 
