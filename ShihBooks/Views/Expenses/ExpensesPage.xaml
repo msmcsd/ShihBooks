@@ -17,7 +17,7 @@
     </ContentPage.Title>
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="+" Command="{Binding AddEntityCommand}" />
+        <ToolbarItem IconImageSource="add" Command="{Binding AddEntityCommand}" />
     </ContentPage.ToolbarItems>
     
     <VerticalStackLayout>
@@ -45,18 +45,18 @@
                             <SwipeItems>
                                 <SwipeItemView CommandParameter="{Binding .}"
                                                Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ExpensesViewModel}}, Path=DeleteExpenseCommand}">
-                                    <Frame BackgroundColor="OrangeRed"
+                                    <Frame BackgroundColor="LightPink"
                                            HeightRequest="50"
                                            WidthRequest="50"
                                            HorizontalOptions="Center"
                                            VerticalOptions="Center"
                                            CornerRadius="25"
                                            Padding="0">
-                                        <Label Text="X" 
-                                               FontSize="20"
-                                               FontAttributes="Bold"
-                                               VerticalOptions="Center"
-                                               HorizontalOptions="Center"/>
+                                        <Image Source="trash"
+                                           WidthRequest="30"
+                                           HeightRequest="30"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Center"/>
                                     </Frame>
                                 </SwipeItemView>
                             </SwipeItems>
@@ -69,31 +69,6 @@
                                     Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ExpensesViewModel} }, Path=GoToExpenseDetailsCommand}" />
                                 </Frame.GestureRecognizers>
                                 <controls:ExpenseCard x:DataType="m:ExpenseView"/>
-                                <!--<Grid Padding="3" ColumnSpacing="5" ColumnDefinitions="55,40,*,100">
-                                    <Label Grid.Column="0"
-                                       FontSize="16"
-                                       Text="{Binding ExpenseDate, StringFormat='{0:MM/dd}'}" 
-                                       HorizontalOptions="Start"
-                                       VerticalOptions="Center" />
-                                    <Image Grid.Column="1"
-                                       Aspect="AspectFill"
-                                       Source="{Binding MerchantImageUrl}"                           
-                                       WidthRequest="32" 
-                                       HeightRequest="32"
-                                    />
-                                    <Label Grid.Column="2" 
-                                       Text="{Binding Description}" 
-                                       LineBreakMode="WordWrap"
-                                       VerticalOptions="Center"
-                                       VerticalTextAlignment="Center"
-                                       FontSize="16" />
-                                    <Label Grid.Column="3"
-                                       FontSize="16"
-                                       Text="{Binding Amount, StringFormat='${0:N2}'}" 
-                                       HorizontalOptions="FillAndExpand"
-                                       HorizontalTextAlignment="End"
-                                       VerticalOptions="Center"/>
-                                </Grid>-->
                             </Frame>
                         </Grid>
                     </SwipeView>

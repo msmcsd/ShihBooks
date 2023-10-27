@@ -8,8 +8,8 @@
              Title="ManageEntitiesPage">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add" Command="{Binding AddEntityCommand}" />
-        <ToolbarItem Text="Edit" Command="{Binding UpdateEntityCommand}" />
+        <ToolbarItem IconImageSource="add" Command="{Binding AddEntityCommand}" />
+        <ToolbarItem IconImageSource="edit" Command="{Binding UpdateEntityCommand}" />
     </ContentPage.ToolbarItems>
 
     <ContentPage.ControlTemplate>

@@ -8,7 +8,7 @@
              Title="Expense Details">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="UpdateExpense" Text="Save" Command="{Binding UpdateEntityCommand}" />
+        <ToolbarItem x:Name="UpdateExpense" IconImageSource="save" Command="{Binding UpdateEntityCommand}" />
     </ContentPage.ToolbarItems>
     
     <ScrollView>

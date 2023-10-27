@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
       x:Class="ShihBooks.Views.Controls.IncomeCard"
       Padding="3" 
+      MinimumHeightRequest="50"
       ColumnSpacing="5" 
       ColumnDefinitions="55,*,100">
 
