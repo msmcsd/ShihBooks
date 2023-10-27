@@ -25,18 +25,7 @@
         <controls:EntitySearchBar Grid.ColumnSpan="2" 
                                   Text="{Binding SearchText}"
                                   x:DataType="vm:IncomesViewModel"/>
-        <!--<Border HeightRequest="50" Margin="0, 0, 0, 0">
-            <Border.StrokeShape>
-                <RoundRectangle CornerRadius="22" />
-            </Border.StrokeShape>
-            <SearchBar Text="{Binding SearchText}">
-                <SearchBar.Behaviors>
-                    <toolkit:EventToCommandBehavior 
-                            EventName="TextChanged"
-                            Command="{Binding Source={x:Reference this}, Path=BindingContext.SearchEntityCommand}" />
-                </SearchBar.Behaviors>
-            </SearchBar>
-        </Border>-->
+
         <CollectionView
             ItemsSource="{Binding FilteredIncomes}">
             <CollectionView.ItemTemplate>
@@ -46,19 +35,7 @@
                             <SwipeItems>
                                 <SwipeItemView CommandParameter="{Binding .}"
                                                Command="{Binding Source={RelativeSource AncestorType={x:Type vm:IncomesViewModel}}, Path=DeleteIncomeCommand}">
-                                    <Frame BackgroundColor="LightPink"
-                                           HeightRequest="50"
-                                           WidthRequest="50"
-                                           HorizontalOptions="Center"
-                                           VerticalOptions="Center"
-                                           CornerRadius="25"
-                                           Padding="0">
-                                        <Image Source="trash"
-                                           WidthRequest="30"
-                                           HeightRequest="30"
-                                           VerticalOptions="Center"
-                                           HorizontalOptions="Center"/>
-                                    </Frame>
+                                    <controls:SwipeItemViewItem/>
                                 </SwipeItemView>
                             </SwipeItems>
                         </SwipeView.RightItems>
@@ -70,29 +47,6 @@
                                     Command="{Binding Source={RelativeSource AncestorType={x:Type vm:IncomesViewModel} }, Path=GoToDetailsCommand}" />
                                 </Frame.GestureRecognizers>
                                 <controls:IncomeCard x:DataType="m:IncomeDetails" />
-                                <!--<Grid Padding="3" ColumnSpacing="5" ColumnDefinitions="55,*,100">
-                                    <Label Grid.Column="0"
-                                       Text="{Binding IncomeDate, StringFormat='{0:MM/dd}'}" 
-                                       HorizontalOptions="Start"
-                                       VerticalOptions="Center" />
-                                    --><!--<Image Grid.Column="1"
-                                       Aspect="AspectFill"
-                                       Source="{Binding MerchantImageUrl}"                           
-                                       WidthRequest="32" 
-                                       HeightRequest="32"
-                                    />--><!--
-                                    <Label Grid.Column="1" 
-                                       Text="{Binding Description}" 
-                                           Padding="5,0"
-                                       LineBreakMode="WordWrap"
-                                       VerticalOptions="Center"
-                                       VerticalTextAlignment="Center"/>
-                                    <Label Grid.Column="2"
-                                       Text="{Binding Amount, StringFormat='${0:N2}'}" 
-                                       HorizontalOptions="FillAndExpand"
-                                       HorizontalTextAlignment="End"
-                                       VerticalOptions="Center"/>
-                                </Grid>-->
                             </Frame>
                         </Grid>
                     </SwipeView>

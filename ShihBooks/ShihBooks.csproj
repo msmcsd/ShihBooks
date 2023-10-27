@@ -64,6 +64,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Views\Controls\SwipeItemViewItem.xaml.cs">
+	    <DependentUpon>SwipeItemViewItem.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\Expenses\ExpenseDetailsPage.xaml.cs">
 	    <DependentUpon>ExpenseDetailsPage.xaml</DependentUpon>
 	  </Compile>
@@ -95,6 +98,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Controls\IncomeCard.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Controls\SwipeItemViewItem.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Expenses\ExpenseDetailsPage.xaml">

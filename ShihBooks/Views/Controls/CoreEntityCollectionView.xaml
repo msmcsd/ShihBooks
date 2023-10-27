@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:m="clr-namespace:ShihBooks.Core;assembly=ShihBooks.Core"
              xmlns:vm="clr-namespace:ShihBooks.ViewModels"
+             xmlns:controls="clr-namespace:ShihBooks.Views.Controls"
              x:DataType="vm:ManageEntitiesViewModel"
              x:Class="ShihBooks.Views.Controls.CoreEntityCollectionView">
 
@@ -17,19 +18,7 @@
                         <SwipeItems>
                             <SwipeItemView CommandParameter="{Binding .}"
                                            Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ManageEntitiesViewModel}}, Path=DeleteEntityCommand}">
-                                <Frame BackgroundColor="OrangeRed"
-                                       HeightRequest="50"
-                                       WidthRequest="50"
-                                       HorizontalOptions="Center"
-                                       VerticalOptions="Center"
-                                       CornerRadius="25"
-                                       Padding="0">
-                                    <Label Text="X" 
-                                           FontSize="20"
-                                           FontAttributes="Bold"
-                                           VerticalOptions="Center"
-                                           HorizontalOptions="Center"/>
-                                </Frame>
+                                <controls:SwipeItemViewItem/>
                             </SwipeItemView>
                         </SwipeItems>
                     </SwipeView.RightItems>
